@@ -21,9 +21,28 @@ li,
   padding: 0;
 }
 
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
+  margin: 0 auto;
+}
+
+.container {
+  max-width: 1400px;
+}
+
 .btn {
   border-radius: 20px;
 }
+
+//=========== SASS VARIABLES ===========
+$PRIMARY-COLOR-0: #1b3e91;
+$PRIMARY-COLOR-1: #4f7fd1;
+$PRIMARY-COLOR-2: #21a8e1;
+
 html body {
   font-family: "Mulish", sans-serif;
   h1,
@@ -31,20 +50,14 @@ html body {
     font-family: "Raleway", sans-serif;
   }
 
-  //=========== SASS VARIABLES ===========
-  $PRIMARY-COLOR-0: #1B3E91;
-  $PRIMARY-COLOR-1: #4F7FD1;
-  $PRIMARY-COLOR-2: #21A8E1;
-
   //=========== NAVIGATION ===========
   %menuEffectInitial {
     content: "";
     position: absolute;
     bottom: 0px;
-    left:0px;
+    left: 0px;
     height: 4px;
     width: 64px;
-    // background-color: $PRIMARY-COLOR-2;
     border-radius: 20px;
     transform: translateX(64px);
     opacity: 0;
@@ -57,12 +70,13 @@ html body {
     background-color: $PRIMARY-COLOR-2;
     width: 32px;
   }
-  
+
   %menuEffectHoverGrey {
     opacity: 1;
     background-color: #18181a !important;
     height: 2px;
   }
+
   #topNavigation {
     a {
       text-decoration: none;
@@ -77,7 +91,7 @@ html body {
       @extend %menuEffectHoverGrey;
       background-color: #e2f0f8;
     }
-    
+
     a.active {
       font-weight: 500;
     }
@@ -89,7 +103,7 @@ html body {
       width: 32px;
       height: 4px;
     }
-  
+
     .logo {
       cursor: pointer;
       font-size: 2.25rem;
@@ -97,6 +111,21 @@ html body {
       img {
         height: 80px;
       }
+    }
+  }
+  //=========== HERO ===========
+  #hero {
+    margin-top: 64px;
+    img {
+      width: 100%;
+    }
+    div {
+      transition: all 0.75s ease-in-out;
+    }
+
+    .hidden {
+      opacity: 0;
+      transform: translateY(-100%);
     }
   }
 }
@@ -110,9 +139,45 @@ html body {
   justify-content: center;
   align-items: center;
 }
+
+.flex-center-column-start {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 //=========== MEDIA-QUERY UP TO TABLET ===========
 @media (min-width: 767px) {
   .p-outside {
     padding: 16px 16px;
   }
+}
+
+//=========== BARS ===========
+.bars {
+  z-index: -1;
+  position: absolute;
+  top: 3%;
+  left: 18%;
+  height: 100%;
+  width: 100%;
+  transform: rotate(45deg);
+  div {
+    width: 0%;
+    background-color: $PRIMARY-COLOR-1;
+    border-radius: 10000px;
+    height: 3px;
+    transition: width 7s ease-out;
+  }
+  
+  .grow {
+    width: 100%;
+  }
+  
+  
+}
+.bars-horizontal {
+  transform: rotate(-26deg);
+  left: -51%;
+  top: -10%;
 }

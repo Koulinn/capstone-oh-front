@@ -14,7 +14,7 @@ ReactDOM.render(
   
   <Provider store={store}>
   <PersistGate persistor={persistor}>
-    <Container className="position-relative p-outside" fluid>
+    <Container className="overflow-hidden p-outside" fluid>
       <App />
     </Container>
   </PersistGate>

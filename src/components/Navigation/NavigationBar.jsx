@@ -14,7 +14,7 @@ function NavigationBar({history}) {
         history.push(path)
     }
     return (
-        <Navbar id="topNavigation" bg="transparent" className="w-100 d-flex justify-content-lg-between align-items-center" expand="lg">
+        <Navbar id="topNavigation" bg="transparent" className="w-100 container d-flex justify-content-lg-between align-items-center" expand="lg">
             <div className="logo" onClick={()=>changeHistory('/')}>
                 <img src={logoURL} className="py-3 pr-3" />
                 OneHealth

@@ -18,6 +18,17 @@ li,
   margin: 0;
   padding: 0; }
 
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl {
+  margin: 0 auto; }
+
+.container {
+  max-width: 1400px; }
+
 .btn {
   border-radius: 20px; }
 
@@ -40,7 +51,7 @@ html body {
   html body #topNavigation a:hover::before, html body #topNavigation a.active::before, html body #topNavigation a.active:hover::before {
     transform: translateX(0px);
     opacity: 1;
-    background-color: #21A8E1;
+    background-color: #21a8e1;
     width: 32px; }
   html body #topNavigation a:hover::before {
     opacity: 1;
@@ -63,6 +74,15 @@ html body {
     font-family: "Raleway", sans-serif; }
     html body #topNavigation .logo img {
       height: 80px; }
+  html body #hero {
+    margin-top: 64px; }
+    html body #hero img {
+      width: 100%; }
+    html body #hero div {
+      transition: all 0.75s ease-in-out; }
+    html body #hero .hidden {
+      opacity: 0;
+      transform: translateY(-100%); }
 
 .p-outside {
   padding: 16px 32px; }
@@ -72,6 +92,33 @@ html body {
   justify-content: center;
   align-items: center; }
 
+.flex-center-column-start {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; }
+
 @media (min-width: 767px) {
   .p-outside {
     padding: 16px 16px; } }
+
+.bars {
+  z-index: -1;
+  position: absolute;
+  top: 3%;
+  left: 18%;
+  height: 100%;
+  width: 100%;
+  transform: rotate(45deg); }
+  .bars div {
+    width: 0%;
+    background-color: #4f7fd1;
+    border-radius: 10000px;
+    height: 3px;
+    transition: width 7s ease-out; }
+  .bars .grow {
+    width: 100%; }
+
+.bars-horizontal {
+  transform: rotate(-26deg);
+  left: -51%;
+  top: -10%; }
