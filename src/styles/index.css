@@ -1,8 +1,77 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;700;800&family=Raleway:wght@300&display=swap");
-html {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+ul,
+li,
+.navbar {
+  margin: 0;
+  padding: 0; }
+
+.btn {
+  border-radius: 20px; }
+
+html body {
   font-family: "Mulish", sans-serif; }
-  html h1, html h2, html h3, html h4, html h5, html h6, html p, html div {
-    margin: 0;
-    padding: 0; }
-  html h1, html h2 {
+  html body h1,
+  html body h2 {
     font-family: "Raleway", sans-serif; }
+  html body #topNavigation a::before {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 4px;
+    width: 64px;
+    border-radius: 20px;
+    transform: translateX(64px);
+    opacity: 0;
+    transition: all 0.7s; }
+  html body #topNavigation a:hover::before, html body #topNavigation a.active::before, html body #topNavigation a.active:hover::before {
+    transform: translateX(0px);
+    opacity: 1;
+    background-color: #21A8E1;
+    width: 32px; }
+  html body #topNavigation a:hover::before {
+    opacity: 1;
+    background-color: #18181a !important;
+    height: 2px; }
+  html body #topNavigation a {
+    text-decoration: none;
+    font-size: 1.25rem;
+    position: relative; }
+  html body #topNavigation a:hover::before {
+    background-color: #e2f0f8; }
+  html body #topNavigation a.active {
+    font-weight: 500; }
+  html body #topNavigation a.active:hover::before {
+    width: 32px;
+    height: 4px; }
+  html body #topNavigation .logo {
+    cursor: pointer;
+    font-size: 2.25rem;
+    font-family: "Raleway", sans-serif; }
+    html body #topNavigation .logo img {
+      height: 80px; }
+
+.p-outside {
+  padding: 16px 32px; }
+
+.flex-center-start {
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+@media (min-width: 767px) {
+  .p-outside {
+    padding: 16px 16px; } }

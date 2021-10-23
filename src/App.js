@@ -1,6 +1,7 @@
 import { io } from 'socket.io-client'
-import { useEffect } from 'react'
 import { Route, BrowserRouter as Router } from 'react-router-dom';
+import Home from './views/Home/Home';
+import NavigationBar from './components/Navigation/NavigationBar';
 
 
 const ADDRESS = process.env.REACT_APP_API_URL
@@ -10,10 +11,15 @@ export const socket = io(ADDRESS, { transports: ['websocket'] })
 function App() {
 
   return (
-    <div >
-    <h1>APP</h1>
+    < >
+    <Router>
+      <NavigationBar/>
+      <Route path="/" exact render={(routerProps) =>
+              <Home {...routerProps} />}>
+        </Route>
+    </Router>
     
-    </div>
+    </>
   );
 }
 

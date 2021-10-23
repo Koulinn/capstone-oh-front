@@ -1,14 +1,118 @@
 @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;700;800&family=Raleway:wght@300&display=swap");
 
-//pre-sets
-html {
+//=========== RESETS ===========
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+.container,
+.container-fluid,
+.container-lg,
+.container-md,
+.container-sm,
+.container-xl,
+ul,
+li,
+.navbar {
+  margin: 0;
+  padding: 0;
+}
+
+.btn {
+  border-radius: 20px;
+}
+html body {
   font-family: "Mulish", sans-serif;
-  h1, h2, h3, h4, h5, h6, p, div{
-    margin: 0;
-    padding: 0;
-  }
-  h1, h2 {
+  h1,
+  h2 {
     font-family: "Raleway", sans-serif;
+  }
+
+  //=========== SASS VARIABLES ===========
+  $PRIMARY-COLOR-0: #1B3E91;
+  $PRIMARY-COLOR-1: #4F7FD1;
+  $PRIMARY-COLOR-2: #21A8E1;
+
+  //=========== NAVIGATION ===========
+  %menuEffectInitial {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    left:0px;
+    height: 4px;
+    width: 64px;
+    // background-color: $PRIMARY-COLOR-2;
+    border-radius: 20px;
+    transform: translateX(64px);
+    opacity: 0;
+    transition: all 0.7s;
+  }
+
+  %menuEffectActive {
+    transform: translateX(0px);
+    opacity: 1;
+    background-color: $PRIMARY-COLOR-2;
+    width: 32px;
+  }
+  
+  %menuEffectHoverGrey {
+    opacity: 1;
+    background-color: #18181a !important;
+    height: 2px;
+  }
+  #topNavigation {
+    a {
+      text-decoration: none;
+      font-size: 1.25rem;
+      position: relative;
+    }
+    a::before {
+      @extend %menuEffectInitial;
+    }
+    a:hover::before {
+      @extend %menuEffectActive;
+      @extend %menuEffectHoverGrey;
+      background-color: #e2f0f8;
+    }
+    
+    a.active {
+      font-weight: 500;
+    }
+    a.active::before {
+      @extend %menuEffectActive;
+    }
+    a.active:hover::before {
+      @extend %menuEffectActive;
+      width: 32px;
+      height: 4px;
+    }
+  
+    .logo {
+      cursor: pointer;
+      font-size: 2.25rem;
+      font-family: "Raleway", sans-serif;
+      img {
+        height: 80px;
+      }
+    }
   }
 }
 
+.p-outside {
+  padding: 16px 32px;
+}
+
+.flex-center-start {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+//=========== MEDIA-QUERY UP TO TABLET ===========
+@media (min-width: 767px) {
+  .p-outside {
+    padding: 16px 16px;
+  }
+}
