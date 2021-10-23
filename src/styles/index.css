@@ -1,0 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;700;800&family=Raleway:wght@300&display=swap");
+html {
+  font-family: "Mulish", sans-serif; }
+  html h1, html h2 {
+    font-family: "Raleway", sans-serif; }
