@@ -7,18 +7,18 @@ import { Provider } from 'react-redux'
 import store from './redux/store'
 import { persistor } from './redux/store'
 import { PersistGate } from 'redux-persist/integration/react';
-import {Container} from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
 
 ReactDOM.render(
-  
+
   <Provider store={store}>
-  <PersistGate persistor={persistor}>
-    <Container className="overflow-hidden p-outside" fluid>
+    {/* <PersistGate persistor={persistor}> */}
+
       <App />
-    </Container>
-  </PersistGate>
-</Provider>
+
+    {/* </PersistGate> */}
+  </Provider>
   ,
   document.getElementById('root')
 );
