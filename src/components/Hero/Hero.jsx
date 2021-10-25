@@ -16,7 +16,7 @@ function Hero({ heroImgURL, title }) {
         <Container>
             <Row id="hero" className={"justify-content-between"}>
                 <div className={"col-4 flex-center-column-start" + showHero}>
-                    <div className="flex-center-start mb-5">
+                    <div className="flex-center-center mb-5">
                         <h1 className="">{title}</h1>
                     </div>
                     <div className="mt-5">
