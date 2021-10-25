@@ -23,10 +23,10 @@ function NavigationBar({history}) {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                    <NavLink to="/login"  activeClassName="active" className="flex-center-start">Login</NavLink>
-                    <NavLink to="/register" activeClassName="active" className="ml-3 flex-center-start">Register</NavLink>
-                    <NavLink to="/chat" activeClassName="active" className="mx-3 flex-center-start">Open chat</NavLink>
-                    <Button onClick={()=>changeHistory('/bookRequest')}>Book medical test</Button>
+                    <NavLink to="/login"  activeClassName="active" className="flex-center-center">Login</NavLink>
+                    <NavLink to="/register" activeClassName="active" className="ml-3 flex-center-center">Register</NavLink>
+                    <NavLink to="/chat" activeClassName="active" className="mx-3 flex-center-center">Open chat</NavLink>
+                    <Button onClick={()=>changeHistory('/booking')}>Book medical test</Button>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
