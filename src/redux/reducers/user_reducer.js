@@ -14,13 +14,19 @@ export const userReducer = (state = initialState.user, action) => {
                 ...state,
                 isLogged: false
             }
-
-        case 'SET_USER_DATA':
+        case 'SET_USER_TOKENS':
             return {
                 ...state,
-                userData: {
-                    ...action.payload
-                }
+                accessToken: action.payload.accessToken,
+                refreshToken: action.payload.refreshToken
+            }
+
+        case 'SET_USER_DATA':
+            delete action.payload.refreshToken
+            return {
+                ...state,
+                ...action.payload
+                
             }
 
         default: {
