@@ -4,6 +4,10 @@ export const setUserData = (payload) => ({
   type: 'SET_USER_DATA',
   payload: payload
 })
+export const setUserTokens = (payload) => ({
+  type: 'SET_USER_TOKENS',
+  payload: payload
+})
 
 export const setLogin = (email, password) => {
 
