@@ -134,7 +134,7 @@ html body {
   padding: 16px 32px;
 }
 
-.flex-center-start {
+.flex-center-center {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -169,15 +169,42 @@ html body {
     height: 3px;
     transition: width 7s ease-out;
   }
-  
+
   .grow {
     width: 100%;
   }
-  
-  
 }
 .bars-horizontal {
   transform: rotate(-26deg);
   left: -51%;
   top: -10%;
 }
+
+.separator-bar{
+  width: 64px;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+
+//=========== BG LOGIN & REGISTER ===========
+.box-shadow {
+  background: #ffffff;
+  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+}
+
+.hide{
+  opacity: 0;
+  transform: translateY(-150%);
+  transition: all 1s;
+}
+.show{
+  transform: translateY(0);
+  opacity: 1;
+}
+
+
+
