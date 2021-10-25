@@ -12,7 +12,7 @@ function Login() {
         success:false,
     })
     return (
-        <Row className="box-shadow my-5 overflow-hidden">
+        <Row className="box-shadow my-5 overflow-hidden mx-1">
             <Welcome
                 title="How can we help you today?"
                 subLabel="Continue with e-mail"

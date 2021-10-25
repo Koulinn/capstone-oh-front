@@ -14,7 +14,6 @@ function Register() {
     const [viewController, setViewController] = useState({
         welcome:true,
         steps:false,
-        success:false,
     })
 
     const [userData, setUserData] = useState({
@@ -29,7 +28,7 @@ function Register() {
     
     return (
         
-            <Row className="box-shadow my-5 overflow-hidden">
+            <Row className="box-shadow my-5 overflow-hidden mx-md-1">
                 {viewController.welcome? <Welcome 
                     title="Welcome to OneHealth!"
                     subLabel="Register with e-mail"
@@ -40,7 +39,7 @@ function Register() {
                     setViewController={setViewController}
                     viewController={viewController}
                 /> : ''}
-                {viewController.steps ? <RegisterSteps userData={userData} setUserData={setUserData}/> : ''}
+                {viewController.steps ? <RegisterSteps viewController={viewController} userData={userData} setUserData={setUserData}/> : ''}
             </Row>
             
        

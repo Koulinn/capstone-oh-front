@@ -22,11 +22,14 @@ function Welcome({ title, subLabel, option, redirect, history, url, img, viewCon
             ...viewController,
             steps: true,
         })
-        setTimeout(() => { setViewController({
-            ...viewController,
-            steps: true,
-            welcome: false
-        }) }, 700)
+        setTimeout(() => {
+            setViewController({
+                ...viewController,
+                steps: true,
+                welcome: false
+            })
+        }, 700)
+        
 
     }
 
@@ -35,7 +38,8 @@ function Welcome({ title, subLabel, option, redirect, history, url, img, viewCon
             <div className={
                 "col-6 flex-column flex-center-center hide "
                 + (show && !viewController.steps ? 'show' : '')
-            }
+                + (viewController.steps ? ' d-none' : '')
+            } style={{flexOrder:1}}
             >
                 <h2 className="text-center mt-5 mb-3">{title}</h2>
                 <h5 className="mb-3">Please choose an option</h5>
@@ -52,7 +56,12 @@ function Welcome({ title, subLabel, option, redirect, history, url, img, viewCon
                 <h6 className="text-center mb-5">{option}<strong className="cursor-pointer" onClick={changeUrl}>{redirect}</strong></h6>
 
             </div>
-            <div className={"col-6 d-flex flex-column flex-center-center hide " + (show && !viewController.steps ? 'show' : '')}>
+            <div className={
+                "col-6 d-flex flex-column flex-center-center hide "
+                + (show && !viewController.steps ? 'show' : '') +
+                (viewController.steps ? ' d-none' : '')
+            }
+            >
                 {img}
             </div>
         </>

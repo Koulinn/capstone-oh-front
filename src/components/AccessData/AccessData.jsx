@@ -1,6 +1,6 @@
 import React from 'react'
 import { useFormik} from "formik"
-import { useState  } from 'react';
+import { useState, useEffect  } from 'react';
 import { Button } from 'react-bootstrap';
 import TextField from '@material-ui/core/TextField';
 import * as Yup from 'yup';
@@ -29,6 +29,7 @@ const SignupSchema = Yup.object().shape({
 function AccessData({ userData, steps, setSteps }) {
     const [showError, setShowError] = useState(false)
     const [isSpinning, setIsSpinning] = useState(false)
+    const [show, setShow] = useState(false)
      const dispatch = useDispatch()
 
     const formik = useFormik({
@@ -65,9 +66,11 @@ function AccessData({ userData, steps, setSteps }) {
         }
     })
 
+    useEffect(()=> setTimeout(()=>setShow(true), 700),[])
+
     return (
         <>
-            <form className="d-flex flex-column" onSubmit={formik.handleSubmit}>
+            <form className={"d-flex flex-column hide hideInverse " + (show? ' show' : '')} onSubmit={formik.handleSubmit}>
                 <TextField
                     className="mt-5"
                     fullWidth
