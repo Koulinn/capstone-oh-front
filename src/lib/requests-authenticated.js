@@ -31,11 +31,8 @@ const getMe = async () => {
     try {
         
         const storeState = store.getState()
-        const accessToken = storeState.user.accessToken
-    
-        console.log(storeState, 'USER DATA from REQUEST handler line 33')
-        console.log(storeState, 'getstate from getMe')
-    
+        const {accessToken} = storeState.user
+       
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken;
     
         const response = await axios.get(BASE_URL + "/user/me")
@@ -46,5 +43,24 @@ const getMe = async () => {
     }
 }
 
+const sendMedicalRequest = async (body)=>{
+    try {
+        const storeState = store.getState()
+        const {accessToken} = storeState.user
+       
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken;
+        const response = await axios.post(BASE_URL + "/user/bookTest", body)
+        return response
+        
+    } catch (error) {
+        console.log(error)
+        return false
+    }
 
-export default getMe
+}
+
+const requests ={
+    getMe:getMe,
+    sendMedicalRequest:sendMedicalRequest,
+}
+export default requests
