@@ -8,7 +8,7 @@ import regRequests from '../../lib/requests-handlers.js';
 import Spinner from '../Spinner/Spinner'
 import Alerts from '../Alerts/Alerts.jsx';
 import { useDispatch } from 'react-redux'
-import { setUserTokens } from '../../redux/actions/index.js';
+import { setUserTokens, setUserLogIn } from '../../redux/actions/index.js';
 
 
 
@@ -48,6 +48,7 @@ function AccessData({ userData, steps, setSteps }) {
                     refreshToken: res.data.newRefreshToken,
                 }
                 dispatch(setUserTokens(tokens))
+                dispatch(setUserLogIn())
                 setIsSpinning(false)
                 setShowError(false)
 
