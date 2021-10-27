@@ -18,6 +18,12 @@ li,
   margin: 0;
   padding: 0; }
 
+ul, li {
+  list-style: none; }
+
+li > span {
+  cursor: pointer; }
+
 .container,
 .container-fluid,
 .container-lg,
@@ -148,3 +154,40 @@ html body {
 .show {
   transform: translateY(0);
   opacity: 1; }
+
+.facility {
+  border-radius: 8px;
+  transition: all .5s; }
+
+.bg-selected {
+  background-color: #1784b37a;
+  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.1); }
+
+.facility:hover {
+  background-color: #1784b37a; }
+  .facility:hover h5 {
+    font-weight: 700; }
+
+.user-availability-wrapper .ASAP-btn {
+  padding: 24px;
+  background-color: #21a8e1;
+  border-radius: 16px;
+  color: white;
+  transition: all .5s; }
+
+.user-availability-wrapper .ASAP-btn:hover {
+  background-color: #4f7fd1; }
+
+.user-availability-wrapper .pickDAte-btn {
+  padding: 24px;
+  border: 2px solid #21a8e1;
+  border-radius: 16px; }
+
+.user-availability-wrapper .pickDAte-btn:hover {
+  border-color: #4f7fd1; }
+
+.user-availability-wrapper .calendar-metas {
+  max-width: 350px; }
+
+.user-availability-wrapper .rdt input {
+  text-align: center; }
