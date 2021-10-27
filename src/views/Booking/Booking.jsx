@@ -31,7 +31,7 @@ function Booking({ location, history }) {
     const [showError, setShowError] = useState(false)
     const [isSpinning, setIsSpinning] = useState(false)
 
-    const [bookingSteps, setBookingSteps ] = useState({
+    const [bookingSteps, setBookingSteps] = useState({
         medicalTests: true,
         facility: false,
         generalAvailability: false,
@@ -159,16 +159,22 @@ function Booking({ location, history }) {
                 </h1>
 
                 <div className="medical-requests-wrapper d-flex flex-center-center flex-column">
-                    {bookingSteps.medicalTests ?<MedicalTests 
-                    setTestsImgs={setTestsImgs} 
-                    setImgsPreview={setImgsPreview} 
-                    setRequestTags={setRequestTags} 
-                    requestTags={requestTags}
-                    setBookingSteps={setBookingSteps} 
+                    {bookingSteps.medicalTests ? <MedicalTests
+                        setTestsImgs={setTestsImgs}
+                        setImgsPreview={setImgsPreview}
+                        setRequestTags={setRequestTags}
+                        requestTags={requestTags}
+                        setBookingSteps={setBookingSteps}
                     /> : ''}
                 </div>
                 <div className="medical-facility-wrapper flex-center-center flex-column">
-                    <Facility setFacility={setFacility} facility={facility}/>
+                    {bookingSteps.facility ?
+                        <Facility
+                            setFacility={setFacility}
+                            facility={facility}
+                            setBookingSteps={setBookingSteps}
+                        />
+                        : ''}
                 </div>
                 <div className="user-availability-wrapper flex-center-center flex-column">
                     <h2 className="text-center mt-5 mb-3">What's your availability?</h2>
