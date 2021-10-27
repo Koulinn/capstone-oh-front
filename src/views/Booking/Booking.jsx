@@ -14,6 +14,7 @@ import { MdRemove } from 'react-icons/md'
 import Spinner from '../../components/Spinner/Spinner'
 import Alerts from '../../components/Alerts/Alerts';
 import MedicalTests from '../../components/BookingProcess/MedicalTests'
+import Facility from '../../components/BookingProcess/Facility'
 
 const { getMe, sendMedicalRequest } = requests
 
@@ -70,7 +71,7 @@ function Booking({ location, history }) {
     }, [])
     useEffect(() => {
 
-    }, [imgsPreview])
+    }, [imgsPreview, facility])
 
     const filesHandler = (e) => {
         const files = e.target.files
@@ -95,7 +96,7 @@ function Booking({ location, history }) {
         }
     }
 
-    const facilityHandler = (facility) => {
+    const facilityHandler = (facility, useSet) => {
         setFacility(facility)
     }
     const availabilityHandler = (availability) => {
@@ -167,29 +168,7 @@ function Booking({ location, history }) {
                     /> : ''}
                 </div>
                 <div className="medical-facility-wrapper flex-center-center flex-column">
-                    <h2 className="text-center mt-5 mb-3">Choose a location</h2>
-                    <ul className="facility-wrapper w-75">
-                        {GP_LIST.map((gp, index) =>
-                            <li className={'my-3 cursor-pointer'} key={index} onClick={() => facilityHandler(gp)}>
-                                <div className={"d-flex flex-column p-3 facility " + (facility?.name === gp?.name ? ' bg-selected' : '')}>
-                                    <div className="d-flex justify-content-between">
-                                        <h5>{gp.name}</h5>
-                                        <span>
-                                            {gp.dist}
-                                            <small>
-                                                km
-                                            </small>
-                                        </span>
-                                    </div>
-                                    <p className="my-2">{gp.address}</p>
-                                    <p>{gp.postCode}</p>
-                                    <h6 className="mt-2">{gp.phone}</h6>
-                                </div>
-                                <hr className="w-50" />
-                            </li>
-                        )}
-                    </ul>
-
+                    <Facility setFacility={setFacility} facility={facility}/>
                 </div>
                 <div className="user-availability-wrapper flex-center-center flex-column">
                     <h2 className="text-center mt-5 mb-3">What's your availability?</h2>
