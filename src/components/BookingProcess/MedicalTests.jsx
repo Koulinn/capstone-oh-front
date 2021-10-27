@@ -2,15 +2,16 @@ import React from 'react'
 import { previewUrls } from '../../lib'
 import { Button } from 'react-bootstrap'
 import TextField from '@material-ui/core/TextField';
-import {MdUploadFile} from 'react-icons/md'
+import { MdUploadFile } from 'react-icons/md'
+import ConfirmStepsBtn from './ConfirmStepsBtn';
 
-function MedicalTests({ 
+function MedicalTests({
     setTestsImgs,
-     setImgsPreview, 
-     setRequestTags, 
-     requestTags,
-     setBookingSteps 
-    }) {
+    setImgsPreview,
+    setRequestTags,
+    requestTags,
+    setBookingSteps
+}) {
 
     const filesHandler = (e) => {
         const files = e.target.files
@@ -35,14 +36,14 @@ function MedicalTests({
         }
     }
 
-    const confirmTests = ()=>{
+    const confirmTests = () => {
         setBookingSteps({
-        medicalTests: false,
-        facility: true,
-        generalAvailability: false,
-        pickDate: false,
-        checkPersonalDetails: false,
-        successScreen: false
+            medicalTests: false,
+            facility: true,
+            generalAvailability: false,
+            pickDate: false,
+            checkPersonalDetails: false,
+            successScreen: false
         })
     }
     return (
@@ -52,7 +53,7 @@ function MedicalTests({
             </h4>
             <div className="wrapper-request-imgs">
                 <label htmlFor="img_requests">
-                    <MdUploadFile/> Upload files
+                    <MdUploadFile /> Upload files
                 </label>
                 <input
                     id="img_requests"
@@ -62,7 +63,7 @@ function MedicalTests({
                     onChangeCapture={(e) => filesHandler(e)}
                 />
             </div>
-            <hr className="w-50 my-5"/>
+            <hr className="w-50 my-5" />
             <div className="wrapper-request-tags w-75">
                 <form className="flex-center-center flex-column" onSubmit={tagsHandler}>
                     <label htmlFor="request-tags" className="mb-0">
@@ -76,16 +77,17 @@ function MedicalTests({
                             name="request-tags"
                             label="Add a medical test"
                         />
-                        <Button className="outline" style={{borderRadius: '8px'}} type="submit">
+                        <Button className="outline" style={{ borderRadius: '8px' }} type="submit">
                             Add
                         </Button>
                     </div>
                 </form>
             </div>
-            <div className="mt-5 d-flex justify-content-between w-75">
-                <div className="d-flex align-items-center"><span>Return</span></div>
-                <Button onClick={confirmTests}>Confirm medical tests</Button>
-            </div>
+            <ConfirmStepsBtn
+                stepsController={confirmTests}
+                btnText='Confirm medical tests'
+                stepsReturn={null}
+            />
         </>
     )
 }
