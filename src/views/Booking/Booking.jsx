@@ -15,6 +15,7 @@ import Spinner from '../../components/Spinner/Spinner'
 import Alerts from '../../components/Alerts/Alerts';
 import MedicalTests from '../../components/BookingProcess/MedicalTests'
 import Facility from '../../components/BookingProcess/Facility'
+import Availability from '../../components/BookingProcess/Availability'
 
 const { getMe, sendMedicalRequest } = requests
 
@@ -177,34 +178,14 @@ function Booking({ location, history }) {
                         : ''}
                 </div>
                 <div className="user-availability-wrapper flex-center-center flex-column">
-                    <h2 className="text-center mt-5 mb-3">What's your availability?</h2>
-
-                    <div className="flex-center-center justify-content-between w-100">
-                        <div className="w-25"></div>
-                        <div className="ASAP-btn cursor-pointer mt-3" onClick={() => availabilityHandler(['ASAP'])}>
-                            <h4>ASAP</h4>
-                        </div>
-                        <div className='pickDAte-btn mt-3'>
-                            <h4>Pick dates</h4>
-                        </div>
-                        <div className="w-25"></div>
-                    </div>
-
-                    <div className="flex-center-center justify-content-between w-100 mb-5 mt-3">
-                        <div className="d-flex flex-center-center flex-column justify-content-between w-100">
-                            <h4>Choose days</h4>
-                            <div className="d-flex justify-content-between w-100 calendar-metas mt-3 mb-2">
-                                <h6>You need to choose at least 3 dates</h6>
-                                <small>{`${availability.length}/5`}</small>
-                            </div>
-                            <Calendar
-                                onChange={onChange}
-                                value={value}
-                                minDate={new Date()}
-                                onClickDay={selectDay}
-                            />
-                        </div>
-                    </div>
+                    {bookingSteps.generalAvailability || bookingSteps.pickDate ?
+                        <Availability
+                            setAvailability={setAvailability}
+                            availability={availability}
+                            setBookingSteps={setBookingSteps}
+                            bookingSteps={bookingSteps}
+                        />
+                        : ''}
                 </div>
 
                 <div className="patient-wrapper">
