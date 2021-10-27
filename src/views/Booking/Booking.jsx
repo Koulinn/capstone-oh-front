@@ -13,6 +13,7 @@ import 'react-calendar/dist/Calendar.css';
 import { MdRemove } from 'react-icons/md'
 import Spinner from '../../components/Spinner/Spinner'
 import Alerts from '../../components/Alerts/Alerts';
+import MedicalTests from '../../components/BookingProcess/MedicalTests'
 
 const { getMe, sendMedicalRequest } = requests
 
@@ -29,13 +30,12 @@ function Booking({ location, history }) {
     const [showError, setShowError] = useState(false)
     const [isSpinning, setIsSpinning] = useState(false)
 
-    const [{bookingSteps, setBookingSteps}]= useState({
-        medicalTestsUpload: true,
-        medicalTestsTags: false,
+    const [bookingSteps, setBookingSteps ] = useState({
+        medicalTests: true,
         facility: false,
         generalAvailability: false,
-        pickDate:false,
-        checkPersonalDetails:false,
+        pickDate: false,
+        checkPersonalDetails: false,
         successScreen: false
     })
 
@@ -68,6 +68,9 @@ function Booking({ location, history }) {
         }
 
     }, [])
+    useEffect(() => {
+
+    }, [imgsPreview])
 
     const filesHandler = (e) => {
         const files = e.target.files
@@ -90,7 +93,6 @@ function Booking({ location, history }) {
         } else {
             //add error
         }
-
     }
 
     const facilityHandler = (facility) => {
@@ -155,39 +157,14 @@ function Booking({ location, history }) {
                     Booking
                 </h1>
 
-                <div className="medical-requests-wrapper">
-                    <h4 className="text-center mt-3 mb-5">
-                        Medical tests
-                    </h4>
-                    <div className="wrapper-request-imgs">
-                        <label htmlFor="img_requests">
-                            requests
-                        </label>
-                        <input
-                            id="img_requests"
-                            className="d-none"
-                            type="file"
-                            multiple
-                            onChangeCapture={(e) => filesHandler(e)}
-                        />
-                    </div>
-                    <div className="wrapper-request-tags">
-                        <form className="flex-center-center flex-column" onSubmit={tagsHandler}>
-                            <label htmlFor="request-tags">
-                                Add medical request name
-                            </label>
-                            <TextField
-                                className="mt-5"
-                                fullWidth
-                                id="request-tags"
-                                name="request-tags"
-                                label="Add a medical test"
-                            />
-                            <Button className="mt-3 align-self-end" type="submit">
-                                Add test
-                            </Button>
-                        </form>
-                    </div>
+                <div className="medical-requests-wrapper d-flex flex-center-center flex-column">
+                    {bookingSteps.medicalTests ?<MedicalTests 
+                    setTestsImgs={setTestsImgs} 
+                    setImgsPreview={setImgsPreview} 
+                    setRequestTags={setRequestTags} 
+                    requestTags={requestTags}
+                    setBookingSteps={setBookingSteps} 
+                    /> : ''}
                 </div>
                 <div className="medical-facility-wrapper flex-center-center flex-column">
                     <h2 className="text-center mt-5 mb-3">Choose a location</h2>

@@ -240,6 +240,21 @@ html body {
 }
 
 //=========== MEDICAL REQUEST ===========
+
+.wrapper-request-tags{
+  .outline{
+    border-radius: 8px;
+    border: 2px solid $PRIMARY-COLOR-1;
+    background-color: transparent;
+    color: black;
+    transition: all .5s;
+  }
+  .outline:hover{
+    background-color:#0069d9;
+    color: white;
+    font-weight: 700;
+  }
+}
 //=========== BOOK AVAILABILITY DATE ===========
 
 .user-availability-wrapper{

@@ -11,8 +11,6 @@ import expireReducer from 'redux-persist-expire'
 export const initialState = {
     user: {
         isLogged: false,
-        userData: {
-        },
     },
     chat:{
     },
