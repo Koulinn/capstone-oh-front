@@ -16,6 +16,7 @@ import Alerts from '../../components/Alerts/Alerts';
 import MedicalTests from '../../components/BookingProcess/MedicalTests'
 import Facility from '../../components/BookingProcess/Facility'
 import Availability from '../../components/BookingProcess/Availability'
+import ConfirmDetails from '../../components/BookingProcess/ConfirmDetails'
 
 const { getMe, sendMedicalRequest } = requests
 
@@ -41,7 +42,7 @@ function Booking({ location, history }) {
         successScreen: false
     })
 
-    const { isLogged, name, surname, phone_primary, email } = user
+    const { isLogged } = user
 
     const selectDay = (day) => {
         const parsedDay = moment(day).format('MM/DD/YYYY')
@@ -61,7 +62,6 @@ function Booking({ location, history }) {
         }
     }
     useEffect(() => {
-        console.log(user)
         if (isLogged) {
             asyncWrapper()
 
@@ -188,35 +188,13 @@ function Booking({ location, history }) {
                         : ''}
                 </div>
 
-                <div className="patient-wrapper">
-
-                    <div>
-                        <div className="d-flex flex-column flex-center-center">
-                            <h2 className="mt-5 text-center">Confirm contact details</h2>
-                            <div className="d-flex flex-column w-75">
-                                <p className="mt-5"><strong>Phone:</strong> {phone_primary}</p>
-                                <p className="mt-4"><strong>Email:</strong> {email}</p>
-                                <div className="d-flex justify-content-between flex-column align-items-center mt-5">
-                                    <div className="w-100">
-                                        {isSpinning ? <Spinner /> : ''}
-                                        {showError ? <Alerts
-                                            title='We got an error'
-                                            message='Sorry, the problem is on server'
-                                            state="danger" />
-                                            : ''}
-                                    </div>
-                                    <div className="d-flex align-content-center justify-content-between mt-3 w-100">
-                                        <div>
-                                            <span>Return</span>
-                                        </div>
-                                        <Button onClick={() => sendRequest()} className="w-50"><strong>Confirm</strong></Button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
+                <div className="confirm-wrapper">
+                    {bookingSteps.checkPersonalDetails ? <ConfirmDetails
+                        testsImgs={testsImgs}
+                        requestTags={requestTags}
+                        facility={facility}
+                        availability={availability}
+                    /> : ''}
                 </div>
             </div>
 
