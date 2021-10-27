@@ -87,7 +87,7 @@ function ConfirmDetails(
     }
     return (
         <div className="d-flex flex-column flex-center-center">
-            <h2 className="mt-5 text-center">Confirm contact details</h2>
+            <h4 className="mt-5 text-center">Confirm contact details</h4>
             <div className="d-flex flex-column w-75">
                 <p className="mt-5"><strong>Phone:</strong></p>
                 <p>{phone_primary}</p>
@@ -103,7 +103,7 @@ function ConfirmDetails(
                             : ''}
                     </div>
                     <div className="d-flex align-content-center justify-content-between mt-3 w-100">
-                        <div>
+                        <div className="cursor-pointer py-2 pr-2">
                             <span>Return</span>
                         </div>
                         <Button onClick={() => sendRequest()} className="w-50"><strong>Confirm</strong></Button>

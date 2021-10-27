@@ -64,17 +64,17 @@ function Availability({ setAvailability, availability, setBookingSteps, bookingS
     return (
         <>
 
-            <h2 className="text-center mt-5 mb-3">What's your availability?</h2>
+            <h4 className="text-center mt-5 mb-3">What's your availability?</h4>
             {bookingSteps.generalAvailability ?
-                <div className="flex-center-center justify-content-between w-100">
-                    <div className="w-25"></div>
-                    <div className="ASAP-btn cursor-pointer mt-3" onClick={() => ASAPHandler(['ASAP'])}>
+                <div className="flex-center-center">
+                   
+                    <div className="ASAP-btn cursor-pointer mr-4 mt-3" onClick={() => ASAPHandler(['ASAP'])}>
                         <h4>ASAP</h4>
                     </div>
-                    <div className='pickDAte-btn mt-3 cursor-pointer' onClick={pickDateHandler}>
+                    <div className='pickDAte-btn mt-3 ml-4 cursor-pointer text-nowrap' onClick={pickDateHandler}>
                         <h4>Pick dates</h4>
                     </div>
-                    <div className="w-25"></div>
+                   
                 </div>
                 : ''}
 

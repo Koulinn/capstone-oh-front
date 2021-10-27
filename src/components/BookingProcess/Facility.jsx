@@ -33,7 +33,7 @@ function Facility({ setFacility, facility, setBookingSteps }) {
 
     return (
         <>
-            <h2 className="text-center mt-5 mb-3">Choose a location</h2>
+            <h4 className="text-center mt-5 mb-3">Choose a location</h4>
             <ul className="facility-wrapper w-75">
                 {GP_LIST.map((gp, index) =>
                     <li className={'my-3 cursor-pointer'} key={index} onClick={() => facilityHandler(gp)}>

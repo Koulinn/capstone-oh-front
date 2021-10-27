@@ -291,12 +291,6 @@ html body {
     border-radius: 8px;
     margin: 8px 8px;
   }
-  li:first-child{
-    margin-left: 0px;
-  }
-  li:last-child{
-    margin-right: 0px;
-  }
 }
 .wrapper-request-tags{
   .outline{
@@ -353,4 +347,18 @@ html body {
   h5{
     font-weight: 700;
   }
+}
+
+
+.chosen-date-wrapper{
+  li{
+    background-color: #0021d942;
+    border-radius: 8px;
+    margin: 8px 8px;
+  }
+}
+
+//=========== Success ===========
+.success-wrapper{
+
 }
