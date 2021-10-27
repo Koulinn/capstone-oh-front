@@ -10,6 +10,7 @@ import MedicalTests from '../../components/BookingProcess/MedicalTests'
 import Facility from '../../components/BookingProcess/Facility'
 import Availability from '../../components/BookingProcess/Availability'
 import ConfirmDetails from '../../components/BookingProcess/ConfirmDetails'
+import FacilityCard from '../../components/BookingProcess/FacilityCard'
 
 const { getMe } = requests
 
@@ -56,11 +57,18 @@ function Booking({ history }) {
 
     useEffect(() => {
 
-    }, [imgsPreview, facility])
+    }, [imgsPreview, facility, imgsPreview])
+
+    const removeImg = (imgIndex) => {
+        const remainingImgs = imgsPreview.filter((img, index) => index !== imgIndex)
+        const remainingTestImgs = testsImgs.filter((img, index) => index !== imgIndex)
+        setTestsImgs(remainingTestImgs)
+        setImgsPreview(remainingImgs)
+    }
 
     return (
         <Row className="box-shadow my-5 overflow-hidden mx-1">
-            <div className="col-6 my-5">
+            <div className="col-12 col-md-6 my-5">
                 <h1 className="text-center">
                     Booking
                 </h1>
@@ -100,6 +108,7 @@ function Booking({ history }) {
                         requestTags={requestTags}
                         facility={facility}
                         availability={availability}
+                        setBookingSteps={setBookingSteps}
                     /> : ''}
                 </div>
             </div>
@@ -114,22 +123,48 @@ function Booking({ history }) {
 
 
 
-            <div className="col-6 mt-5">
-                <h2>It's going to be easy</h2>
-                {imgsPreview.map((i, index) => <img key={index} src={i} />)}
-                {requestTags.length > 0 ? <ul>{requestTags.map((t, index) => <li key={index}>{t} <span onClick={() => removeTag(t, requestTags, setRequestTags)}><MdRemove /></span></li>)}</ul> : ''}
+            <div className="request-info-wrapper d-none d-md-block col-6 mt-5">
+                <h2 className="text-center mt-2 mb-5">Request info</h2>
+                <div className={(!bookingSteps.medicalTests ? ' w-75 mx-auto' : ' d-none')}>
+                    <h5 className="text-center mb-3 pt-2">Medical tests</h5>
+                    <div className={"imgsPreview-wrapper justify-content-between row "}>
+                        {imgsPreview.map((i, index) => <>
+                            <div className="position-relative col-md-6 col-lg-4 my-3 p-0">
+                                <img className="" height="96" key={index} src={i} />
+                                <div className="position-absolute d-flex flex-center-center" onClick={() => removeImg(index)}>
+                                    <MdRemove />
+                                </div>
+                            </div>
+
+                        </>)}
+                    </div>
+                    <div className={"my-3 tag-preview-wrapper"}>
+                        {requestTags.length > 0 ?
+                            <ul className="d-flex justify-content-center mx-3 flex-wrap">
+                                {requestTags.map((tag, index) =>
+                                    <li
+                                        key={index}
+                                        className="p-2"
+                                    >
+                                        {tag}
+                                        <span className="ml-3 mr-1" onClick={() => removeTag(tag, requestTags, setRequestTags)}>
+                                            <MdRemove />
+                                        </span>
+                                    </li>)}
+                            </ul>
+                            : ''}
+                    </div>
+                </div>
+                {facility ?
+                    <div className="chosen-location-wrapper mt-5 w-75 mx-auto">
+                        <h5 className="text-center mb-1">Location</h5>
+                        <FacilityCard gp={facility} noHoover={true} />
+
+                    </div>
+                    : ''}
                 {availability.length > 0 ? <ul>{availability.map((t, index) => <li key={index}>{t} <span onClick={() => removeTag(t, availability, setAvailability)}><MdRemove /></span></li>)}</ul> : ''}
 
             </div>
-            {/* Medical request files */}
-            {/* Medical request tags */}
-            {/* Medical request location */}
-            {/* Medical request date */}
-            {/* Medical request patient data */}
-            {/* Medical request patient */}
-            {/* Medical request patient */}
-
-
         </Row>
     )
 }

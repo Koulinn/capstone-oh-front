@@ -239,8 +239,65 @@ html body {
   background-color: #1784b37a;
 }
 
+.chosen-location-wrapper{
+  .bg-transparent{
+    padding: 16px 0px!important;
+  }
+}
+
 //=========== MEDICAL REQUEST ===========
 
+.imgsPreview-wrapper{
+  transition: all .5s;
+  img{
+    object-fit: cover;
+    width: 100%;
+  }
+  .position-relative{
+    border: 4px solid transparent;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .position-absolute{
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    background-color: $PRIMARY-COLOR-2;
+    border-radius: 200px;
+    cursor: pointer;
+    transition: all .5s;
+
+    svg{
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  .position-absolute:hover{
+    background-color: $PRIMARY-COLOR-0;
+    border: 2px solid $PRIMARY-COLOR-2;
+    svg{
+      color: white;
+    }
+  }
+}
+
+.tag-preview-wrapper{
+  transition: all .5s;
+  li{
+    background-color: #0021d942;
+    border-radius: 8px;
+    margin: 8px 8px;
+  }
+  li:first-child{
+    margin-left: 0px;
+  }
+  li:last-child{
+    margin-right: 0px;
+  }
+}
 .wrapper-request-tags{
   .outline{
     border-radius: 8px;
@@ -288,5 +345,12 @@ html body {
     input{
       text-align: center;
     }
+  }
+}
+
+
+.request-info-wrapper{
+  h5{
+    font-weight: 700;
   }
 }

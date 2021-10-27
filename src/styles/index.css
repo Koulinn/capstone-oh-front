@@ -168,6 +168,47 @@ html body {
   .facility:hover h5 {
     font-weight: 700; }
 
+.chosen-location-wrapper .bg-transparent {
+  padding: 16px 0px !important; }
+
+.imgsPreview-wrapper {
+  transition: all .5s; }
+  .imgsPreview-wrapper img {
+    object-fit: cover;
+    width: 100%; }
+  .imgsPreview-wrapper .position-relative {
+    border: 4px solid transparent;
+    border-radius: 8px;
+    overflow: hidden; }
+  .imgsPreview-wrapper .position-absolute {
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    background-color: #21a8e1;
+    border-radius: 200px;
+    cursor: pointer;
+    transition: all .5s; }
+    .imgsPreview-wrapper .position-absolute svg {
+      width: 16px;
+      height: 16px; }
+  .imgsPreview-wrapper .position-absolute:hover {
+    background-color: #1b3e91;
+    border: 2px solid #21a8e1; }
+    .imgsPreview-wrapper .position-absolute:hover svg {
+      color: white; }
+
+.tag-preview-wrapper {
+  transition: all .5s; }
+  .tag-preview-wrapper li {
+    background-color: #0021d942;
+    border-radius: 8px;
+    margin: 8px 8px; }
+  .tag-preview-wrapper li:first-child {
+    margin-left: 0px; }
+  .tag-preview-wrapper li:last-child {
+    margin-right: 0px; }
+
 .wrapper-request-tags .outline {
   border-radius: 8px;
   border: 2px solid #4f7fd1;
@@ -203,3 +244,6 @@ html body {
 
 .user-availability-wrapper .rdt input {
   text-align: center; }
+
+.request-info-wrapper h5 {
+  font-weight: 700; }

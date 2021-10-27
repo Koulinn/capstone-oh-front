@@ -14,7 +14,8 @@ function ConfirmDetails(
         testsImgs,
         requestTags,
         facility,
-        availability
+        availability,
+        setBookingSteps
     }) {
     const [showError, setShowError] = useState(false)
     const [isSpinning, setIsSpinning] = useState(false)
@@ -39,6 +40,14 @@ function ConfirmDetails(
                 if (res.status === 201) {
                     setIsSpinning(false)
                     setShowError(false)
+                    setBookingSteps({
+                        medicalTests: false,
+                        facility: false,
+                        generalAvailability: false,
+                        pickDate: false,
+                        checkPersonalDetails: false,
+                        successScreen: true
+                    })
                 } else {
                     setIsSpinning(false)
                     setShowError(true)
@@ -57,6 +66,14 @@ function ConfirmDetails(
                 if (res.status === 201) {
                     setIsSpinning(false)
                     setShowError(false)
+                    setBookingSteps({
+                        medicalTests: false,
+                        facility: false,
+                        generalAvailability: false,
+                        pickDate: false,
+                        checkPersonalDetails: false,
+                        successScreen: true
+                    })
                 } else {
                     setIsSpinning(false)
                     setShowError(true)
@@ -72,8 +89,10 @@ function ConfirmDetails(
         <div className="d-flex flex-column flex-center-center">
             <h2 className="mt-5 text-center">Confirm contact details</h2>
             <div className="d-flex flex-column w-75">
-                <p className="mt-5"><strong>Phone:</strong> {phone_primary}</p>
-                <p className="mt-4"><strong>Email:</strong> {email}</p>
+                <p className="mt-5"><strong>Phone:</strong></p>
+                <p>{phone_primary}</p>
+                <p className="mt-4"><strong>Email:</strong></p>
+                <p>{email}</p>
                 <div className="d-flex justify-content-between flex-column align-items-center mt-5">
                     <div className="w-100">
                         {isSpinning ? <Spinner /> : ''}
