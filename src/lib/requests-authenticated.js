@@ -36,7 +36,6 @@ const getMe = async () => {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken;
     
         const response = await axios.get(BASE_URL + "/user/me")
-        console.log(response, ' from get me')
         return response
     } catch (error) {
         return false
