@@ -276,3 +276,6 @@ html body {
   .profile-wrapper .profile-actions button.btn-outline:hover:nth-child(2) {
     background-color: #21a8e1;
     color: #ffffff; }
+
+.requests-wrapper .pending-requests-wrapper .MuiBadge-root {
+  transform: translateY(1px); }

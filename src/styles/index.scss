@@ -406,3 +406,15 @@ html body {
     }
   }
 }
+
+//=========== Requests PROFILE ===========
+
+.requests-wrapper{
+
+  .pending-requests-wrapper{
+    .MuiBadge-root{
+      transform: translateY(1px);
+    }
+    
+  }
+}
