@@ -51,7 +51,7 @@ function Welcome({
         <>
             <div className={
                 "col-6 flex-column flex-center-center hide "
-                + (show && !viewController.steps ? 'show' : '')
+                + (show && !viewController.steps ? ' show' : '')
                 + (viewController.steps ? ' d-none' : '')
             } style={{ flexOrder: 1 }}
             >
@@ -71,7 +71,7 @@ function Welcome({
 
             </div>
             <div className={
-                "col-6 d-flex flex-column flex-center-center hide "
+                "col-6 flex-column flex-center-center hide "
                 + (show && !viewController.steps ? 'show' : '') +
                 (viewController.steps ? ' d-none' : '')
             }

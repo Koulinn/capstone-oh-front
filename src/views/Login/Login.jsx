@@ -2,30 +2,46 @@ import React from 'react'
 import { Row } from 'react-bootstrap'
 import Welcome from '../../components/Register/Welcome/Welcome'
 import { ReactComponent as LoginIMG } from '../../assets/loginImg.svg';
-import {useState} from 'react'
+import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import Credentials from '../../components/Credentials/Credentials';
 
-function Login() {
+function Login({ history }) {
     const [viewController, setViewController] = useState({
-        welcome:true,
-        step1:false,
-        step2:false,
-        success:false,
+        welcome: true,
+        steps: false,
     })
 
-    
+    const { welcome, steps } = viewController
+    const isLogged = useSelector(s => s.user.isLogged)
+
+    useEffect(() => {
+        if (isLogged) {
+            history.push('/dashboard')
+        } else {
+
+        }
+    }, [])
     return (
         <Row className="box-shadow my-5 overflow-hidden mx-1">
-            <Welcome
+            {welcome ? <Welcome
                 title="How can we help you today?"
                 subLabel="Continue with e-mail"
                 option="Doesn't have an account? Go to "
                 redirect="Register"
                 url="/register"
-                img={<LoginIMG/>}
+                img={<LoginIMG />}
                 setViewController={setViewController}
                 viewController={viewController}
                 gBtnText="Sign in with Google"
             />
+                : ''}
+            {steps ? <Credentials
+                title="Welcome back"
+                img={<LoginIMG />}
+                history={history}
+            />
+                : ''}
         </Row>
     )
 }

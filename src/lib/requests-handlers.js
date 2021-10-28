@@ -11,9 +11,18 @@ const registerWithEmail = async (data)=>{
         return false
     }
 }
+const login = async (data)=>{
+    try {
+        const res = await axios.post(`${URL}/user/login`, data)
+        return res
+    } catch (error) {
+        return false
+    }
+}
 
 const regRequests = {
-    registerWithEmail:registerWithEmail
+    registerWithEmail:registerWithEmail,
+    login:login
 }
 
 

@@ -1,6 +1,6 @@
 import React from 'react'
-import { useFormik} from "formik"
-import { useState, useEffect  } from 'react';
+import { useFormik } from "formik"
+import { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import TextField from '@material-ui/core/TextField';
 import * as Yup from 'yup';
@@ -30,7 +30,7 @@ function AccessData({ userData, steps, setSteps }) {
     const [showError, setShowError] = useState(false)
     const [isSpinning, setIsSpinning] = useState(false)
     const [show, setShow] = useState(false)
-     const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     const formik = useFormik({
         initialValues: {
@@ -39,39 +39,40 @@ function AccessData({ userData, steps, setSteps }) {
         },
         validationSchema: SignupSchema,
         onSubmit: async (values) => {
-            const dataToSend = {...userData, ...values}
+            const dataToSend = { ...userData, ...values }
             setIsSpinning(true)
             const res = await registerWithEmail(dataToSend)
             if (res.status === 201) {
+                setShowError(false)
                 const tokens = {
                     accessToken: res.data.accessToken,
                     refreshToken: res.data.newRefreshToken,
                 }
                 dispatch(setUserTokens(tokens))
                 dispatch(setUserLogIn())
-                setIsSpinning(false)
-                setShowError(false)
+                setTimeout(() => setIsSpinning(false), 999)
 
-                setTimeout(()=>{
+                setTimeout(() => {
                     setSteps({
-                    personalData: false,
-                    accessData: false,
-                    success: true
-                })
-            },1000)
+                        personalData: false,
+                        accessData: false,
+                        success: true
+                    })
+                }, 1000)
 
             } else {
                 setIsSpinning(false)
                 setShowError(true)
+                setTimeout(() => setShowError(false), 3000)
             }
         }
     })
 
-    useEffect(()=> setTimeout(()=>setShow(true), 700),[])
+    useEffect(() => setTimeout(() => setShow(true), 700), [])
 
     return (
         <>
-            <form className={"d-flex flex-column hide hideInverse " + (show? ' show' : '')} onSubmit={formik.handleSubmit}>
+            <form className={"d-flex flex-column hide hideInverse " + (show ? ' show' : '')} onSubmit={formik.handleSubmit}>
                 <TextField
                     className="mt-5"
                     fullWidth
