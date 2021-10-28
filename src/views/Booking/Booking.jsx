@@ -120,7 +120,7 @@ function Booking({ history }) {
                         extraMessage="In 2 working days we will get in touch to confirm your request!"
                         extraMessage2="Check your e-mail, soon the confirmation will arrive"
                         Img={successImg}
-                        url='/profile'
+                        url='/dashboard'
                         btnText="Go to profile"
 
                     /> : ''}
