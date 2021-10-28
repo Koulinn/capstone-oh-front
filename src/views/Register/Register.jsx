@@ -2,15 +2,16 @@ import React from 'react'
 import {Row} from 'react-bootstrap'
 import Welcome from '../../components/Register/Welcome/Welcome'
 import { ReactComponent as RegisterIMG } from '../../assets/Doctor prescribing drug to happy family.svg';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import RegisterSteps from '../../components/Register/RegisterSteps/RegisterSteps';
+import { useSelector } from 'react-redux'
 
 
 
 
 
 
-function Register() {
+function Register({history}) {
     const [viewController, setViewController] = useState({
         welcome:true,
         steps:false,
@@ -23,6 +24,15 @@ function Register() {
         password: '',
         phone_primary: ''
     })
+
+    const isLogged =useSelector(s=>s.user.isLogged)
+
+    useEffect(()=>{
+        if(isLogged){
+            history.push('/dashboard')
+        } else{
+        }
+    },[])
     
 
     
