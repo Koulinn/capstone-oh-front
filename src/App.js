@@ -6,8 +6,7 @@ import NavigationBar from './components/Navigation/NavigationBar';
 import Register from './views/Register/Register';
 import Login from './views/Login/Login';
 import Booking from './views/Booking/Booking';
-import { withRouter } from "react-router";
-import { useState } from 'react'
+import Dashboard from './views/Dashboard/Dashboard';
 
 
 
@@ -24,6 +23,9 @@ function App() {
           <NavigationBar />
           <Route path="/" exact render={(routerProps) =>
             <Home {...routerProps} />}>
+          </Route>
+          <Route path="/dashboard" exact render={(routerProps) =>
+            <Dashboard {...routerProps} />}>
           </Route>
           <Route path="/register" exact render={(routerProps) =>
             <Register {...routerProps} />}>

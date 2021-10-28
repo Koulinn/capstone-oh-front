@@ -2,9 +2,21 @@ import React from 'react'
 import GoogleButton from 'react-google-button'
 import { withRouter } from 'react-router';
 import { useState, useEffect } from 'react'
+import { BASE_URL } from '../../../lib';
 
 
-function Welcome({ title, subLabel, option, redirect, history, url, img, viewController, setViewController }) {
+function Welcome({
+    title,
+    subLabel,
+    option,
+    redirect,
+    history,
+    url,
+    img,
+    viewController,
+    setViewController,
+    gBtnText,
+}) {
     const [show, setShow] = useState(false)
 
 
@@ -29,23 +41,25 @@ function Welcome({ title, subLabel, option, redirect, history, url, img, viewCon
                 welcome: false
             })
         }, 700)
-        
+
 
     }
-
+    const googleRedirect = () => {
+        window.location.replace(`${BASE_URL}/user/googleLogin`)
+    }
     return (
         <>
             <div className={
                 "col-6 flex-column flex-center-center hide "
                 + (show && !viewController.steps ? 'show' : '')
                 + (viewController.steps ? ' d-none' : '')
-            } style={{flexOrder:1}}
+            } style={{ flexOrder: 1 }}
             >
                 <h2 className="text-center mt-5 mb-3">{title}</h2>
                 <h5 className="mb-3">Please choose an option</h5>
 
                 <div className="my-5">
-                    <GoogleButton label="Register with Google" />
+                    <GoogleButton label={gBtnText} onClick={googleRedirect} />
                 </div>
                 <div className="flex-center-center">
                     <hr className="separator-bar" />

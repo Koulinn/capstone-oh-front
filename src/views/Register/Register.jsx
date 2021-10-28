@@ -24,7 +24,7 @@ function Register() {
         phone_primary: ''
     })
     
-    
+
     
     return (
         
@@ -38,6 +38,7 @@ function Register() {
                     img={<RegisterIMG/>}
                     setViewController={setViewController}
                     viewController={viewController}
+                    gBtnText="Sign up with Google"
                 /> : ''}
                 {viewController.steps ? <RegisterSteps viewController={viewController} userData={userData} setUserData={setUserData}/> : ''}
             </Row>

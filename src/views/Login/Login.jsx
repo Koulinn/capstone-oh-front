@@ -11,6 +11,8 @@ function Login() {
         step2:false,
         success:false,
     })
+
+    
     return (
         <Row className="box-shadow my-5 overflow-hidden mx-1">
             <Welcome
@@ -22,6 +24,7 @@ function Login() {
                 img={<LoginIMG/>}
                 setViewController={setViewController}
                 viewController={viewController}
+                gBtnText="Sign in with Google"
             />
         </Row>
     )
