@@ -18,7 +18,8 @@ li,
   margin: 0;
   padding: 0; }
 
-ul, li {
+ul,
+li {
   list-style: none; }
 
 li > span {
@@ -154,7 +155,7 @@ html body {
 
 .facility {
   border-radius: 8px;
-  transition: all .5s; }
+  transition: all 0.5s; }
 
 .bg-selected {
   background-color: #1784b37a;
@@ -169,7 +170,7 @@ html body {
   padding: 16px 0px !important; }
 
 .imgsPreview-wrapper {
-  transition: all .5s; }
+  transition: all 0.5s; }
   .imgsPreview-wrapper img {
     object-fit: cover;
     width: 100%; }
@@ -185,7 +186,7 @@ html body {
     background-color: #21a8e1;
     border-radius: 200px;
     cursor: pointer;
-    transition: all .5s; }
+    transition: all 0.5s; }
     .imgsPreview-wrapper .position-absolute svg {
       width: 16px;
       height: 16px; }
@@ -196,7 +197,7 @@ html body {
       color: white; }
 
 .tag-preview-wrapper {
-  transition: all .5s; }
+  transition: all 0.5s; }
   .tag-preview-wrapper li {
     background-color: #0021d942;
     border-radius: 8px;
@@ -207,7 +208,7 @@ html body {
   border: 2px solid #4f7fd1;
   background-color: transparent;
   color: black;
-  transition: all .5s; }
+  transition: all 0.5s; }
 
 .wrapper-request-tags .outline:hover {
   background-color: #0069d9;
@@ -219,7 +220,7 @@ html body {
   background-color: #21a8e1;
   border-radius: 16px;
   color: white;
-  transition: all .5s; }
+  transition: all 0.5s; }
 
 .user-availability-wrapper .ASAP-btn:hover {
   background-color: #4f7fd1; }
@@ -245,3 +246,33 @@ html body {
   background-color: #0021d942;
   border-radius: 8px;
   margin: 8px 8px; }
+
+.profile-wrapper {
+  padding-left: 0px;
+  padding-right: 0px; }
+  .profile-wrapper .avatar-wrapper {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: center;
+    width: 100%;
+    height: 100%;
+    background-color: #0069d9;
+    padding: 3rem 15px; }
+  .profile-wrapper .MuiAvatar-root {
+    width: 128px;
+    height: 128px; }
+  .profile-wrapper .css-1khtq37-MuiBadge-badge {
+    height: 16px;
+    width: 16px;
+    border-radius: 20000px; }
+  .profile-wrapper .profile-meta-wrapper h5,
+  .profile-wrapper .profile-meta-wrapper h6 {
+    text-align: center; }
+  .profile-wrapper .profile-actions button {
+    width: 50%;
+    transition: all .5s; }
+  .profile-wrapper .profile-actions button:hover {
+    font-weight: 700; }
+  .profile-wrapper .profile-actions button.btn-outline:hover:nth-child(2) {
+    background-color: #21a8e1;
+    color: #ffffff; }
