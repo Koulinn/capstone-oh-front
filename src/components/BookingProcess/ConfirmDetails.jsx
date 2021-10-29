@@ -85,6 +85,17 @@ function ConfirmDetails(
             console.log(error)
         }
     }
+
+    const returnStep = () => {
+        setBookingSteps({
+            medicalTests: false,
+            facility: false,
+            generalAvailability: true,
+            pickDate: false,
+            checkPersonalDetails: false,
+            successScreen: false
+        })
+    }
     return (
         <div className="d-flex flex-column flex-center-center">
             <h4 className="mt-5 text-center">Confirm contact details</h4>
@@ -103,7 +114,7 @@ function ConfirmDetails(
                             : ''}
                     </div>
                     <div className="d-flex align-content-center justify-content-between mt-3 w-100">
-                        <div className="cursor-pointer py-2 pr-2">
+                        <div className="cursor-pointer py-2 pr-2" onClick={returnStep}>
                             <span>Return</span>
                         </div>
                         <Button onClick={() => sendRequest()} className="w-50"><strong>Confirm</strong></Button>

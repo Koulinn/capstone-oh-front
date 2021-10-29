@@ -50,7 +50,7 @@ function Register({history}) {
                     viewController={viewController}
                     gBtnText="Sign up with Google"
                 /> : ''}
-                {viewController.steps ? <RegisterSteps viewController={viewController} userData={userData} setUserData={setUserData}/> : ''}
+                {viewController.steps ? <RegisterSteps viewController={viewController} setViewController={setViewController} userData={userData} setUserData={setUserData}/> : ''}
             </Row>
             
        

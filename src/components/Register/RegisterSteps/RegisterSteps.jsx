@@ -7,7 +7,7 @@ import Success from '../../Success/Success'
 
 const successImg = "https://st3.depositphotos.com/7341970/19354/v/1600/depositphotos_193545590-stock-illustration-man-shaking-hands-doctor-using.jpg"
 
-function RegisterSteps({ userData, setUserData, viewController }) {
+function RegisterSteps({ userData, setUserData, viewController, setViewController }) {
     const [steps, setSteps] = useState({
         personalData: true,
         accessData: false,
@@ -21,7 +21,7 @@ function RegisterSteps({ userData, setUserData, viewController }) {
                     <div className={"col-12 col-lg-6 flex-column flex-center-center align-items-center max-height hide" + (viewController.welcome ? '' : ' show')}>
                             <h2 className={"mt-5  " }> Register</h2>
                         <div className={"w-50  " }>
-                            {steps.personalData ? <PersonalData steps={steps} setSteps={setSteps} userData={userData} setUserData={setUserData} /> : ''}
+                            {steps.personalData ? <PersonalData steps={steps} setViewController={setViewController} setSteps={setSteps} userData={userData} setUserData={setUserData} /> : ''}
                             {steps.accessData ? <AccessData steps={steps} setSteps={setSteps} userData={userData} setUserData={setUserData} /> : ''}
                         </div>
                     </div>

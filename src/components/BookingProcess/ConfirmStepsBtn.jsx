@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 
-function ConfirmStepsBtn({ stepsController, btnText, stepsReturn }) {
+function ConfirmStepsBtn({ stepsController, btnText, stepsReturn, btnDisabled }) {
     return (
         <div className={"mt-5 d-flex w-75" + (stepsReturn ? ' justify-content-between' : ' justify-content-center')}>
             {stepsReturn ?
@@ -9,7 +9,7 @@ function ConfirmStepsBtn({ stepsController, btnText, stepsReturn }) {
                     <span>Return</span>
                 </div>
                 : ''}
-            <Button onClick={stepsController}>{btnText}</Button>
+            <Button className="w-50" onClick={stepsController} disabled={btnDisabled}>{btnText}</Button>
         </div>
     )
 }

@@ -68,6 +68,14 @@ function AccessData({ userData, steps, setSteps }) {
         }
     })
 
+    const returnStep=()=>{
+        setSteps({
+            personalData: true,
+            accessData: false,
+            success: false
+        })
+    }
+
     useEffect(() => setTimeout(() => setShow(true), 700), [])
 
     return (
@@ -105,8 +113,7 @@ function AccessData({ userData, steps, setSteps }) {
                         : ''}
                 </div>
                 <div className="my-5 d-flex justify-content-between align-items-center">
-                    <div onClick={() => console.log(formik.touched.password, 'formike>>>>>>>>>Boolean', Boolean(formik.errors.password))
-                    }>
+                    <div className="cursor-pointer" onClick={returnStep}>
                         Previous
                     </div>
                     <Button variant={"primary"} className="w-50 align-self-end" disabled={formik.isValid || !isSpinning ? false : true} type="submit">
