@@ -1,6 +1,6 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField';
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import * as Yup from 'yup';
 import { useFormik } from "formik"
 import Spinner from '../Spinner/Spinner'
@@ -21,7 +21,6 @@ const { login } = regRequests
 function Credentials({ img, title, history }) {
     const [showError, setShowError] = useState(false)
     const [isSpinning, setIsSpinning] = useState(false)
-    const [show, setShow] = useState(false)
     const dispatch = useDispatch()
 
     const formik = useFormik({

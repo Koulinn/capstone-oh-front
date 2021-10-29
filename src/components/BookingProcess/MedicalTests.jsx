@@ -2,16 +2,30 @@ import React from 'react'
 import { previewUrls } from '../../lib'
 import { Button } from 'react-bootstrap'
 import TextField from '@material-ui/core/TextField';
-import { MdUploadFile } from 'react-icons/md'
+import { IoCloudUploadOutline } from 'react-icons/io5'
 import ConfirmStepsBtn from './ConfirmStepsBtn';
+import { useEffect, useState } from 'react'
+
 
 function MedicalTests({
     setTestsImgs,
     setImgsPreview,
     setRequestTags,
     requestTags,
-    setBookingSteps
+    setBookingSteps,
+    testsImgs
 }) {
+    const [isDisabled, setIsDisabled] = useState(true)
+
+    useEffect(()=>{
+
+        if((requestTags.length > 0) || (testsImgs !=null && testsImgs.length > 0)){
+            setIsDisabled(false)
+        } else{
+            setIsDisabled(true)
+        }
+
+    },[requestTags, testsImgs])
 
     const filesHandler = (e) => {
         const files = e.target.files
@@ -52,8 +66,10 @@ function MedicalTests({
                 Medical tests
             </h4>
             <div className="wrapper-request-imgs">
+                    
                 <label htmlFor="img_requests">
-                    <MdUploadFile /> Upload files
+                    <IoCloudUploadOutline/>
+                    Upload files
                 </label>
                 <input
                     id="img_requests"
@@ -87,6 +103,7 @@ function MedicalTests({
                 stepsController={confirmTests}
                 btnText='Confirm medical tests'
                 stepsReturn={null}
+                btnDisabled={isDisabled}
             />
         </>
     )

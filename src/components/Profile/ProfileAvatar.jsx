@@ -1,6 +1,8 @@
 import React from 'react'
 import { Avatar, Badge } from '@mui/material';
 
+// /me/uploadAvatar
+
 export default function ProfileAvatar({ medical_tests_requested, name, avatar }) {
     return (
         <Badge

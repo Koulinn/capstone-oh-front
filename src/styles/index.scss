@@ -16,6 +16,7 @@ p,
 .container-xl,
 ul,
 li,
+.row,
 .navbar {
   margin: 0;
   padding: 0;
@@ -51,6 +52,7 @@ li > span {
 $PRIMARY-COLOR-0: #1b3e91;
 $PRIMARY-COLOR-1: #4f7fd1;
 $PRIMARY-COLOR-2: #21a8e1;
+$PRIMARY-COLOR-3: #0096d93d;
 
 html body {
   font-family: "Mulish", sans-serif;
@@ -173,7 +175,7 @@ html body {
   transform: rotate(45deg);
   div {
     width: 0%;
-    background-color: $PRIMARY-COLOR-1;
+    background-color: $PRIMARY-COLOR-3;
     border-radius: 10000px;
     height: 3px;
     transition: width 7s ease-out;
@@ -228,14 +230,14 @@ html body {
   transition: all 0.5s;
 }
 .bg-selected {
-  background-color: #1784b37a;
+  background-color: $PRIMARY-COLOR-3;
   box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.1);
 }
 .facility:hover {
   h5 {
     font-weight: 700;
   }
-  background-color: #1784b37a;
+  background-color: $PRIMARY-COLOR-3;
 }
 
 .chosen-location-wrapper {
@@ -246,6 +248,19 @@ html body {
 
 //=========== MEDICAL REQUEST ===========
 
+.wrapper-request-imgs{
+  svg{
+    width: 96px;
+    height: 96px;
+  }
+  label{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
 .imgsPreview-wrapper {
   transition: all 0.5s;
   img {
@@ -286,9 +301,9 @@ html body {
 .tag-preview-wrapper {
   transition: all 0.5s;
   li {
-    background-color: #0021d942;
+    background-color: #0096d93d;
     border-radius: 8px;
-    margin: 8px 8px;
+    margin: 8px 8px 8px 0px;
   }
 }
 .wrapper-request-tags {
@@ -340,14 +355,18 @@ html body {
 }
 
 .request-info-wrapper {
+  h3{
+    line-height: 55px;
+  }
   h5 {
     font-weight: 700;
+    line-height: 34px;
   }
 }
 
 .chosen-date-wrapper {
   li {
-    background-color: #0021d942;
+    background-color: $PRIMARY-COLOR-3;
     border-radius: 8px;
     margin: 8px 8px;
   }
@@ -359,11 +378,17 @@ html body {
 
 //=========== DASHBOARD PROFILE ===========
 
+.blur{
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
+}
+
 .profile-wrapper {
   
   padding-left: 0px;
   padding-right: 0px;
   .avatar-wrapper{
+    max-height: 256px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position-y: center;
@@ -382,6 +407,8 @@ html body {
     height: 16px;
     width: 16px;
     border-radius: 20000px;
+    bottom: 18%;
+    right: 18%;
   }
 
   .profile-meta-wrapper {
@@ -392,6 +419,7 @@ html body {
   }
 
   .profile-actions {
+    flex-grow: 1;
     button {
       width: 50%;
       transition: all .5s;
@@ -408,12 +436,17 @@ html body {
 }
 
 //=========== Requests PROFILE ===========
-
+.accordion-title{
+  flex-grow: 1;
+}
 .requests-wrapper{
 
   .pending-requests-wrapper{
+    .row{
+      margin: 0px
+    }
     .MuiBadge-root{
-      transform: translateY(1px);
+      transform: translateY(-2px);
     }
     
   }

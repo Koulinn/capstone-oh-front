@@ -14,6 +14,7 @@ p,
 .container-xl,
 ul,
 li,
+.row,
 .navbar {
   margin: 0;
   padding: 0; }
@@ -118,7 +119,7 @@ html body {
   transform: rotate(45deg); }
   .bars div {
     width: 0%;
-    background-color: #4f7fd1;
+    background-color: #0096d93d;
     border-radius: 10000px;
     height: 3px;
     transition: width 7s ease-out; }
@@ -158,16 +159,27 @@ html body {
   transition: all 0.5s; }
 
 .bg-selected {
-  background-color: #1784b37a;
+  background-color: #0096d93d;
   box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.1); }
 
 .facility:hover {
-  background-color: #1784b37a; }
+  background-color: #0096d93d; }
   .facility:hover h5 {
     font-weight: 700; }
 
 .chosen-location-wrapper .bg-transparent {
   padding: 16px 0px !important; }
+
+.wrapper-request-imgs svg {
+  width: 96px;
+  height: 96px; }
+
+.wrapper-request-imgs label {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; }
 
 .imgsPreview-wrapper {
   transition: all 0.5s; }
@@ -199,9 +211,9 @@ html body {
 .tag-preview-wrapper {
   transition: all 0.5s; }
   .tag-preview-wrapper li {
-    background-color: #0021d942;
+    background-color: #0096d93d;
     border-radius: 8px;
-    margin: 8px 8px; }
+    margin: 8px 8px 8px 0px; }
 
 .wrapper-request-tags .outline {
   border-radius: 8px;
@@ -239,18 +251,27 @@ html body {
 .user-availability-wrapper .rdt input {
   text-align: center; }
 
+.request-info-wrapper h3 {
+  line-height: 55px; }
+
 .request-info-wrapper h5 {
-  font-weight: 700; }
+  font-weight: 700;
+  line-height: 34px; }
 
 .chosen-date-wrapper li {
-  background-color: #0021d942;
+  background-color: #0096d93d;
   border-radius: 8px;
   margin: 8px 8px; }
+
+.blur {
+  filter: blur(4px);
+  -webkit-filter: blur(4px); }
 
 .profile-wrapper {
   padding-left: 0px;
   padding-right: 0px; }
   .profile-wrapper .avatar-wrapper {
+    max-height: 256px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position-y: center;
@@ -264,18 +285,28 @@ html body {
   .profile-wrapper .css-1khtq37-MuiBadge-badge {
     height: 16px;
     width: 16px;
-    border-radius: 20000px; }
+    border-radius: 20000px;
+    bottom: 18%;
+    right: 18%; }
   .profile-wrapper .profile-meta-wrapper h5,
   .profile-wrapper .profile-meta-wrapper h6 {
     text-align: center; }
-  .profile-wrapper .profile-actions button {
-    width: 50%;
-    transition: all .5s; }
-  .profile-wrapper .profile-actions button:hover {
-    font-weight: 700; }
-  .profile-wrapper .profile-actions button.btn-outline:hover:nth-child(2) {
-    background-color: #21a8e1;
-    color: #ffffff; }
+  .profile-wrapper .profile-actions {
+    flex-grow: 1; }
+    .profile-wrapper .profile-actions button {
+      width: 50%;
+      transition: all .5s; }
+    .profile-wrapper .profile-actions button:hover {
+      font-weight: 700; }
+    .profile-wrapper .profile-actions button.btn-outline:hover:nth-child(2) {
+      background-color: #21a8e1;
+      color: #ffffff; }
+
+.accordion-title {
+  flex-grow: 1; }
+
+.requests-wrapper .pending-requests-wrapper .row {
+  margin: 0px; }
 
 .requests-wrapper .pending-requests-wrapper .MuiBadge-root {
-  transform: translateY(1px); }
+  transform: translateY(-2px); }

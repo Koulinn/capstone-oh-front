@@ -10,7 +10,7 @@ function Bar({time, pos}) {
     return (
         <div className={"bars d-flex flex-column justify-content-center " + pos}>
             <div className={"bar" + barGrow}></div>
-            <div className={"bar my-2" + barGrow}></div>
+            <div className={"bar my-4" + barGrow}></div>
             <div className={"bar" + barGrow}></div>
         </div>
     )
