@@ -34,8 +34,10 @@ const getMe = async (accessTokenParam) => {
         
         const storeState = store.getState()
         const {accessToken} = storeState.user
+        console.log(accessToken, 'AccessToken from store')
+        console.log(accessTokenParam, 'accessTokenParam from store')
        
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + (accessTokenParam === null ? accessToken : accessTokenParam)
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + (accessTokenParam === (undefined || null) ? accessToken : accessTokenParam)
        
     
         const response = await axios.get(BASE_URL + "/user/me")
