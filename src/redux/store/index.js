@@ -13,16 +13,12 @@ export const initialState = {
         isLogged: false,
     },
     chat:{
-    },
-    medicalRequest: {
-
     }
 }
 
 export const groupedReducers = combineReducers({
     user: reducerLib.userReducer,
     chat: reducerLib.chatReducer,
-    medicalRequest: reducerLib.medicalRequest,
 })
 
 

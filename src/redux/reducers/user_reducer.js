@@ -9,11 +9,6 @@ export const userReducer = (state = initialState.user, action) => {
                 isLogged: true
             }
 
-        case 'SET_LOGGED_OUT':
-            return {
-                ...state,
-                isLogged: false
-            }
         case 'SET_USER_TOKENS':
             return {
                 ...state,
@@ -26,7 +21,11 @@ export const userReducer = (state = initialState.user, action) => {
             return {
                 ...state,
                 ...action.payload
-                
+
+            }
+        case 'SET_LOGGED_OUT':
+            return {
+                    isLogged: false,
             }
 
         default: {
