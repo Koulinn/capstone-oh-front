@@ -25,6 +25,7 @@ function Booking({ history }) {
     const [availability, setAvailability] = useState([])
     const dispatch = useDispatch()
     const user = useSelector(s => s.user)
+    const [blur, setBlur] = useState(true)
 
     const [bookingSteps, setBookingSteps] = useState({
         medicalTests: true,
@@ -37,8 +38,8 @@ function Booking({ history }) {
 
     const { isLogged } = user
 
-    const asyncWrapper = async () => {
-        const res = await getMe()
+    const asyncWrapper = async (token = undefined) => {
+        const res = await getMe(token)
         if (res && (res.status === 200)) {
             dispatch(setUserData(res.data.user))
         } else {
@@ -48,10 +49,14 @@ function Booking({ history }) {
 
 
     useEffect(() => {
+        console.log('inside use Effect booking')
         if (isLogged) {
             asyncWrapper()
+            setBlur(false)
 
         } else {
+            setBlur(true)
+            console.log('inside ELSE use Effect booking')
             history.push('/login')
         }
 
@@ -59,7 +64,7 @@ function Booking({ history }) {
 
     useEffect(() => {
 
-    }, [imgsPreview, facility, imgsPreview])
+    }, [imgsPreview, facility, imgsPreview, bookingSteps])
 
     const removeImg = (imgIndex) => {
         const remainingImgs = imgsPreview.filter((img, index) => index !== imgIndex)
@@ -69,7 +74,7 @@ function Booking({ history }) {
     }
 
     return (
-        <Row className="box-shadow my-5 justify-content-center overflow-hidden mx-1">
+        <Row className={"box-shadow my-5 justify-content-center overflow-hidden mx-1" + (blur ? ' blur' : '')}>
             <div className="col-12 col-md-6 my-5">
                 <h1 className="text-center">
                     Booking
@@ -81,6 +86,7 @@ function Booking({ history }) {
                         setImgsPreview={setImgsPreview}
                         setRequestTags={setRequestTags}
                         requestTags={requestTags}
+                        testsImgs={testsImgs}
                         setBookingSteps={setBookingSteps}
                     /> : ''}
                 </div>
@@ -93,7 +99,7 @@ function Booking({ history }) {
                         />
                         : ''}
                 </div>
-                <div className="user-availability-wrapper flex-center-center flex-column">
+                <div className={(bookingSteps.generalAvailability || bookingSteps.pickDate) ? 'user-availability-wrapper flex-center-center flex-column  h-100' : ''}>
                     {bookingSteps.generalAvailability || bookingSteps.pickDate ?
                         <Availability
                             setAvailability={setAvailability}
@@ -118,10 +124,10 @@ function Booking({ history }) {
                     {bookingSteps.successScreen ? <Success
                         message="We got your request"
                         extraMessage="In 2 working days we will get in touch to confirm your request!"
-                        extraMessage2="Check your e-mail, soon the confirmation will arrive"
+                        extraMessage2="Check your e-mail for the confirmation."
                         Img={successImg}
                         url='/dashboard'
-                        btnText="Go to profile"
+                        btnText="Profile"
 
                     /> : ''}
                 </div>
@@ -139,13 +145,13 @@ function Booking({ history }) {
 
             {!bookingSteps.successScreen ? <>
                 <div className="request-info-wrapper d-none d-md-block col-6 mt-5">
-                    <h2 className="text-center mt-2 mb-5">Request info</h2>
+                    <h3 className="text-center">Request</h3>
                     <div className={'w-75 mx-auto'}>
-                        <h5 className="text-center mb-3 pt-2">Medical tests</h5>
+                        <h5 className="text-center pt-2">Medical tests</h5>
                         <div className={"imgsPreview-wrapper justify-content-between row "}>
                             {imgsPreview.map((i, index) => <>
-                                <div className="position-relative col-md-6 col-lg-4 my-3 p-0">
-                                    <img className="" height="96" key={index} src={i} />
+                                <div  key={index} className="position-relative col-md-6 col-lg-4 my-3 p-0">
+                                    <img className="" height="96" src={i} />
                                     <div className="position-absolute d-flex flex-center-center" onClick={() => removeImg(index)}>
                                         <MdRemove />
                                     </div>
