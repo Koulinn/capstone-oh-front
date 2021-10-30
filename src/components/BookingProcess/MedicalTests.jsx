@@ -5,6 +5,9 @@ import TextField from '@material-ui/core/TextField';
 import { IoCloudUploadOutline } from 'react-icons/io5'
 import ConfirmStepsBtn from './ConfirmStepsBtn';
 import { useEffect, useState } from 'react'
+import regRequests from '../../lib/requests-handlers';
+import { debounce } from 'lodash'
+
 
 
 function MedicalTests({
@@ -16,16 +19,17 @@ function MedicalTests({
     testsImgs
 }) {
     const [isDisabled, setIsDisabled] = useState(true)
+    const [suggestions, setSuggestions] = useState([])
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        if((requestTags.length > 0) || (testsImgs !=null && testsImgs.length > 0)){
+        if ((requestTags.length > 0) || (testsImgs != null && testsImgs.length > 0)) {
             setIsDisabled(false)
-        } else{
+        } else {
             setIsDisabled(true)
         }
 
-    },[requestTags, testsImgs])
+    }, [requestTags, testsImgs])
 
     const filesHandler = (e) => {
         const files = e.target.files
@@ -60,15 +64,26 @@ function MedicalTests({
             successScreen: false
         })
     }
+
+    const getSuggestions = debounce(async (inputValue) => {
+        try {
+            const res = await regRequests.medicalTestsSuggestions(inputValue)
+            if (res.status === 200)
+                setSuggestions(res.data)
+        } catch (error) {
+            console.log(error)
+        }
+
+    }, 700)
     return (
         <>
             <h4 className="text-center mt-3 mb-5">
                 Medical tests
             </h4>
             <div className="wrapper-request-imgs">
-                    
+
                 <label htmlFor="img_requests">
-                    <IoCloudUploadOutline/>
+                    <IoCloudUploadOutline />
                     Upload files
                 </label>
                 <input
@@ -92,6 +107,7 @@ function MedicalTests({
                             id="request-tags"
                             name="request-tags"
                             label="Add a medical test"
+                            onChange={(e) => getSuggestions(e.target.value)}
                         />
                         <Button className="outline" style={{ borderRadius: '8px' }} type="submit">
                             Add
@@ -108,5 +124,6 @@ function MedicalTests({
         </>
     )
 }
+
 
 export default MedicalTests

@@ -20,9 +20,21 @@ const login = async (data)=>{
     }
 }
 
+const medicalTestsSuggestions = async(inputValue)=>{
+    try {
+        console.log(inputValue)
+        const res= await axios.get(`${URL}/hospital?testName=${inputValue}`)
+        return res
+    } catch (error) {
+        console.log(error)
+        return false
+    }
+}
+
 const regRequests = {
     registerWithEmail:registerWithEmail,
-    login:login
+    login:login,
+    medicalTestsSuggestions:medicalTestsSuggestions
 }
 
 

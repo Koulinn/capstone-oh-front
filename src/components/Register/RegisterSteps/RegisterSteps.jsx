@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import Success from '../../Success/Success'
 
 
-const successImg = "https://st3.depositphotos.com/7341970/19354/v/1600/depositphotos_193545590-stock-illustration-man-shaking-hands-doctor-using.jpg"
+const successImg = "https://res.cloudinary.com/koulin/image/upload/v1635614779/OneHealth/successOH_wxysls.svg"
 
 function RegisterSteps({ userData, setUserData, viewController, setViewController }) {
     const [steps, setSteps] = useState({

@@ -14,7 +14,7 @@ import FacilityCard from '../../components/BookingProcess/FacilityCard'
 import Success from '../../components/Success/Success'
 
 const { getMe } = requests
-const successImg = "https://st3.depositphotos.com/7341970/19354/v/1600/depositphotos_193545590-stock-illustration-man-shaking-hands-doctor-using.jpg"
+const successImg = "https://res.cloudinary.com/koulin/image/upload/v1635614779/OneHealth/successOH_wxysls.svg"
 
 
 function Booking({ history }) {
@@ -124,7 +124,7 @@ function Booking({ history }) {
                     {bookingSteps.successScreen ? <Success
                         message="We got your request"
                         extraMessage="In 2 working days we will get in touch to confirm your request!"
-                        extraMessage2="Check your e-mail for the confirmation."
+                        extraMessage2="Check your e-mail the confirmation."
                         Img={successImg}
                         url='/dashboard'
                         btnText="Profile"
