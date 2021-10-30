@@ -17,7 +17,6 @@ export const userReducer = (state = initialState.user, action) => {
             }
 
         case 'SET_USER_DATA':
-            delete action.payload.refreshToken
             return {
                 ...state,
                 ...action.payload

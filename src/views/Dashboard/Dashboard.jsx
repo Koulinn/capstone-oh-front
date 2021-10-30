@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Row } from 'react-bootstrap'
 import request from '../../lib/requests-authenticated.js'
-import { setUserTokens } from '../../redux/actions/index.js';
+import { setUserLogOut, setUserTokens } from '../../redux/actions/index.js';
 import Profile from '../../components/Profile/Profile.jsx'
 import RequestStatus from '../../components/Profile/RequestStatus.jsx'
 
@@ -32,7 +32,6 @@ function Dashboard({ history, location }) {
     useEffect(() => {
         const isAccessToken = new URLSearchParams(location.search).get("accessToken")
         const isRefreshToken = new URLSearchParams(location.search).get("refreshToken")
-        console.log(isAccessToken)
         if (isLogged || isAccessToken) {
 
             asyncWrapper(isAccessToken)
@@ -45,6 +44,7 @@ function Dashboard({ history, location }) {
                 }))
             }
         } else {
+            dispatch(setUserLogOut())
             setBlur(true)
             history.push('/')
         }
