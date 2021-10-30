@@ -46,7 +46,7 @@ function AccessData({ userData, steps, setSteps }) {
                 setShowError(false)
                 const tokens = {
                     accessToken: res.data.accessToken,
-                    refreshToken: res.data.newRefreshToken,
+                    refreshToken: res.data.refreshToken,
                 }
                 dispatch(setUserTokens(tokens))
                 dispatch(setUserLogIn())
