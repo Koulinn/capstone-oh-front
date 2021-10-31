@@ -422,6 +422,16 @@ html body {
   }
 
   .profile-meta-wrapper {
+    .MuiFormControl-root{
+      flex-grow: 1;
+    }
+    .edit-wrapper{
+      svg{
+        width: 24px;
+        height: 24px;
+
+      }
+    }
     h5,
     h6 {
       text-align: center;

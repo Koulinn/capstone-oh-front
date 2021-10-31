@@ -294,6 +294,11 @@ html body {
     border-radius: 20000px;
     bottom: 18%;
     right: 18%; }
+  .profile-wrapper .profile-meta-wrapper .MuiFormControl-root {
+    flex-grow: 1; }
+  .profile-wrapper .profile-meta-wrapper .edit-wrapper svg {
+    width: 24px;
+    height: 24px; }
   .profile-wrapper .profile-meta-wrapper h5,
   .profile-wrapper .profile-meta-wrapper h6 {
     text-align: center; }
