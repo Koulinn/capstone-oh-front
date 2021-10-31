@@ -58,8 +58,25 @@ const sendMedicalRequest = async (body)=>{
 
 }
 
+const uploadAvatar = async(file) =>{
+    try {
+        const storeState = store.getState()
+        const {accessToken} = storeState.user
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + accessToken
+           
+        const response = await axios.put(BASE_URL + "/user/me/uploadAvatar",file)
+        store.dispatch(setUserData(response.data.user))
+        console.log(response)
+        
+    } catch (error) {
+        console.log(error, 'Error from upload avatar')
+        return false
+    }
+}
+
 const requests ={
     getMe:getMe,
     sendMedicalRequest:sendMedicalRequest,
+    uploadAvatar:uploadAvatar
 }
 export default requests
