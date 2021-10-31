@@ -7,8 +7,9 @@ import ConfirmStepsBtn from './ConfirmStepsBtn';
 import { useEffect, useState } from 'react'
 import regRequests from '../../lib/requests-handlers';
 import { debounce } from 'lodash'
+import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 
-
+const filter = createFilterOptions();
 
 function MedicalTests({
     setTestsImgs,
@@ -20,6 +21,7 @@ function MedicalTests({
 }) {
     const [isDisabled, setIsDisabled] = useState(true)
     const [suggestions, setSuggestions] = useState([])
+    const [value, setValue] = React.useState(null);
 
     useEffect(() => {
 
@@ -68,13 +70,15 @@ function MedicalTests({
     const getSuggestions = debounce(async (inputValue) => {
         try {
             const res = await regRequests.medicalTestsSuggestions(inputValue)
-            if (res.status === 200)
-                setSuggestions(res.data)
+            if (res.status === 200 && res.data.tests.length !== 0)
+                console.log(res.data.tests)
+            setSuggestions([...res.data.tests])
         } catch (error) {
             console.log(error)
         }
 
     }, 700)
+
     return (
         <>
             <h4 className="text-center mt-3 mb-5">
@@ -101,17 +105,58 @@ function MedicalTests({
                         You can also add manually medical tests
                     </label>
                     <div className="d-flex justify-content-between w-100 mt-3">
-                        <TextField
-                            className=" mr-4"
-                            fullWidth
-                            id="request-tags"
-                            name="request-tags"
-                            label="Add a medical test"
-                            onChange={(e) => getSuggestions(e.target.value)}
+                        <Autocomplete
+                            value={value}
+                            onChange={(event, newValue) => {
+                                if (typeof newValue === 'string') {
+                                    setValue(newValue)
+                                } else if (newValue && newValue.inputValue) {
+                                    // Create a new value from the user input
+                                    setValue(newValue.inputValue)
+                                } else {
+                                    setValue(newValue);
+                                }
+                            }}
+                            filterOptions={(options, params) => {
+                                const filtered = filter(options, params);
+
+                                const { inputValue } = params;
+                                // Suggest the creation of a new value
+                                const isExisting = options.some((option) => inputValue === option);
+                                if (inputValue !== '' && !isExisting) {
+                                    filtered.push(inputValue);
+                                }
+
+                                return filtered;
+                            }}
+                            selectOnFocus
+                            clearOnBlur
+                            handleHomeEndKeys
+                            id="medical-tags"
+                            options={suggestions}
+                            getOptionLabel={(option) => {
+                                // Value selected with enter, right from the input
+                                if (typeof option === 'string') {
+                                    return option;
+                                }
+                                // Add "xxx" option created dynamically
+                                if (option) {
+                                    return option;
+                                }
+                                // Regular option
+                                return option;
+                            }}
+                            renderOption={(props, option) => <li {...props}>{option}</li>}
+                            sx={{ width: 300 }}
+                            freeSolo
+                            renderInput={(params) => (
+                                <TextField {...params} 
+                                onChange={(e) => getSuggestions(e.target.value)} 
+                                onBlur={()=> setTimeout(()=> setSuggestions([]),2000)} 
+                                label="Add medical tests"
+                                />
+                            )}
                         />
-                        <Button className="outline" style={{ borderRadius: '8px' }} type="submit">
-                            Add
-                        </Button>
                     </div>
                 </form>
             </div>

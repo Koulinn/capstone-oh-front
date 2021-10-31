@@ -298,6 +298,8 @@ html body {
   }
 }
 
+
+
 .tag-preview-wrapper {
   transition: all 0.5s;
   li {
@@ -307,6 +309,9 @@ html body {
   }
 }
 .wrapper-request-tags {
+  .MuiAutocomplete-root{
+    width: 100%;
+  }
   .outline {
     border-radius: 8px;
     border: 2px solid $PRIMARY-COLOR-1;

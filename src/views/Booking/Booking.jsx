@@ -124,7 +124,7 @@ function Booking({ history }) {
                     {bookingSteps.successScreen ? <Success
                         message="We got your request"
                         extraMessage="In 2 working days we will get in touch to confirm your request!"
-                        extraMessage2="Check your e-mail the confirmation."
+                        extraMessage2="You will got an e-mail soon with the confirmation."
                         Img={successImg}
                         url='/dashboard'
                         btnText="Profile"
