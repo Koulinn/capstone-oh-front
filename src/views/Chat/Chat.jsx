@@ -21,8 +21,14 @@ const mockUser = {
 // Get list of waiting users
 // Open chat
 
+const mockMessage = {
+    senderID: '617edbbc25fbe2e8d7fa795d',
+    senderRole: 'user',
+    text: `I'm user patatine hello!`,
+  }
 
 function Chat() {
+    const [roomId, setRoomId] = useState(null)
 
     useEffect(()=> {
         socket.on('connection', () => {
@@ -32,11 +38,24 @@ function Chat() {
            
         })
         socket.on('joinChat', (payload) => {
+            setRoomId(payload, 'settoom state function')
             socket.emit('joinSupportAssistant', payload)
         })
-
+        socket.on('recipientMessage', (payload) => {
+            console.log('recipientMessage', payload)
+        })
+        
 
     },[])
+
+    const sendMessage = (message, roomID)=>{
+        console.log(roomID, 'from send message function')
+        const payload = {
+          message,
+          roomID: roomID
+        }
+        socket.emit('newMessage',payload)
+      }
 
     const requestAssistance =(user)=>{
         
@@ -47,6 +66,7 @@ function Chat() {
 
             <h1>Chat</h1>
             <button onClick={()=>requestAssistance(mockUser)}>Request assistance</button>
+            <button onClick={()=>sendMessage(mockMessage, roomId)}>Send Message</button>
             
         </div>
     )
