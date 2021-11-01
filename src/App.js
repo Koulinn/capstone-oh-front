@@ -7,6 +7,7 @@ import Register from './views/Register/Register';
 import Login from './views/Login/Login';
 import Booking from './views/Booking/Booking';
 import Dashboard from './views/Dashboard/Dashboard';
+import Chat from './views/Chat/Chat';
 
 
 
@@ -21,7 +22,7 @@ function App() {
       <Container className="position-relative p-outside">
         <Router>
           <NavigationBar />
-          <Route path="/" exact render={(routerProps) =>
+          <Route path="/chat" exact render={(routerProps) =>
             <Home {...routerProps} />}>
           </Route>
           <Route path="/dashboard" exact render={(routerProps) =>
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route path="/booking" exact render={(routerProps) =>
             <Booking {...routerProps} />}>
+          </Route>
+          <Route path="/" exact render={(routerProps) =>
+            <Chat {...routerProps} />}>
           </Route>
         </Router>
 
