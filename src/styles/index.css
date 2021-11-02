@@ -321,3 +321,25 @@ html body {
 
 .requests-wrapper .pending-requests-wrapper .MuiBadge-root {
   transform: translateY(-2px); }
+
+.chat-wrapper {
+  border-radius: 20000px;
+  width: 15%;
+  height: 5%;
+  min-width: 64px;
+  min-height: 40px;
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  background-color: #21a8e1;
+  transition: 1s all; }
+  .chat-wrapper svg {
+    width: 32px;
+    height: 32px;
+    color: white; }
+  .chat-wrapper h4 {
+    color: white;
+    transform: translateY(-2px); }
+
+.chat-wrapper:hover {
+  background-color: #1b3e91; }

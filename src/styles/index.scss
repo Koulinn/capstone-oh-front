@@ -471,3 +471,32 @@ html body {
     
   }
 }
+
+// ================= Chat ========================
+.chat-wrapper{
+  
+  border-radius: 20000px;
+  width: 15%;
+  height: 5%;
+  min-width: 64px;
+  min-height: 40px;
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  background-color: $PRIMARY-COLOR-2;
+  transition: 1s all;
+  svg{
+    width: 32px;
+    height: 32px;
+    color: white;
+   
+  }
+  h4{
+    color: white;
+    transform: translateY(-2px);
+  }
+}
+
+.chat-wrapper:hover{
+  background-color: $PRIMARY-COLOR-0;
+}
