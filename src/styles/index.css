@@ -306,7 +306,7 @@ html body {
     flex-grow: 1; }
     .profile-wrapper .profile-actions button {
       width: 50%;
-      transition: all .5s; }
+      transition: all 0.5s; }
     .profile-wrapper .profile-actions button:hover {
       font-weight: 700; }
     .profile-wrapper .profile-actions button.btn-outline:hover:nth-child(2) {
@@ -331,7 +331,7 @@ html body {
   position: fixed;
   bottom: 32px;
   right: 32px;
-  background-color: #21a8e1;
+  background-color: #007bff;
   transition: 1s all; }
   .chat-wrapper svg {
     width: 32px;
@@ -340,6 +340,69 @@ html body {
   .chat-wrapper h4 {
     color: white;
     transform: translateY(-2px); }
+  .chat-wrapper .chatDisplay-wrapper {
+    background-color: aliceblue;
+    border-radius: 16px;
+    overflow: hidden;
+    position: fixed;
+    bottom: 80px;
+    right: 32px;
+    width: 100%;
+    max-width: 360px;
+    /* width */
+    /* Track */
+    /* Handle */
+    /* Handle on hover */ }
+    .chat-wrapper .chatDisplay-wrapper ::-webkit-scrollbar {
+      width: 10px; }
+    .chat-wrapper .chatDisplay-wrapper ::-webkit-scrollbar-track {
+      background: #f1f1f1; }
+    .chat-wrapper .chatDisplay-wrapper ::-webkit-scrollbar-thumb {
+      background: #888; }
+    .chat-wrapper .chatDisplay-wrapper ::-webkit-scrollbar-thumb:hover {
+      background: #555; }
+    .chat-wrapper .chatDisplay-wrapper .chatSupport-wrapper {
+      background-color: #0096d93d; }
+    .chat-wrapper .chatDisplay-wrapper div.supportAvatar-wrapper {
+      border-radius: 2000px;
+      overflow: hidden; }
+      .chat-wrapper .chatDisplay-wrapper div.supportAvatar-wrapper img {
+        width: 48px;
+        height: 48px;
+        object-fit: cover; }
+  .chat-wrapper .chatMessages-wrapper {
+    height: 360px;
+    overflow-x: hidden;
+    overflow-y: scroll; }
+    .chat-wrapper .chatMessages-wrapper .userMessage-wrapper {
+      background-color: #b7b9c35d;
+      border-radius: 8px; }
+    .chat-wrapper .chatMessages-wrapper .assistantMessage-wrapper {
+      background-color: #0096d93d;
+      border-radius: 8px; }
+    .chat-wrapper .chatMessages-wrapper p {
+      white-space: pre-line; }
+  .chat-wrapper .triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 16px 8px 0 8px;
+    border-color: #007bff transparent transparent transparent; }
+  .chat-wrapper .chatInput-wrapper {
+    background-color: #0096d93d; }
+    .chat-wrapper .chatInput-wrapper .text-area-wrapper {
+      flex-grow: 1; }
+    .chat-wrapper .chatInput-wrapper .sendMessage-Btn-wrapper {
+      width: 48px;
+      height: 48px;
+      border-radius: 2000px;
+      background-color: #007bff;
+      transition: 0.5s all; }
+    .chat-wrapper .chatInput-wrapper .sendMessage-Btn-wrapper:hover {
+      background-color: #0069d9; }
+    .chat-wrapper .chatInput-wrapper .sendAttachment-Btn-wrapper svg {
+      color: grey;
+      transform: rotate(90deg); }
 
 .chat-wrapper:hover {
-  background-color: #1b3e91; }
+  background-color: #0069d9; }

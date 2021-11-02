@@ -248,12 +248,12 @@ html body {
 
 //=========== MEDICAL REQUEST ===========
 
-.wrapper-request-imgs{
-  svg{
+.wrapper-request-imgs {
+  svg {
     width: 96px;
     height: 96px;
   }
-  label{
+  label {
     cursor: pointer;
     display: flex;
     flex-direction: column;
@@ -298,8 +298,6 @@ html body {
   }
 }
 
-
-
 .tag-preview-wrapper {
   transition: all 0.5s;
   li {
@@ -309,7 +307,7 @@ html body {
   }
 }
 .wrapper-request-tags {
-  .MuiAutocomplete-root{
+  .MuiAutocomplete-root {
     width: 100%;
   }
   .outline {
@@ -360,7 +358,7 @@ html body {
 }
 
 .request-info-wrapper {
-  h3{
+  h3 {
     line-height: 55px;
   }
   h5 {
@@ -383,28 +381,26 @@ html body {
 
 //=========== DASHBOARD PROFILE ===========
 
-.blur{
+.blur {
   filter: blur(4px);
   -webkit-filter: blur(4px);
 }
 
 .profile-wrapper {
-  
   padding-left: 0px;
   padding-right: 0px;
-  .avatar-wrapper{
-
+  .avatar-wrapper {
     max-height: 256px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position-y: center;
-    
+
     width: 100%;
     height: 100%;
     background-color: #0069d9;
     padding: 3rem 15px;
   }
-  .intro-block{
+  .intro-block {
     width: 128px;
     height: 128px;
   }
@@ -422,14 +418,13 @@ html body {
   }
 
   .profile-meta-wrapper {
-    .MuiFormControl-root{
+    .MuiFormControl-root {
       flex-grow: 1;
     }
-    .edit-wrapper{
-      svg{
+    .edit-wrapper {
+      svg {
         width: 24px;
         height: 24px;
-
       }
     }
     h5,
@@ -442,39 +437,35 @@ html body {
     flex-grow: 1;
     button {
       width: 50%;
-      transition: all .5s;
+      transition: all 0.5s;
     }
-    button:hover{
+    button:hover {
       font-weight: 700;
     }
-    button.btn-outline:hover:nth-child(2){
+    button.btn-outline:hover:nth-child(2) {
       background-color: $PRIMARY-COLOR-2;
       color: #ffffff;
-
     }
   }
 }
 
 //=========== Requests PROFILE ===========
-.accordion-title{
+.accordion-title {
   flex-grow: 1;
 }
-.requests-wrapper{
-
-  .pending-requests-wrapper{
-    .row{
-      margin: 0px
+.requests-wrapper {
+  .pending-requests-wrapper {
+    .row {
+      margin: 0px;
     }
-    .MuiBadge-root{
+    .MuiBadge-root {
       transform: translateY(-2px);
     }
-    
   }
 }
 
 // ================= Chat ========================
-.chat-wrapper{
-  
+.chat-wrapper {
   border-radius: 20000px;
   width: 15%;
   height: 5%;
@@ -483,20 +474,110 @@ html body {
   position: fixed;
   bottom: 32px;
   right: 32px;
-  background-color: $PRIMARY-COLOR-2;
+  background-color: #007bff;
   transition: 1s all;
-  svg{
+  svg {
     width: 32px;
     height: 32px;
     color: white;
-   
   }
-  h4{
+  h4 {
     color: white;
     transform: translateY(-2px);
   }
-}
 
-.chat-wrapper:hover{
-  background-color: $PRIMARY-COLOR-0;
+  .chatDisplay-wrapper {
+    background-color: aliceblue;
+    border-radius: 16px;
+    overflow: hidden;
+    position: fixed;
+    bottom: 80px;
+    right: 32px;
+    width: 100%;
+    max-width: 360px;
+
+    /* width */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #888;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+    .chatSupport-wrapper {
+      background-color: $PRIMARY-COLOR-3;
+    }
+    div.supportAvatar-wrapper {
+      border-radius: 2000px;
+      overflow: hidden;
+      img {
+        width: 48px;
+        height: 48px;
+        object-fit: cover;
+      }
+    }
+  }
+
+  .chatMessages-wrapper {
+    height: 360px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    .userMessage-wrapper {
+      background-color: #b7b9c35d;
+      border-radius: 8px;
+    }
+    .assistantMessage-wrapper {
+      background-color: $PRIMARY-COLOR-3;
+      border-radius: 8px;
+    }
+    p {
+      white-space: pre-line;
+    }
+  }
+
+  .triangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 16px 8px 0 8px;
+    border-color: #007bff transparent transparent transparent;
+  }
+
+  .chatInput-wrapper {
+    background-color: $PRIMARY-COLOR-3;
+    .text-area-wrapper {
+      flex-grow: 1;
+    }
+    .sendMessage-Btn-wrapper {
+      width: 48px;
+      height: 48px;
+      border-radius: 2000px;
+      background-color: #007bff;
+      transition: 0.5s all;
+    }
+    .sendMessage-Btn-wrapper:hover {
+      background-color: #0069d9;
+    }
+    .sendAttachment-Btn-wrapper{
+      svg{
+        color: grey;
+        transform: rotate(90deg);
+      }
+    }
+  }
+}
+.chat-wrapper:hover {
+  background-color: #0069d9;
 }
