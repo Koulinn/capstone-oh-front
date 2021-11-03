@@ -5,8 +5,10 @@ import { MdOutlineChatBubbleOutline, MdSend, MdOutlineAttachment } from 'react-i
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 
 
+
 const ADDRESS = process.env.REACT_APP_API_URL
 export const socket = io(ADDRESS, { transports: ['websocket'] })
+
 
 
 
@@ -32,6 +34,8 @@ const mockMessage = {
 function Chat() {
     const [roomId, setRoomId] = useState(null)
     const [showChat, setShowChat] = useState(false)
+    const user = useSelector(s=>s.user)
+    const dispatch = useDispatch()
 
     useEffect(() => {
         socket.on('connection', () => {
@@ -61,6 +65,7 @@ function Chat() {
     }
 
     const requestAssistance = (user) => {
+        delete user.refreshToken
         setShowChat(true)
 
         socket.emit('newUser', user)
@@ -70,11 +75,14 @@ function Chat() {
     return (
         <div>
 
-            <h1>Chat</h1>
-            <button onClick={() => requestAssistance(mockUser)}>Request assistance</button>
-            <button onClick={() => sendMessage(mockMessage, roomId)}>Send Message</button>
+            {/* <h1>Chat</h1>
+            <button onClick={() => requestAssistance(user)}>Request assistance</button>
+            <button onClick={() => sendMessage(mockMessage, roomId)}>Send Message</button> */}
             <div className="chat-wrapper d-flex align-items-center justify-content-center" onClick={() => requestAssistance(mockUser)}>
-                <div className="d-flex align-items-center cursor-pointer">
+                <div 
+                className="d-flex align-items-center cursor-pointer"
+                onClick={() => requestAssistance(user)}
+                >
                     <MdOutlineChatBubbleOutline className="my-auto mr-3" />
                     <h4>Chat</h4>
                 </div>
