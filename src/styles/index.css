@@ -279,9 +279,8 @@ html body {
     background-size: cover;
     background-position-y: center;
     width: 100%;
-    height: 100%;
     background-color: #0069d9;
-    padding: 3rem 15px; }
+    padding: 3rem 1rem; }
   .profile-wrapper .intro-block {
     width: 128px;
     height: 128px; }
@@ -294,14 +293,16 @@ html body {
     border-radius: 20000px;
     bottom: 18%;
     right: 18%; }
-  .profile-wrapper .profile-meta-wrapper .MuiFormControl-root {
-    flex-grow: 1; }
-  .profile-wrapper .profile-meta-wrapper .edit-wrapper svg {
-    width: 24px;
-    height: 24px; }
-  .profile-wrapper .profile-meta-wrapper h5,
-  .profile-wrapper .profile-meta-wrapper h6 {
-    text-align: center; }
+  .profile-wrapper .profile-meta-wrapper {
+    transition: all 3s; }
+    .profile-wrapper .profile-meta-wrapper .MuiFormControl-root {
+      flex-grow: 1; }
+    .profile-wrapper .profile-meta-wrapper .edit-wrapper svg {
+      width: 24px;
+      height: 24px; }
+    .profile-wrapper .profile-meta-wrapper h5,
+    .profile-wrapper .profile-meta-wrapper h6 {
+      text-align: center; }
   .profile-wrapper .profile-actions {
     flex-grow: 1; }
     .profile-wrapper .profile-actions button {
@@ -406,3 +407,18 @@ html body {
 
 .chat-wrapper:hover {
   background-color: #0069d9; }
+
+.fade-enter {
+  transform: translateY(-150%);
+  opacity: 0; }
+
+.fade-exit-active {
+  opacity: 0; }
+
+.fade-enter-done {
+  opacity: 1;
+  transform: translateY(0px);
+  transition: all 1s; }
+
+.fade-exit-done {
+  opacity: 0; }

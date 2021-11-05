@@ -394,11 +394,9 @@ html body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position-y: center;
-
     width: 100%;
-    height: 100%;
     background-color: #0069d9;
-    padding: 3rem 15px;
+    padding: 3rem 1rem;
   }
   .intro-block {
     width: 128px;
@@ -418,6 +416,7 @@ html body {
   }
 
   .profile-meta-wrapper {
+    transition: all 3s;
     .MuiFormControl-root {
       flex-grow: 1;
     }
@@ -580,4 +579,34 @@ html body {
 }
 .chat-wrapper:hover {
   background-color: #0069d9;
+}
+
+
+.fade-enter {
+  transform: translateY(-150%);
+  opacity: 0;
+}
+.fade-enter-active {
+
+  // opacity: 1;
+  // transition: all 1s;
+}
+.fade-exit {
+  // opacity: 1;
+
+}
+.fade-exit-active {
+  // transform: translateY(150%);
+  opacity: 0;
+}
+
+.fade-enter-done{
+  opacity: 1;
+  transform: translateY(0px);
+  transition: all 1s;
+}
+.fade-exit-done{
+  // transform: translateY(150%);
+  opacity: 0;
+  
 }
