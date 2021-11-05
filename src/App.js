@@ -1,4 +1,4 @@
-import { io } from 'socket.io-client'
+
 import { Route, BrowserRouter as Router } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import Home from './views/Home/Home';
@@ -8,21 +8,20 @@ import Login from './views/Login/Login';
 import Booking from './views/Booking/Booking';
 import Dashboard from './views/Dashboard/Dashboard';
 import Chat from './views/Chat/Chat';
+import {useSelector} from 'react-redux' 
 
-
-
-// const ADDRESS = process.env.REACT_APP_API_URL
-// export const socket = io(ADDRESS, { transports: ['websocket'] })
 
 function App() {
+  const {isLogged} = useSelector(s=>s.user)
+  
 
   return (
     <Container className="overflow-hidden" fluid>
 
       <Container className="position-relative p-outside">
         <Router>
-          <NavigationBar />
-          <Route path="/chat" exact render={(routerProps) =>
+            <NavigationBar />
+          <Route path="/" exact render={(routerProps) =>
             <Home {...routerProps} />}>
           </Route>
           <Route path="/dashboard" exact render={(routerProps) =>
@@ -37,11 +36,10 @@ function App() {
           <Route path="/booking" exact render={(routerProps) =>
             <Booking {...routerProps} />}>
           </Route>
-          <Route path="/" exact render={(routerProps) =>
-            <Chat {...routerProps} />}>
-          </Route>
+         
         </Router>
 
+            {isLogged? <Chat/> : ''}
       </Container>
     </Container >
   );
