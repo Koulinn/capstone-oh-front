@@ -13,6 +13,7 @@ import ConfirmDetails from '../../components/BookingProcess/ConfirmDetails'
 import FacilityCard from '../../components/BookingProcess/FacilityCard'
 import Success from '../../components/Success/Success'
 import TestsPreview from '../../components/BookingProcess/BookingPreview/TestsPreview'
+import FacilityLocationPreview from '../../components/BookingProcess/BookingPreview/FacilityLocationPreview'
 
 const { getMe } = requests
 const successImg = "https://res.cloudinary.com/koulin/image/upload/v1635614779/OneHealth/successOH_wxysls.svg"
@@ -150,11 +151,7 @@ function Booking({ history }) {
                         imgsPreview={imgsPreview} removeImg={removeImg} requestTags={requestTags} setRequestTags={setRequestTags}
                     />
                     {facility ?
-                        <div className="chosen-location-wrapper mt-5 w-75 mx-auto">
-                            <h5 className="text-center mb-1">Location</h5>
-                            <FacilityCard gp={facility} noHoover={true} />
-
-                        </div>
+                        <FacilityLocationPreview facility={facility} />
                         : ''}
 
                     <div className="chosen-date-wrapper my-5 w-75 mx-auto">
