@@ -25,6 +25,7 @@ function Login({ history }) {
     return (
         <Row className="box-shadow my-5 overflow-hidden mx-1">
             {welcome ? <Welcome
+            action="Login"
                 title="How can we help you today?"
                 subLabel="Continue with e-mail"
                 option="Doesn't have an account? Go to "
@@ -33,13 +34,14 @@ function Login({ history }) {
                 img={<LoginIMG />}
                 setViewController={setViewController}
                 viewController={viewController}
-                gBtnText="Sign in with Google"
+                gBtnText="Continue with Google"
             />
                 : ''}
             {steps ? <Credentials
                 title="Welcome back"
                 img={<LoginIMG />}
                 history={history}
+                setViewController={setViewController}
             />
                 : ''}
         </Row>

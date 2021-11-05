@@ -39,7 +39,8 @@ function Register({history}) {
     return (
         
             <Row className="box-shadow my-5 overflow-hidden mx-md-1">
-                {viewController.welcome? <Welcome 
+                {viewController.welcome? <Welcome
+                action="Register" 
                     title="Welcome to OneHealth!"
                     subLabel="Register with e-mail"
                     option="Already have an account? Go to "
@@ -48,7 +49,7 @@ function Register({history}) {
                     img={<RegisterIMG/>}
                     setViewController={setViewController}
                     viewController={viewController}
-                    gBtnText="Sign up with Google"
+                    gBtnText="Continue with Google"
                 /> : ''}
                 {viewController.steps ? <RegisterSteps viewController={viewController} setViewController={setViewController} userData={userData} setUserData={setUserData}/> : ''}
             </Row>

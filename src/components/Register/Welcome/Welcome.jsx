@@ -6,6 +6,7 @@ import { BASE_URL } from '../../../lib';
 
 
 function Welcome({
+    action,
     title,
     subLabel,
     option,
@@ -56,7 +57,7 @@ function Welcome({
             } style={{ flexOrder: 1 }}
             >
                 <h2 className="text-center mt-5 mb-3">{title}</h2>
-                <h5 className="mb-3">Please choose an option</h5>
+                <h5 className="mb-3 text-center">{action}</h5>
 
                 <div className="my-5">
                     <GoogleButton label={gBtnText} onClick={googleRedirect} />
