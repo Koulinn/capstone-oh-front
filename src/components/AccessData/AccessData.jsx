@@ -26,7 +26,7 @@ const SignupSchema = Yup.object().shape({
 })
 
 
-function AccessData({ userData, steps, setSteps }) {
+function AccessData({ userData, steps, setSteps, handleBack }) {
     const [showError, setShowError] = useState(false)
     const [isSpinning, setIsSpinning] = useState(false)
     const [show, setShow] = useState(false)
@@ -69,6 +69,7 @@ function AccessData({ userData, steps, setSteps }) {
     })
 
     const returnStep=()=>{
+        handleBack()
         setSteps({
             personalData: true,
             accessData: false,
