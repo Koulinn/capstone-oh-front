@@ -1,22 +1,22 @@
-const steps = [
-    {
-      label: 'Medical tests',
-      description: `You can upload the medical tests request or add the tests manually`,
-    },
-    {
-      label: 'Medical facility',
-      description:
-        'We always have a medical facility next to you',
-    },
-    {
-      label: 'Availability',
-      description:
-        'You can pick up to 5 dates that bests suits you',
-    },
-    {
-      label: 'Contact confirmation',
-      description:
-        'After we receive your request we will get in touch to confirm and orient your for the medical tests',
-    }
-  ];
-export default steps
+const BSteps = [
+  {
+    label: 'Doctor request',
+    description: `You can upload medical tests or add tests manually`,
+  },
+  {
+    label: 'Medical facility',
+    description:
+      'You can choose the most convenient location to do your medical tests',
+  },
+  {
+    label: 'Availability',
+    description:
+      'You can pick up to 5 dates that bests suits you',
+  },
+  {
+    label: 'Contact confirmation',
+    description:
+      'We will get in touch to confirm and orient about the procedures',
+  }
+];
+export default BSteps

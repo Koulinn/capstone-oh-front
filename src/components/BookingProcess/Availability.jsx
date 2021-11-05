@@ -5,20 +5,23 @@ import 'react-calendar/dist/Calendar.css';
 import { useState, useEffect } from 'react'
 import ConfirmStepsBtn from './ConfirmStepsBtn';
 
-function Availability({ setAvailability, availability, setBookingSteps, bookingSteps }) {
+function Availability({ setAvailability, availability, setBookingSteps, bookingSteps, handleNext, handleBack }) {
     const [value, onChange] = useState(new Date());
     const [isDisabled, setIsDisabled] = useState(true)
 
     const ASAPHandler = (asap) => {
         setAvailability(asap)
-        setBookingSteps({
-            medicalTests: false,
-            facility: false,
-            generalAvailability: false,
-            pickDate: false,
-            checkPersonalDetails: true,
-            successScreen: false
-        })
+        setTimeout(() => {
+            handleNext()
+            setBookingSteps({
+                medicalTests: false,
+                facility: false,
+                generalAvailability: false,
+                pickDate: false,
+                checkPersonalDetails: true,
+                successScreen: false
+            })
+        }, 600)
     }
 
     const pickDateHandler = () => {
@@ -43,6 +46,7 @@ function Availability({ setAvailability, availability, setBookingSteps, bookingS
     };
 
     const confirmDate = () => {
+        handleNext()
         setBookingSteps({
             medicalTests: false,
             facility: false,
@@ -63,6 +67,7 @@ function Availability({ setAvailability, availability, setBookingSteps, bookingS
         })
     }
     const returnFacility = () => {
+        handleBack()
         setBookingSteps({
             medicalTests: false,
             facility: true,
@@ -89,7 +94,7 @@ function Availability({ setAvailability, availability, setBookingSteps, bookingS
 
             <h4 className="text-center mt-3 mb-3">What's your availability?</h4>
             {bookingSteps.generalAvailability ?
-                <div className="flex-center-center justify-content-between flex-column" style={{flexGrow:1}}>
+                <div className="flex-center-center justify-content-between flex-column" style={{ flexGrow: 1 }}>
 
                     <div className="d-flex justify-content-between align-items-center">
                         <div className="ASAP-btn cursor-pointer mr-4 mt-3" onClick={() => ASAPHandler(['ASAP'])}>

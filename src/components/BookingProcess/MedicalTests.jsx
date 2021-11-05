@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 import regRequests from '../../lib/requests-handlers';
 import { debounce } from 'lodash'
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
-
+import { withRouter } from 'react-router-dom'
 const filter = createFilterOptions();
 
 function MedicalTests({
@@ -17,7 +17,10 @@ function MedicalTests({
     setRequestTags,
     requestTags,
     setBookingSteps,
-    testsImgs
+    testsImgs,
+    handleNext,
+    handleReset,
+    history
 }) {
     const [isDisabled, setIsDisabled] = useState(true)
     const [suggestions, setSuggestions] = useState([])
@@ -57,6 +60,7 @@ function MedicalTests({
     }
 
     const confirmTests = () => {
+        handleNext()
         setBookingSteps({
             medicalTests: false,
             facility: true,
@@ -78,6 +82,19 @@ function MedicalTests({
         }
 
     }, 700)
+
+    const returnToProfile = () => {
+        handleReset()
+        setBookingSteps({
+            medicalTests: true,
+            facility: false,
+            generalAvailability: false,
+            pickDate: false,
+            checkPersonalDetails: false,
+            successScreen: false
+        })
+        history.push('/dashboard')
+    }
 
     return (
         <>
@@ -150,10 +167,10 @@ function MedicalTests({
                             sx={{ width: 300 }}
                             freeSolo
                             renderInput={(params) => (
-                                <TextField {...params} 
-                                onChange={(e) => getSuggestions(e.target.value)} 
-                                onBlur={()=> setTimeout(()=> setSuggestions([]),2000)} 
-                                label="Add medical tests"
+                                <TextField {...params}
+                                    onChange={(e) => getSuggestions(e.target.value)}
+                                    onBlur={() => setTimeout(() => setSuggestions([]), 2000)}
+                                    label="Add medical tests"
                                 />
                             )}
                         />
@@ -163,7 +180,7 @@ function MedicalTests({
             <ConfirmStepsBtn
                 stepsController={confirmTests}
                 btnText='Confirm medical tests'
-                stepsReturn={null}
+                stepsReturn={returnToProfile}
                 btnDisabled={isDisabled}
             />
         </>
@@ -171,4 +188,4 @@ function MedicalTests({
 }
 
 
-export default MedicalTests
+export default withRouter(MedicalTests)

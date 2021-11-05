@@ -24,9 +24,7 @@ function RegisterSteps({
 
 
     const handleNext = () => {
-        setActiveStep((prevActiveStep) => {
-            console.log(prevActiveStep, 'Inside setActiveStep')
-            return prevActiveStep + 1});
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
 
     const handleBack = () => {
@@ -47,7 +45,7 @@ function RegisterSteps({
                         }
                     >
                         <h2 className={"mt-5  "}> Register</h2>
-                        <div className={"w-100"} style={{maxWidth:'328px'}}>
+                        <div className={"w-100"} style={{ maxWidth: '328px' }}>
                             {steps.personalData ? (
                                 <PersonalData
                                     steps={steps}

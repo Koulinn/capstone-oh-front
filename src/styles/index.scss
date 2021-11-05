@@ -242,7 +242,7 @@ html body {
 
 .chosen-location-wrapper {
   .bg-transparent {
-    padding: 16px 0px !important;
+    padding: 0px 0px !important;
   }
 }
 
@@ -569,8 +569,8 @@ html body {
     .sendMessage-Btn-wrapper:hover {
       background-color: #0069d9;
     }
-    .sendAttachment-Btn-wrapper{
-      svg{
+    .sendAttachment-Btn-wrapper {
+      svg {
         color: grey;
         transform: rotate(90deg);
       }
@@ -581,32 +581,28 @@ html body {
   background-color: #0069d9;
 }
 
-
 .fade-enter {
   transform: translateY(-150%);
   opacity: 0;
 }
 .fade-enter-active {
-
   // opacity: 1;
   // transition: all 1s;
 }
 .fade-exit {
   // opacity: 1;
-
 }
 .fade-exit-active {
   // transform: translateY(150%);
   opacity: 0;
 }
 
-.fade-enter-done{
+.fade-enter-done {
   opacity: 1;
   transform: translateY(0px);
   transition: all 1s;
 }
-.fade-exit-done{
+.fade-exit-done {
   // transform: translateY(150%);
   opacity: 0;
-  
 }

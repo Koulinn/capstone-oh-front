@@ -14,6 +14,9 @@ import FacilityCard from '../../components/BookingProcess/FacilityCard'
 import Success from '../../components/Success/Success'
 import TestsPreview from '../../components/BookingProcess/BookingPreview/TestsPreview'
 import FacilityLocationPreview from '../../components/BookingProcess/BookingPreview/FacilityLocationPreview'
+import AvailabilityPreview from '../../components/BookingProcess/BookingPreview/AvailabilityPreview'
+import StepperVert from '../../components/StepperVert/StepperVert'
+import BSteps from './bookingSteps.js'
 
 const { getMe } = requests
 const successImg = "https://res.cloudinary.com/koulin/image/upload/v1635614779/OneHealth/successOH_wxysls.svg"
@@ -28,6 +31,7 @@ function Booking({ history }) {
     const dispatch = useDispatch()
     const user = useSelector(s => s.user)
     const [blur, setBlur] = useState(true)
+    const [activeStep, setActiveStep] = useState(0);
 
     const [bookingSteps, setBookingSteps] = useState({
         medicalTests: true,
@@ -75,6 +79,17 @@ function Booking({ history }) {
         setImgsPreview(remainingImgs)
     }
 
+    const handleNext = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    };
+
+    const handleBack = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    };
+    const handleReset = () => {
+        setActiveStep(0);
+    };
+
     return (
         <Row className={"box-shadow my-5 justify-content-center overflow-hidden mx-1" + (blur ? ' blur' : '')}>
             <div className="col-12 col-md-6 my-5">
@@ -90,6 +105,8 @@ function Booking({ history }) {
                         requestTags={requestTags}
                         testsImgs={testsImgs}
                         setBookingSteps={setBookingSteps}
+                        handleNext={handleNext}
+                        handleReset={handleReset}
                     /> : ''}
                 </div>
                 <div className="medical-facility-wrapper flex-center-center flex-column">
@@ -98,16 +115,20 @@ function Booking({ history }) {
                             setFacility={setFacility}
                             facility={facility}
                             setBookingSteps={setBookingSteps}
+                            handleNext={handleNext}
+                            handleBack={handleBack}
                         />
                         : ''}
                 </div>
-                <div className={(bookingSteps.generalAvailability || bookingSteps.pickDate) ? 'user-availability-wrapper flex-center-center flex-column  h-100' : ''}>
+                <div className={(bookingSteps.generalAvailability || bookingSteps.pickDate) ? 'user-availability-wrapper flex-column  h-100' : ''}>
                     {bookingSteps.generalAvailability || bookingSteps.pickDate ?
                         <Availability
                             setAvailability={setAvailability}
                             availability={availability}
                             setBookingSteps={setBookingSteps}
                             bookingSteps={bookingSteps}
+                            handleNext={handleNext}
+                            handleBack={handleBack}
                         />
                         : ''}
                 </div>
@@ -119,6 +140,8 @@ function Booking({ history }) {
                         facility={facility}
                         availability={availability}
                         setBookingSteps={setBookingSteps}
+                        handleNext={handleNext}
+                        handleBack={handleBack}
                     /> : ''}
                 </div>
                 <div className="success-wrapper d-flex flex-column justify-content-center align-items-center">
@@ -126,7 +149,7 @@ function Booking({ history }) {
                     {bookingSteps.successScreen ? <Success
                         message="We got your request"
                         extraMessage="In 2 working days we will get in touch to confirm your request!"
-                        extraMessage2="You will got an e-mail soon with the confirmation."
+                        extraMessage2="You will get an e-mail with the confirmation."
                         Img={successImg}
                         url='/dashboard'
                         btnText="Profile"
@@ -146,29 +169,23 @@ function Booking({ history }) {
 
 
             {!bookingSteps.successScreen ? <>
-                <div className="request-info-wrapper d-none d-md-block col-6 mt-5">
-                    <TestsPreview
-                        imgsPreview={imgsPreview} removeImg={removeImg} requestTags={requestTags} setRequestTags={setRequestTags}
-                    />
-                    {facility ?
-                        <FacilityLocationPreview facility={facility} />
-                        : ''}
+                <div className="request-info-wrapper d-none d-md-block col-6 my-5">
+                    <StepperVert
+                        activeStep={activeStep}
+                        steps={BSteps}
+                        testsPreview={(imgsPreview.length !== 0 || requestTags.length !== 0) ?
+                            <TestsPreview
+                                imgsPreview={imgsPreview} removeImg={removeImg} requestTags={requestTags} setRequestTags={setRequestTags}
+                            /> : null
+                        }
+                        facilityPreview={facility ?
+                            <FacilityLocationPreview facility={facility} /> : null
+                        }
 
-                    <div className="chosen-date-wrapper my-5 w-75 mx-auto">
-                        {availability.length > 0 ?
-                            <>
-                                <h5 className="text-center mb-1">Date</h5>
-                                <ul className="d-flex justify-content-start flex-wrap row">
-                                    {availability.map((t, index) =>
-                                        <li key={index} className="p-2">
-                                            {t}
-                                            <span className="ml-3 mr-1" onClick={() => removeTag(t, availability, setAvailability)}>
-                                                <MdRemove /></span>
-                                        </li>)}
-                                </ul>
-                            </>
-                            : ''}
-                    </div>
+                        availabilityPreview={
+                            <AvailabilityPreview availability={availability} setAvailability={setAvailability} />
+                        }
+                    />
                 </div>
             </> : ''}
         </Row>
