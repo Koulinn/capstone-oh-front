@@ -18,7 +18,7 @@ const SignupSchema = Yup.object().shape({
 
 const { login } = regRequests
 
-function Credentials({ img, title, history }) {
+function Credentials({ img, title, history, setViewController }) {
     const [showError, setShowError] = useState(false)
     const [isSpinning, setIsSpinning] = useState(false)
     const dispatch = useDispatch()
@@ -52,10 +52,17 @@ function Credentials({ img, title, history }) {
                 setIsSpinning(false)
                 setShowError(true)
                 setTimeout(() => setShowError(false), 3000)
-               
+
             }
         }
     })
+
+    const returnWelcome = ()=>{
+        setViewController({
+            welcome: true,
+            steps: false,
+        })
+    }
 
 
     return (
@@ -96,9 +103,15 @@ function Credentials({ img, title, history }) {
                                 state="danger" />
                                 : ''}
                         </div>
-                        <Button variant={"primary"} className="my-5 w-50 align-self-end" disabled={formik.isValid ? false : true} type="submit">
-                            Confirm
-                        </Button>
+                        <div className="my-5 d-flex justify-content-between align-items-center w-100">
+                            <div className="cursor-pointer py-3" onClick={returnWelcome}>
+                                Return
+                            </div>
+                            <Button variant={"primary"} className="my-5 w-50 align-self-end" disabled={formik.isValid ? false : true} type="submit">
+                                Confirm
+                            </Button>
+
+                        </div>
                     </form>
                 </div>
             </div>
