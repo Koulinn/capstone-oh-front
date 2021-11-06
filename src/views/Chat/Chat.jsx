@@ -51,7 +51,7 @@ function Chat() {
     const requestAssistance = (user) => {
         console.log('inside request assistance')
         delete user.refreshToken
-        setShowChat(true)
+        setShowChat(!showChat)
 
         socket.emit('newUser', user)
     }
@@ -61,7 +61,7 @@ function Chat() {
         <div>
             <div className="chat-wrapper d-flex align-items-center justify-content-center">
                 <div
-                    className="d-flex align-items-center cursor-pointer"
+                    className="d-flex w-100 align-items-center justify-content-center cursor-pointer"
                     onClick={() => requestAssistance(user)}
                 >
                     <MdOutlineChatBubbleOutline className="my-auto mr-3" />
@@ -70,7 +70,7 @@ function Chat() {
                 {showChat ?
                     <div className="chatDisplay-wrapper">
                         <div className="position-relative">
-                            <ChatHeader />
+                            <ChatHeader setShowChat={setShowChat} />
                             <ChatHistory currentMessageHistory={currentMessageHistory} />
                             <ChatBottom />
                         </div>

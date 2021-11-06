@@ -172,6 +172,7 @@ function Booking({ history }) {
                 <div className="request-info-wrapper d-none d-md-block col-6 my-5">
                     <StepperVert
                         activeStep={activeStep}
+                        
                         steps={BSteps}
                         testsPreview={(imgsPreview.length !== 0 || requestTags.length !== 0) ?
                             <TestsPreview
