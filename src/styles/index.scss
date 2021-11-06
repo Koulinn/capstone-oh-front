@@ -53,6 +53,7 @@ $PRIMARY-COLOR-0: #1b3e91;
 $PRIMARY-COLOR-1: #4f7fd1;
 $PRIMARY-COLOR-2: #21a8e1;
 $PRIMARY-COLOR-3: #0096d93d;
+$CHAT-BG:#ededf3;
 
 html body {
   font-family: "Mulish", sans-serif;
@@ -465,6 +466,7 @@ html body {
 
 // ================= Chat ========================
 .chat-wrapper {
+  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.30);
   border-radius: 20000px;
   width: 15%;
   height: 5%;
@@ -476,8 +478,8 @@ html body {
   background-color: #007bff;
   transition: 1s all;
   svg {
-    width: 32px;
-    height: 32px;
+    width: 24px;
+    height: 24px;
     color: white;
   }
   h4 {
@@ -486,6 +488,7 @@ html body {
   }
 
   .chatDisplay-wrapper {
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.50);
     background-color: aliceblue;
     border-radius: 16px;
     overflow: hidden;
@@ -515,7 +518,7 @@ html body {
       background: #555;
     }
     .chatSupport-wrapper {
-      background-color: $PRIMARY-COLOR-3;
+      background-color: $PRIMARY-COLOR-0;
     }
     div.supportAvatar-wrapper {
       border-radius: 2000px;
@@ -555,13 +558,49 @@ html body {
   }
 
   .chatInput-wrapper {
-    background-color: $PRIMARY-COLOR-3;
+    background-color: $CHAT-BG;
+    
+    border-radius: 0px 0px 16px 16px;
+    border-top: none;
+    form{
+      textarea{
+        background-color: $CHAT-BG;
+        
+        border: none;
+        margin-left: 1rem ;
+     
+      }
+      textarea:focus-visible{
+        outline: $PRIMARY-COLOR-0 auto 1px ;
+      }
+    }
+    
     .text-area-wrapper {
       flex-grow: 1;
     }
+    button:hover{
+      background-color: transparent;
+
+    }
+    img{
+      object-fit: cover;
+    }
+
+    .removeImg{
+      top: 8px;
+      right: 8px;
+      background-color: $PRIMARY-COLOR-2;
+      border-radius: 20000px;
+      height: 24px;
+      width: 24px;
+      transition: all.5s;
+    }
+    .removeImg:hover{
+      background-color: $PRIMARY-COLOR-0;
+    }
     .sendMessage-Btn-wrapper {
-      width: 48px;
-      height: 48px;
+      width: 40px;
+      height: 40px;
       border-radius: 2000px;
       background-color: #007bff;
       transition: 0.5s all;
