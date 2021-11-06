@@ -1,9 +1,11 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { MdSend, MdOutlineAttachment } from 'react-icons/md'
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import { useSelector } from 'react-redux'
 import { socket } from '../../views/Chat/Chat'
 import regRequests from '../../lib/requests-handlers';
+import Button from '@mui/material/Button';
+import { MdRemove } from 'react-icons/md'
 
 const { uploadCloudinary } = regRequests
 
@@ -40,15 +42,37 @@ function ChatBottom() {
         setImgPreview(null)
     }
 
+    const removeImg = () => {
+        setImgPreview(null)
+    }
+
 
     return (
-        <div>
-            {imgPreview ? <img src={imgPreview} alt="" width='64' height="64" /> : ''}
-            <form onSubmit={sendMessage} className="chatInput-wrapper d-flex justify-content-between align-items-center py-3">
+        <div className="border-top chatInput-wrapper">
+            {imgPreview ?
+                <div>
+                    <div className="position-relative" style={{ width: 'fit-content' }}>
+                        <img
+                            className="mx-3 mt-3 position-relative"
+                            src={imgPreview}
+                            alt=""
+                            width='128'
+                            height="80"
+                        />
+
+                        <div className="position-absolute d-flex flex-center-center removeImg cursor-pointer" onClick={() => removeImg()}>
+                            <MdRemove />
+                        </div>
+                    </div>
+
+                </div>
+                : ''}
+            <form onSubmit={sendMessage} className=" d-flex justify-content-between align-items-center">
                 <TextareaAutosize
-                    className="text-area-wrapper ml-3"
+                    className="text-area-wrapper my-3 px-2"
+                    maxRows={4}
                     aria-label="minimum height"
-                    minRows={3}
+
                     placeholder="Enter your message"
 
                 />
@@ -61,11 +85,11 @@ function ChatBottom() {
                     </label>
                     <input type="file" id="fileField" className="d-none" />
                 </div>
-                <button type="submit">
+                <Button type="submit" className="px-0">
                     <div className="sendMessage-Btn-wrapper d-flex justify-content-center align-items-center cursor-pointer mr-3">
                         <MdSend />
                     </div>
-                </button>
+                </Button>
             </form>
 
         </div>
