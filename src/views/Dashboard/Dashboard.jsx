@@ -24,6 +24,8 @@ function Dashboard({ history, location }) {
             setBlur(false)
 
         } catch (error) {
+            dispatch(setUserLogOut())
+            history.push('/')
             console.log(error)
         }
 
