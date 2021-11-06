@@ -116,7 +116,9 @@ html body {
 
 @media (max-width: 575.98px) {
   h1 {
-    font-size: 2rem; } }
+    font-size: 2rem; }
+  h2 {
+    font-size: 1.75rem; } }
 
 .bars {
   z-index: -1;

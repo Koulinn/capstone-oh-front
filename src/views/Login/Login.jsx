@@ -5,12 +5,14 @@ import { ReactComponent as LoginIMG } from '../../assets/loginImg.svg';
 import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Credentials from '../../components/Credentials/Credentials';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function Login({ history }) {
     const [viewController, setViewController] = useState({
         welcome: true,
         steps: false,
     })
+    const isSmall = useMediaQuery('(max-width:574px)');
 
     const { welcome, steps } = viewController
     const isLogged = useSelector(s => s.user.isLogged)
