@@ -118,7 +118,7 @@ function PersonalData({
             Return
           </div>
           <Button variant={"primary"} className="w-50" type="submit">
-            Confirm
+            Next
           </Button>
         </div>
       </form>

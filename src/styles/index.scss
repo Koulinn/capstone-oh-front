@@ -53,7 +53,7 @@ $PRIMARY-COLOR-0: #1b3e91;
 $PRIMARY-COLOR-1: #4f7fd1;
 $PRIMARY-COLOR-2: #21a8e1;
 $PRIMARY-COLOR-3: #0096d93d;
-$CHAT-BG:#ededf3;
+$CHAT-BG: #ededf3;
 
 html body {
   font-family: "Mulish", sans-serif;
@@ -89,13 +89,13 @@ html body {
     height: 2px;
   }
 
-  .bottomNavigation-wrapper{
-    svg{
+  .bottomNavigation-wrapper {
+    svg {
       width: 24px;
       height: 24px;
     }
-    button.Mui-selected{
-    background-color: $PRIMARY-COLOR-3;
+    button.Mui-selected {
+      background-color: $PRIMARY-COLOR-3;
     }
   }
 
@@ -166,23 +166,6 @@ html body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-
-//=========== MEDIA-QUERY UP TO TABLET ===========
-@media (max-width: 767px) {
-  .p-outside {
-    padding: 16px 16px;
-  }
-}
-
-//=========== MEDIA-QUERY UP TO MOBILE ===========
-@media (max-width: 575.98px) {
-  h1 {
-   font-size: 2rem;
-  }
-  h2{
-    font-size: 1.75rem;
-  }
 }
 
 //=========== BARS ===========
@@ -486,7 +469,7 @@ html body {
 
 // ================= Chat ========================
 .chat-wrapper {
-  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.30);
+  box-shadow: 0px 0px 32px rgba(0, 0, 0, 0.3);
   border-radius: 20000px;
   width: 15%;
   height: 5%;
@@ -508,7 +491,7 @@ html body {
   }
 
   .chatDisplay-wrapper {
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.50);
+    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.5);
     background-color: aliceblue;
     border-radius: 16px;
     overflow: hidden;
@@ -579,34 +562,32 @@ html body {
 
   .chatInput-wrapper {
     background-color: $CHAT-BG;
-    
+
     border-radius: 0px 0px 16px 16px;
     border-top: none;
-    form{
-      textarea{
+    form {
+      textarea {
         background-color: $CHAT-BG;
-        
+
         border: none;
-        margin-left: 1rem ;
-     
+        margin-left: 1rem;
       }
-      textarea:focus-visible{
-        outline: $PRIMARY-COLOR-0 auto 1px ;
+      textarea:focus-visible {
+        outline: $PRIMARY-COLOR-0 auto 1px;
       }
     }
-    
+
     .text-area-wrapper {
       flex-grow: 1;
     }
-    button:hover{
+    button:hover {
       background-color: transparent;
-
     }
-    img{
+    img {
       object-fit: cover;
     }
 
-    .removeImg{
+    .removeImg {
       top: 8px;
       right: 8px;
       background-color: $PRIMARY-COLOR-2;
@@ -615,7 +596,7 @@ html body {
       width: 24px;
       transition: all.5s;
     }
-    .removeImg:hover{
+    .removeImg:hover {
       background-color: $PRIMARY-COLOR-0;
     }
     .sendMessage-Btn-wrapper {
@@ -666,7 +647,28 @@ html body {
   opacity: 0;
 }
 
+//=========== MEDIA-QUERY UP TO TABLET ===========
+@media (max-width: 767px) {
+  .p-outside {
+    padding: 16px 16px;
+  }
+}
 
+//=========== MEDIA-QUERY UP TO MOBILE ===========
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
+  h4 {
+    font-size: 1rem;
+  }
 
-
-
+  .chat-wrapper {
+    width: 0px;
+    height: 0 px;
+    min-width: auto;
+  }
+}

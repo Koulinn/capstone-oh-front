@@ -110,16 +110,6 @@ html body {
   flex-direction: column;
   justify-content: center; }
 
-@media (max-width: 767px) {
-  .p-outside {
-    padding: 16px 16px; } }
-
-@media (max-width: 575.98px) {
-  h1 {
-    font-size: 2rem; }
-  h2 {
-    font-size: 1.75rem; } }
-
 .bars {
   z-index: -1;
   position: absolute;
@@ -457,3 +447,19 @@ html body {
 
 .fade-exit-done {
   opacity: 0; }
+
+@media (max-width: 767px) {
+  .p-outside {
+    padding: 16px 16px; } }
+
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2rem; }
+  h2 {
+    font-size: 1.75rem; }
+  h4 {
+    font-size: 1rem; }
+  .chat-wrapper {
+    width: 0px;
+    height: 0 px;
+    min-width: auto; } }

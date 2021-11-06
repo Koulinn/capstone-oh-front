@@ -21,7 +21,7 @@ function Dashboard({ history, location }) {
     const asyncWrapper = async (token = undefined) => {
         try {
             const res = await getMe(token)
-            setBlur(false)
+            
 
         } catch (error) {
             dispatch(setUserLogOut())
@@ -37,7 +37,7 @@ function Dashboard({ history, location }) {
         if (isLogged || isAccessToken) {
 
             asyncWrapper(isAccessToken)
-
+            setBlur(false)
 
             if (isAccessToken) {
                 dispatch(setUserTokens({
