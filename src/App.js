@@ -8,19 +8,23 @@ import Login from './views/Login/Login';
 import Booking from './views/Booking/Booking';
 import Dashboard from './views/Dashboard/Dashboard';
 import Chat from './views/Chat/Chat';
-import {useSelector} from 'react-redux' 
-
+import { useSelector } from 'react-redux'
+import BottomNav from './components/Navigation/BottomNav';
+import {useState} from 'react'
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 function App() {
-  const {isLogged} = useSelector(s=>s.user)
-  
+  const { isLogged } = useSelector(s => s.user)
+  const [showChat, setShowChat] = useState(false)
+  const isMobile = useMediaQuery('(max-width:640px)');
+
 
   return (
     <Container className="overflow-hidden" fluid>
 
       <Container className="position-relative p-outside">
         <Router>
-            <NavigationBar />
+          <NavigationBar />
           <Route path="/" exact render={(routerProps) =>
             <Home {...routerProps} />}>
           </Route>
@@ -36,10 +40,11 @@ function App() {
           <Route path="/booking" exact render={(routerProps) =>
             <Booking {...routerProps} />}>
           </Route>
-         
+
+        {isMobile && isLogged && <BottomNav setShowChat={setShowChat} showChat={showChat}/>}
         </Router>
 
-            {isLogged? <Chat/> : ''}
+        {isLogged && <Chat setShowChat={setShowChat} showChat={showChat} />}
       </Container>
     </Container >
   );

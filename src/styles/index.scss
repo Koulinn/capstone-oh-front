@@ -89,6 +89,16 @@ html body {
     height: 2px;
   }
 
+  .bottomNavigation-wrapper{
+    svg{
+      width: 24px;
+      height: 24px;
+    }
+    button.Mui-selected{
+    background-color: $PRIMARY-COLOR-3;
+    }
+  }
+
   #topNavigation {
     a {
       text-decoration: none;
@@ -159,9 +169,16 @@ html body {
 }
 
 //=========== MEDIA-QUERY UP TO TABLET ===========
-@media (min-width: 767px) {
+@media (max-width: 767px) {
   .p-outside {
     padding: 16px 16px;
+  }
+}
+
+//=========== MEDIA-QUERY UP TO MOBILE ===========
+@media (max-width: 575.98px) {
+  h1 {
+   font-size: 2rem;
   }
 }
 
@@ -645,3 +662,8 @@ html body {
   // transform: translateY(150%);
   opacity: 0;
 }
+
+
+
+
+

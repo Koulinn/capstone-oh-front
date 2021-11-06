@@ -65,6 +65,11 @@ html body {
     opacity: 1;
     background-color: #18181a !important;
     height: 2px; }
+  html body .bottomNavigation-wrapper svg {
+    width: 24px;
+    height: 24px; }
+  html body .bottomNavigation-wrapper button.Mui-selected {
+    background-color: #0096d93d; }
   html body #topNavigation a {
     text-decoration: none;
     font-size: 1.25rem;
@@ -105,9 +110,13 @@ html body {
   flex-direction: column;
   justify-content: center; }
 
-@media (min-width: 767px) {
+@media (max-width: 767px) {
   .p-outside {
     padding: 16px 16px; } }
+
+@media (max-width: 575.98px) {
+  h1 {
+    font-size: 2rem; } }
 
 .bars {
   z-index: -1;

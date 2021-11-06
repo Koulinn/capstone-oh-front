@@ -37,7 +37,7 @@ function Dashboard({ history, location }) {
         if (isLogged || isAccessToken) {
 
             asyncWrapper(isAccessToken)
-            
+
 
             if (isAccessToken) {
                 dispatch(setUserTokens({
@@ -52,7 +52,7 @@ function Dashboard({ history, location }) {
         }
     }, [])
     return (
-        <Row className={"box-shadow my-5 overflow-hidden mx-1" + (blur ? ' blur' : '')}>
+        isLogged && <Row className={"box-shadow my-5 overflow-hidden mx-1" + (blur ? ' blur' : '')}>
             <Profile
                 name={name}
                 surname={surname}
@@ -63,9 +63,10 @@ function Dashboard({ history, location }) {
 
             />
 
-            <RequestStatus
-                medical_tests_requested={medical_tests_requested}
-            />
+            {medical_tests_requested.length > 0 ?
+                <RequestStatus medical_tests_requested={medical_tests_requested}
+                />
+                : ''}
         </Row>
     )
 }

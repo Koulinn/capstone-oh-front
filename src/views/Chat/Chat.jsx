@@ -12,9 +12,8 @@ const ADDRESS = process.env.REACT_APP_API_URL
 export const socket = io(ADDRESS, { transports: ['websocket'] })
 
 
-function Chat() {
+function Chat({showChat, setShowChat}) {
     const [roomId, setRoomId] = useState(null)
-    const [showChat, setShowChat] = useState(false)
     const user = useSelector(s => s.user)
     const [currentMessageHistory, setCurrentMessageHistory] = useState([])
 

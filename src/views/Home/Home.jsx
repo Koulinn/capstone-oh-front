@@ -21,11 +21,11 @@ function Home({history}) {
     },[])
     return (
         <div>
-            {mediaLarge ? 
+            {mediaLarge &&
             <>
                 <Bars time={5350} pos={''}/>
                 <Bars time={0} pos={'bars-horizontal'}/>
-            </> : ''}
+            </>}
             <Hero title={title} heroImgURL={heroImgURL} history={history}/>
             
         </div>

@@ -11,7 +11,9 @@ export default function VerticalLinearStepper({
   orientation,
   testsPreview,
   facilityPreview,
-  availabilityPreview
+  availabilityPreview,
+  customStep
+  
 }) {
   const showPreview = (index, step) => {
     switch (index) {

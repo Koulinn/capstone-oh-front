@@ -33,7 +33,6 @@ export default function ProfileAvatar({ medical_tests_requested, name, avatar })
             invisible={medical_tests_requested?.length > 0 ? false : true}
         >
             <label htmlFor="avatar" className="cursor-pointer">
-                {/* <Avatar alt={name + ' picture'} src={avatar} /> */}
                 {isLoading? <Spinner/> : <Avatar alt={name + ' picture'} src={avatar} /> }
             </label>
             <input className="d-none position-absolute" id='avatar' type="file" onChange={(e)=>updateAvatar(e)} />
