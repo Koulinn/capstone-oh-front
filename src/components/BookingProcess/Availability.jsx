@@ -94,18 +94,18 @@ function Availability({ setAvailability, availability, setBookingSteps, bookingS
 
             <h4 className="text-center mt-3 mb-3">What's your availability?</h4>
             {bookingSteps.generalAvailability ?
-                <div className="flex-center-center justify-content-between flex-column" style={{ flexGrow: 1 }}>
+                <div className="flex-center-center justify-content-between flex-column row" style={{ flexGrow: 1 }}>
 
-                    <div className="d-flex justify-content-between align-items-center">
-                        <div className="ASAP-btn cursor-pointer mr-4 mt-3" onClick={() => ASAPHandler(['ASAP'])}>
-                            <h4>ASAP</h4>
+                    <div className="col-12 d-flex justify-content-center align-items-center">
+                        <div className="ASAP-btn cursor-pointer mr-4 mt-3" style={{maxWidth:"160px"}} onClick={() => ASAPHandler(['ASAP'])}>
+                            <h4 className="text-center">ASAP</h4>
                         </div>
-                        <div className='pickDAte-btn mt-3 ml-4 cursor-pointer text-nowrap' onClick={pickDateHandler}>
-                            <h4>Pick dates</h4>
+                        <div className='pickDAte-btn mt-3 ml-4 cursor-pointer text-nowrap' style={{maxWidth:"160px"}} onClick={pickDateHandler}>
+                            <h4 className="text-center">Pick dates</h4>
                         </div>
                     </div>
 
-                    <div className="d-flex align-items-center cursor-pointer mb-5" onClick={returnFacility}>
+                    <div className="col-12 d-flex align-self-center cursor-pointer mt-5 w-75" onClick={returnFacility}>
                         <span>Return</span>
                     </div>
 
