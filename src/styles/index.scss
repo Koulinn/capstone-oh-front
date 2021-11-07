@@ -650,6 +650,9 @@ html body {
 
 //=========== MEDIA-QUERY UP TO TABLET ===========
 @media (max-width: 767px) {
+  .MuiBox-root.css-4wnoen{
+    display: none;
+  }
   .p-outside {
     padding: 16px 16px;
   }
@@ -671,7 +674,8 @@ html body {
     font-size: 1.75rem;
   }
   h4 {
-    font-size: 1rem;
+    font-size: 1.25rem;
+    font-weight: 700;
   }
 
   .chat-wrapper {
@@ -690,11 +694,33 @@ html body {
   }
 }
 
-
+//=========== MOBILE DRAWER ===========
 .MuiMobileStepper-dot{
   margin: auto 8px !important;
 }
 
-.MuiMobileStepper-root{
-  margin: auto;
+// .MuiMobileStepper-root{
+//   margin: auto;
+// }
+.mobileStepper-wrapper{
+  button{
+    position: absolute;
+    top: -4px;
+    right: 0px;
+
+  }
+}
+
+.closeDrawer-btn{
+  position: ABSOLUTE;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    svg{
+     
+      width: 24px;
+      height: 24px;
+    }
+
 }
