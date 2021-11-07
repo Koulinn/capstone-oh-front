@@ -15,7 +15,7 @@ function RequestStatusType({ medical_tests_requested, title }) {
                 id="panel1a-header"
             >
                 <div className="d-flex justify-content-between align-items-center w-100 mr-2">
-                    <h4 className="text-center">{title}</h4>
+                    <h5 className="text-center">{title}</h5>
                     <div
                         className="d-flex flex-center-center"
                         style={{

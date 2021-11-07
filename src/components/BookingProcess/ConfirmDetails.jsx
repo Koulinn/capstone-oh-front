@@ -116,7 +116,7 @@ function ConfirmDetails(
     }
     return (
         <div className="d-flex flex-column flex-center-center">
-            <h4 className="mt-5 text-center">Confirm contact details</h4>
+            <h4 className="text-center">Confirm contact details</h4>
             <div className="d-flex flex-column w-75">
                 <p className="mt-5"><strong>Phone:</strong></p>
                 <p>{phone_primary}</p>

@@ -480,6 +480,7 @@ html body {
   right: 32px;
   background-color: #007bff;
   transition: 1s all;
+  min-width: 128px;
   svg {
     width: 24px;
     height: 24px;
@@ -652,6 +653,13 @@ html body {
   .p-outside {
     padding: 16px 16px;
   }
+
+  .request-info-wrapper {
+    .MuiBox-root {
+      max-width: none;
+      margin: 0;
+    }
+  }
 }
 
 //=========== MEDIA-QUERY UP TO MOBILE ===========
@@ -671,4 +679,22 @@ html body {
     height: 0 px;
     min-width: auto;
   }
+
+  .reqId-responsiveness {
+    max-width: 156px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .requests-wrapper{
+    margin-bottom: 3rem;
+  }
+}
+
+
+.MuiMobileStepper-dot{
+  margin: auto 8px !important;
+}
+
+.MuiMobileStepper-root{
+  margin: auto;
 }

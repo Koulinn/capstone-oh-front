@@ -335,7 +335,8 @@ html body {
   bottom: 32px;
   right: 32px;
   background-color: #007bff;
-  transition: 1s all; }
+  transition: 1s all;
+  min-width: 128px; }
   .chat-wrapper svg {
     width: 24px;
     height: 24px;
@@ -450,7 +451,10 @@ html body {
 
 @media (max-width: 767px) {
   .p-outside {
-    padding: 16px 16px; } }
+    padding: 16px 16px; }
+  .request-info-wrapper .MuiBox-root {
+    max-width: none;
+    margin: 0; } }
 
 @media (max-width: 640px) {
   h1 {
@@ -462,4 +466,16 @@ html body {
   .chat-wrapper {
     width: 0px;
     height: 0 px;
-    min-width: auto; } }
+    min-width: auto; }
+  .reqId-responsiveness {
+    max-width: 156px;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+  .requests-wrapper {
+    margin-bottom: 3rem; } }
+
+.MuiMobileStepper-dot {
+  margin: auto 8px !important; }
+
+.MuiMobileStepper-root {
+  margin: auto; }
