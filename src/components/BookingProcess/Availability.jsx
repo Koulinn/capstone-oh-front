@@ -98,15 +98,15 @@ function Availability({ setAvailability, availability, setBookingSteps, bookingS
                 <div className="flex-center-center justify-content-between flex-column row" style={{ flexGrow: 1 }}>
 
                     <div className="col-12 d-flex justify-content-center align-items-center">
-                        <div className="ASAP-btn cursor-pointer mr-4 mt-3" style={{maxWidth:"160px"}} onClick={() => ASAPHandler(['ASAP'])}>
-                            <h4 className="text-center">ASAP</h4>
+                        <div className="ASAP-btn cursor-pointer mr-4 mt-3 flex-center-center" style={{ width: "160px", fontWeight: 'bold' }} onClick={() => ASAPHandler(['ASAP'])}>
+                            <span className="m-auto" >ASAP</span>
                         </div>
-                        <div className='pickDAte-btn mt-3 ml-4 cursor-pointer text-nowrap' style={{maxWidth:"160px"}} onClick={pickDateHandler}>
-                            <h4 className="text-center">Pick dates</h4>
+                        <div className='pickDAte-btn mt-3 ml-4 cursor-pointer text-nowrap flex-center-center' style={{ width: "160px", fontWeight: 'bold' }} onClick={pickDateHandler}>
+                            <span className="m-auto">Calendar</span>
                         </div>
                     </div>
 
-                    <div className="col-12 d-flex align-self-center cursor-pointer mt-5 w-75" onClick={returnFacility}>
+                    <div className="col-12 d-flex align-self-center cursor-pointer mt-5 w-100 flex-center-center" onClick={returnFacility}>
                         <span>Return</span>
                     </div>
 
@@ -123,19 +123,19 @@ function Availability({ setAvailability, availability, setBookingSteps, bookingS
                             <small>{`${availability.length}/5`}</small>
                         </div>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        
-                        <CalendarPicker
-                        date={value}
-                         minDate={new Date()}
-                        onChange={(d)=>{
-                            onChange(d)
-                            selectDay(d)
-                        
-                        }}
-                       
-                        />
+
+                            <CalendarPicker
+                                date={value}
+                                minDate={new Date()}
+                                onChange={(d) => {
+                                    onChange(d)
+                                    selectDay(d)
+
+                                }}
+
+                            />
                         </LocalizationProvider>
-                       
+
                     </div>
                     <ConfirmStepsBtn
                         stepsController={confirmDate}
