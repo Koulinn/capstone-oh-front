@@ -12,7 +12,8 @@ export default function VerticalLinearStepper({
   testsPreview,
   facilityPreview,
   availabilityPreview,
-  customStep
+  customStep,
+  isAlternativeLabel
   
 }) {
   const showPreview = (index, step) => {
@@ -33,7 +34,12 @@ export default function VerticalLinearStepper({
 
   return (
     <Box sx={{ maxWidth: 328, margin: "auto", marginTop: "3rem" }}>
-      <Stepper activeStep={activeStep} orientation={orientation || "vertical"}>
+      <Stepper 
+      activeStep={activeStep} 
+      orientation={orientation || "vertical"}
+      alternativeLabel={isAlternativeLabel}
+      
+      >
         {steps.map((step, index) => (
           <Step key={step.label}>
             <StepLabel
