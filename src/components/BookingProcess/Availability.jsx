@@ -1,9 +1,10 @@
 import React from 'react'
 import moment from 'moment'
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
 import { useState, useEffect } from 'react'
 import ConfirmStepsBtn from './ConfirmStepsBtn';
+import CalendarPicker from '@mui/lab/CalendarPicker';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
 function Availability({ setAvailability, availability, setBookingSteps, bookingSteps, handleNext, handleBack }) {
     const [value, onChange] = useState(new Date());
@@ -121,12 +122,20 @@ function Availability({ setAvailability, availability, setBookingSteps, bookingS
                             <h6>You need to choose at least 3 dates</h6>
                             <small>{`${availability.length}/5`}</small>
                         </div>
-                        <Calendar
-                            onChange={onChange}
-                            value={value}
-                            minDate={new Date()}
-                            onClickDay={selectDay}
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        
+                        <CalendarPicker
+                        date={value}
+                         minDate={new Date()}
+                        onChange={(d)=>{
+                            onChange(d)
+                            selectDay(d)
+                        
+                        }}
+                       
                         />
+                        </LocalizationProvider>
+                       
                     </div>
                     <ConfirmStepsBtn
                         stepsController={confirmDate}
