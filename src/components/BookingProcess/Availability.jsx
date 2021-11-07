@@ -139,7 +139,7 @@ function Availability({ setAvailability, availability, setBookingSteps, bookingS
                     </div>
                     <ConfirmStepsBtn
                         stepsController={confirmDate}
-                        btnText='Confirm dates'
+                        btnText='Confirm'
                         stepsReturn={returnStep}
                         btnDisabled={isDisabled}
                     />

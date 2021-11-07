@@ -58,7 +58,7 @@ function Facility({ setFacility, facility, setBookingSteps, handleNext, handleBa
 
             <ConfirmStepsBtn
                 stepsController={confirmFacility}
-                btnText='Confirm place'
+                btnText='Confirm'
                 stepsReturn={returnStep}
                 btnDisabled={isDisabled}
             />

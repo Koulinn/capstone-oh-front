@@ -179,7 +179,7 @@ function MedicalTests({
             </div>
             <ConfirmStepsBtn
                 stepsController={confirmTests}
-                btnText='Confirm medical tests'
+                btnText='Confirm'
                 stepsReturn={returnToProfile}
                 btnDisabled={isDisabled}
             />
