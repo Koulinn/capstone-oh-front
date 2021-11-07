@@ -204,7 +204,7 @@ html body {
       width: 16px;
       height: 16px; }
   .imgsPreview-wrapper .position-absolute:hover {
-    background-color: #1b3e91;
+    background-color: #007bff;
     border: 2px solid #21a8e1; }
     .imgsPreview-wrapper .position-absolute:hover svg {
       color: white; }
@@ -221,7 +221,7 @@ html body {
 
 .wrapper-request-tags .outline {
   border-radius: 8px;
-  border: 2px solid #4f7fd1;
+  border: 2px solid #0069d9;
   background-color: transparent;
   color: black;
   transition: all 0.5s; }
@@ -233,21 +233,21 @@ html body {
 
 .user-availability-wrapper .ASAP-btn {
   padding: 24px;
-  background-color: #21a8e1;
+  background-color: #007bff;
   border-radius: 16px;
   color: white;
   transition: all 0.5s; }
 
 .user-availability-wrapper .ASAP-btn:hover {
-  background-color: #4f7fd1; }
+  background-color: #0069d9; }
 
 .user-availability-wrapper .pickDAte-btn {
   padding: 24px;
-  border: 2px solid #21a8e1;
+  border: 2px solid #007bff;
   border-radius: 16px; }
 
 .user-availability-wrapper .pickDAte-btn:hover {
-  border-color: #4f7fd1; }
+  border-color: #0069d9; }
 
 .user-availability-wrapper .calendar-metas {
   max-width: 350px; }
@@ -367,7 +367,7 @@ html body {
     .chat-wrapper .chatDisplay-wrapper ::-webkit-scrollbar-thumb:hover {
       background: #555; }
     .chat-wrapper .chatDisplay-wrapper .chatSupport-wrapper {
-      background-color: #1b3e91; }
+      background-color: #007bff; }
     .chat-wrapper .chatDisplay-wrapper div.supportAvatar-wrapper {
       border-radius: 2000px;
       overflow: hidden; }
@@ -402,7 +402,7 @@ html body {
       border: none;
       margin-left: 1rem; }
     .chat-wrapper .chatInput-wrapper form textarea:focus-visible {
-      outline: #1b3e91 auto 1px; }
+      outline: #007bff auto 1px; }
     .chat-wrapper .chatInput-wrapper .text-area-wrapper {
       flex-grow: 1; }
     .chat-wrapper .chatInput-wrapper button:hover {
@@ -418,7 +418,7 @@ html body {
       width: 24px;
       transition: all 0.5s; }
     .chat-wrapper .chatInput-wrapper .removeImg:hover {
-      background-color: #1b3e91; }
+      background-color: #007bff; }
     .chat-wrapper .chatInput-wrapper .sendMessage-Btn-wrapper {
       width: 40px;
       height: 40px;
@@ -494,3 +494,6 @@ html body {
   .closeDrawer-btn svg {
     width: 24px;
     height: 24px; }
+
+.MuiCollapse-wrapperInner svg {
+  transform: translateY(-1px); }

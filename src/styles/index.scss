@@ -49,8 +49,8 @@ li > span {
 }
 
 //=========== SASS VARIABLES ===========
-$PRIMARY-COLOR-0: #1b3e91;
-$PRIMARY-COLOR-1: #4f7fd1;
+$PRIMARY-COLOR-0: #007bff;
+$PRIMARY-COLOR-1: #0069d9;
 $PRIMARY-COLOR-2: #21a8e1;
 $PRIMARY-COLOR-3: #0096d93d;
 $CHAT-BG: #ededf3;
@@ -332,7 +332,7 @@ html body {
 .user-availability-wrapper {
   .ASAP-btn {
     padding: 24px;
-    background-color: $PRIMARY-COLOR-2;
+    background-color: $PRIMARY-COLOR-0;
     border-radius: 16px;
     color: white;
     transition: all 0.5s;
@@ -342,7 +342,7 @@ html body {
   }
   .pickDAte-btn {
     padding: 24px;
-    border: 2px solid $PRIMARY-COLOR-2;
+    border: 2px solid $PRIMARY-COLOR-0;
     border-radius: 16px;
   }
 
@@ -723,4 +723,10 @@ html body {
       height: 24px;
     }
 
+}
+
+.MuiCollapse-wrapperInner{
+  svg{
+    transform: translateY(-1px);
+  }
 }

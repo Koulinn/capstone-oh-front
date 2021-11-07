@@ -108,6 +108,7 @@ function Booking({ history }) {
                 className="col-12 col-md-6 my-5"
                 style={{ order: isMaxTablet ? 1 : "" }}
             >
+                    <h1 className="text-center">Booking</h1>
                 <div className="medical-requests-wrapper d-flex flex-center-center flex-column">
                     <CSSTransition
                         in={bookingSteps.medicalTests}
@@ -118,7 +119,6 @@ function Booking({ history }) {
                         appear={true}
                     >
                         <>
-                            <h1 className="text-center">Booking</h1>
                             <MedicalTests
                                 setTestsImgs={setTestsImgs}
                                 setImgsPreview={setImgsPreview}
