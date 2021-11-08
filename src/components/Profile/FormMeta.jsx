@@ -57,11 +57,12 @@ function FormMeta({
 
     useEffect(() => formBuilder(), [])
     return (
-        <form className="row mx-auto w-100 justify-content-end" onSubmit={sendForm}>
-            {inputs.map(field =>
+        <form className="row flex-column mx-auto w-100 justify-content-end" onSubmit={sendForm}>
+            {inputs.map((field, i )=>
 
                 <TextField
-                    className="m-3"
+                key={i}
+                    className=" my-3 col-12"
                     id={field.id}
                     label={field.label}
                     defaultValue={formValue[field.id]}
@@ -69,7 +70,7 @@ function FormMeta({
                     onChange={(e => formHandler(e.target.value, field.id))}
                 />
             )}
-            <Button type="submit" className="align-self-end mt-3 ml-auto">Update</Button>
+            <Button type="submit" className="align-self-end ml-auto pr-0">Update</Button>
         </form>
     )
 }

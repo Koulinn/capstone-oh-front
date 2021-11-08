@@ -1,31 +1,38 @@
-import React from 'react'
-import { useState, useEffect } from 'react'
-import requests from '../../lib/requests-authenticated'
-import { useDispatch, useSelector } from 'react-redux'
-import { setUserData } from '../../redux/actions'
-import { Row } from 'react-bootstrap'
-import { removeTag } from '../../lib'
-import { MdRemove } from 'react-icons/md'
-import MedicalTests from '../../components/BookingProcess/MedicalTests'
-import Facility from '../../components/BookingProcess/Facility'
-import Availability from '../../components/BookingProcess/Availability'
-import ConfirmDetails from '../../components/BookingProcess/ConfirmDetails'
-import FacilityCard from '../../components/BookingProcess/FacilityCard'
-import Success from '../../components/Success/Success'
+import React from "react";
+import { useState, useEffect } from "react";
+import requests from "../../lib/requests-authenticated";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserData, setUserLogOut } from "../../redux/actions";
+import { Row } from "react-bootstrap";
+import MedicalTests from "../../components/BookingProcess/MedicalTests";
+import Facility from "../../components/BookingProcess/Facility";
+import Availability from "../../components/BookingProcess/Availability";
+import ConfirmDetails from "../../components/BookingProcess/ConfirmDetails";
+import Success from "../../components/Success/Success";
+import TestsPreview from "../../components/BookingProcess/BookingPreview/TestsPreview";
+import FacilityLocationPreview from "../../components/BookingProcess/BookingPreview/FacilityLocationPreview";
+import AvailabilityPreview from "../../components/BookingProcess/BookingPreview/AvailabilityPreview";
+import StepperVert from "../../components/StepperVert/StepperVert";
+import BSteps from "./bookingSteps.js";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { CSSTransition } from "react-transition-group";
+import MobilePreview from "../../components/BookingProcess/MobilePreview/MobilePreview";
 
-const { getMe } = requests
-const successImg = "https://res.cloudinary.com/koulin/image/upload/v1635614779/OneHealth/successOH_wxysls.svg"
-
+const { getMe } = requests;
+const successImg =
+    "https://res.cloudinary.com/koulin/image/upload/v1635614779/OneHealth/successOH_wxysls.svg";
 
 function Booking({ history }) {
-    const [testsImgs, setTestsImgs] = useState(null)
-    const [imgsPreview, setImgsPreview] = useState([])
-    const [requestTags, setRequestTags] = useState([])
-    const [facility, setFacility] = useState(null)
-    const [availability, setAvailability] = useState([])
-    const dispatch = useDispatch()
-    const user = useSelector(s => s.user)
-    const [blur, setBlur] = useState(true)
+    const [testsImgs, setTestsImgs] = useState(null);
+    const [imgsPreview, setImgsPreview] = useState([]);
+    const [requestTags, setRequestTags] = useState([]);
+    const [facility, setFacility] = useState(null);
+    const [availability, setAvailability] = useState([]);
+    const dispatch = useDispatch();
+    const user = useSelector((s) => s.user);
+    const [blur, setBlur] = useState(true);
+    const [showDrawer, setShowDrawer] = useState(false);
+    const [activeStep, setActiveStep] = useState(0);
 
     const [bookingSteps, setBookingSteps] = useState({
         medicalTests: true,
@@ -33,176 +40,235 @@ function Booking({ history }) {
         generalAvailability: false,
         pickDate: false,
         checkPersonalDetails: false,
-        successScreen: false
-    })
+        successScreen: false,
+    });
+    const isMaxTablet = useMediaQuery("(max-width:767px)");
 
-    const { isLogged } = user
+    const { isLogged } = user;
 
     const asyncWrapper = async (token = undefined) => {
-        const res = await getMe(token)
-        if (res && (res.status === 200)) {
-            dispatch(setUserData(res.data.user))
+        const res = await getMe(token);
+        if (res && res.status === 200) {
+            dispatch(setUserData(res.data.user));
         } else {
-            console.log('fail getMe', res)
+            dispatch(setUserLogOut())
+            history.push('/')
         }
-    }
-
+    };
 
     useEffect(() => {
-        console.log('inside use Effect booking')
+        console.log("inside use Effect booking");
         if (isLogged) {
-            asyncWrapper()
-            setBlur(false)
-
+            asyncWrapper();
+            setBlur(false);
         } else {
-            setBlur(true)
-            console.log('inside ELSE use Effect booking')
-            history.push('/login')
+            setBlur(true);
+            console.log("inside ELSE use Effect booking");
+            history.push("/login");
         }
+    }, []);
 
-    }, [])
-
-    useEffect(() => {
-
-    }, [imgsPreview, facility, imgsPreview, bookingSteps])
+    useEffect(() => { }, [imgsPreview, facility, imgsPreview, bookingSteps]);
 
     const removeImg = (imgIndex) => {
-        const remainingImgs = imgsPreview.filter((img, index) => index !== imgIndex)
-        const remainingTestImgs = testsImgs.filter((img, index) => index !== imgIndex)
-        setTestsImgs(remainingTestImgs)
-        setImgsPreview(remainingImgs)
+        const remainingImgs = imgsPreview.filter(
+            (img, index) => index !== imgIndex
+        );
+        const remainingTestImgs = testsImgs.filter(
+            (img, index) => index !== imgIndex
+        );
+        setTestsImgs(remainingTestImgs);
+        setImgsPreview(remainingImgs);
+    };
+
+    const handleNext = () => {
+        console.log('inside handle next')
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    };
+
+    const handleBack = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    };
+    const handleReset = () => {
+        setActiveStep(0);
+    };
+
+    const toggleDrawer = () => {
+        console.log('inside toggle drawer')
+        setShowDrawer((prevState) => !prevState)
     }
 
     return (
-        <Row className={"box-shadow my-5 justify-content-center overflow-hidden mx-1" + (blur ? ' blur' : '')}>
-            <div className="col-12 col-md-6 my-5">
-                <h1 className="text-center">
-                    Booking
-                </h1>
-
+        <Row
+            className={
+                "box-shadow my-5 justify-content-center overflow-hidden mx-1" +
+                (blur ? " blur" : "")
+            }
+        >
+            <div
+                className="col-12 col-md-6 my-5"
+                style={{ order: isMaxTablet ? 1 : "" }}
+            >
+                <h1 className="text-center">Booking</h1>
                 <div className="medical-requests-wrapper d-flex flex-center-center flex-column">
-                    {bookingSteps.medicalTests ? <MedicalTests
-                        setTestsImgs={setTestsImgs}
-                        setImgsPreview={setImgsPreview}
-                        setRequestTags={setRequestTags}
-                        requestTags={requestTags}
-                        testsImgs={testsImgs}
-                        setBookingSteps={setBookingSteps}
-                    /> : ''}
+                    <CSSTransition
+                        in={bookingSteps.medicalTests}
+                        timeout={100}
+                        classNames="fade"
+                        mountOnEnter={true}
+                        unmountOnExit={true}
+                        appear={true}
+                    >
+                        <>
+                            <MedicalTests
+                                setTestsImgs={setTestsImgs}
+                                setImgsPreview={setImgsPreview}
+                                setRequestTags={setRequestTags}
+                                requestTags={requestTags}
+                                testsImgs={testsImgs}
+                                setBookingSteps={setBookingSteps}
+                                handleNext={handleNext}
+                                handleReset={handleReset}
+                            />
+                        </>
+                    </CSSTransition>
                 </div>
                 <div className="medical-facility-wrapper flex-center-center flex-column">
-                    {bookingSteps.facility ?
+                    <CSSTransition
+                        in={bookingSteps.facility}
+                        timeout={100}
+                        classNames="fade"
+                        mountOnEnter={true}
+                        unmountOnExit={true}
+                        appear={true}
+                    >
                         <Facility
                             setFacility={setFacility}
                             facility={facility}
                             setBookingSteps={setBookingSteps}
+                            handleNext={handleNext}
+                            handleBack={handleBack}
                         />
-                        : ''}
+                    </CSSTransition>
                 </div>
-                <div className={(bookingSteps.generalAvailability || bookingSteps.pickDate) ? 'user-availability-wrapper flex-center-center flex-column  h-100' : ''}>
-                    {bookingSteps.generalAvailability || bookingSteps.pickDate ?
+                <div
+                    className={
+                        bookingSteps.generalAvailability || bookingSteps.pickDate
+                            ? "user-availability-wrapper flex-column  h-100"
+                            : ""
+                    }
+                >
+                    <CSSTransition
+                        in={bookingSteps.generalAvailability || bookingSteps.pickDate}
+                        timeout={100}
+                        classNames="fade"
+                        mountOnEnter={true}
+                        unmountOnExit={true}
+                        appear={true}
+                    >
                         <Availability
                             setAvailability={setAvailability}
                             availability={availability}
                             setBookingSteps={setBookingSteps}
                             bookingSteps={bookingSteps}
+                            handleNext={handleNext}
+                            handleBack={handleBack}
                         />
-                        : ''}
+                    </CSSTransition>
                 </div>
 
                 <div className="confirm-wrapper">
-                    {bookingSteps.checkPersonalDetails ? <ConfirmDetails
-                        testsImgs={testsImgs}
-                        requestTags={requestTags}
-                        facility={facility}
-                        availability={availability}
-                        setBookingSteps={setBookingSteps}
-                    /> : ''}
+                    <CSSTransition
+                        in={bookingSteps.checkPersonalDetails}
+                        timeout={100}
+                        classNames="fade"
+                        mountOnEnter={true}
+                        unmountOnExit={true}
+                        appear={true}
+                    >
+                        <ConfirmDetails
+                            testsImgs={testsImgs}
+                            requestTags={requestTags}
+                            facility={facility}
+                            availability={availability}
+                            setBookingSteps={setBookingSteps}
+                            handleNext={handleNext}
+                            handleBack={handleBack}
+                        />
+                    </CSSTransition>
                 </div>
                 <div className="success-wrapper d-flex flex-column justify-content-center align-items-center">
-
-                    {bookingSteps.successScreen ? <Success
-                        message="We got your request"
-                        extraMessage="In 2 working days we will get in touch to confirm your request!"
-                        extraMessage2="You will got an e-mail soon with the confirmation."
-                        Img={successImg}
-                        url='/dashboard'
-                        btnText="Profile"
-
-                    /> : ''}
+                    <CSSTransition
+                        in={bookingSteps.successScreen}
+                        timeout={100}
+                        classNames="fade"
+                        mountOnEnter={true}
+                        unmountOnExit={true}
+                        appear={true}
+                    >
+                        <Success
+                            message="We got your request"
+                            extraMessage="In 2 working days we will get in touch to confirm your request!"
+                            extraMessage2="You will get an e-mail with the confirmation."
+                            Img={successImg}
+                            url="/dashboard"
+                            btnText="Profile"
+                        />
+                    </CSSTransition>
                 </div>
             </div>
 
+            <div
+                className={"request-info-wrapper col-12 col-md-6 mt-5 mb-md-5" +
+                    (bookingSteps.successScreen ? ' d-none' : '')
+                }>
 
+                {!bookingSteps.successScreen &&
+                    <StepperVert
+                        className="stepper-responsiveness"
+                        activeStep={activeStep}
+                        orientation={isMaxTablet && "vertical"}
+                        isAlternativeLabel={isMaxTablet ? true : false}
+                        sx={isMaxTablet ? { margin: 0, maxWidth: "none" } : ""}
+                        steps={BSteps}
+                        testsPreview={
+                            imgsPreview.length !== 0 || requestTags.length !== 0 ? (
+                                <TestsPreview
+                                    imgsPreview={imgsPreview}
+                                    removeImg={removeImg}
+                                    requestTags={requestTags}
+                                    setRequestTags={setRequestTags}
+                                />
+                            ) : null
+                        }
+                        facilityPreview={
+                            facility ? <FacilityLocationPreview facility={facility} /> : null
+                        }
+                        availabilityPreview={
+                            <AvailabilityPreview
+                                availability={availability}
+                                setAvailability={setAvailability}
+                            />
+                        }
+                    />}
 
-
-
-
-
-
-
-
-
-            {!bookingSteps.successScreen ? <>
-                <div className="request-info-wrapper d-none d-md-block col-6 mt-5">
-                    <h3 className="text-center">Request</h3>
-                    <div className={'w-75 mx-auto'}>
-                        <h5 className="text-center pt-2">Medical tests</h5>
-                        <div className={"imgsPreview-wrapper justify-content-between row "}>
-                            {imgsPreview.map((i, index) => <>
-                                <div  key={index} className="position-relative col-md-6 col-lg-4 my-3 p-0">
-                                    <img className="" height="96" src={i} />
-                                    <div className="position-absolute d-flex flex-center-center" onClick={() => removeImg(index)}>
-                                        <MdRemove />
-                                    </div>
-                                </div>
-
-                            </>)}
-                        </div>
-                        <div className={"my-3 tag-preview-wrapper"}>
-                            {requestTags.length > 0 ?
-                                <ul className="d-flex justify-content-start flex-wrap row">
-                                    {requestTags.map((tag, index) =>
-                                        <li
-                                            key={index}
-                                            className="p-2"
-                                        >
-                                            {tag}
-                                            <span className="ml-3 mr-1" onClick={() => removeTag(tag, requestTags, setRequestTags)}>
-                                                <MdRemove />
-                                            </span>
-                                        </li>)}
-                                </ul>
-                                : ''}
-                        </div>
-                    </div>
-                    {facility ?
-                        <div className="chosen-location-wrapper mt-5 w-75 mx-auto">
-                            <h5 className="text-center mb-1">Location</h5>
-                            <FacilityCard gp={facility} noHoover={true} />
-
-                        </div>
-                        : ''}
-
-                    <div className="chosen-date-wrapper my-5 w-75 mx-auto">
-                        {availability.length > 0 ?
-                            <>
-                                <h5 className="text-center mb-1">Date</h5>
-                                <ul className="d-flex justify-content-start flex-wrap row">
-                                    {availability.map((t, index) =>
-                                        <li key={index} className="p-2">
-                                            {t}
-                                            <span className="ml-3 mr-1" onClick={() => removeTag(t, availability, setAvailability)}>
-                                                <MdRemove /></span>
-                                        </li>)}
-                                </ul>
-                            </>
-                            : ''}
-                    </div>
-                </div>
-            </> : ''}
+                <MobilePreview
+                    handleNext={handleNext}
+                    handleBack={handleBack}
+                    activeStep={activeStep}
+                    toggleDrawer={toggleDrawer}
+                    showDrawer={showDrawer}
+                    imgsPreview={imgsPreview}
+                    requestTags={requestTags}
+                    setRequestTags={setRequestTags}
+                    facility={facility}
+                    availability={availability}
+                    setAvailability={setAvailability}
+                    removeImg={removeImg}
+                />
+            </div>
         </Row>
-    )
+    );
 }
 
-export default Booking
+export default Booking;

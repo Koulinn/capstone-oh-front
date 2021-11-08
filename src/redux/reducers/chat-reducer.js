@@ -6,7 +6,7 @@ export const chatReducer = (state = initialState.chat, action) => {
         case 'SET_ROOM':
             return {
                 ...state,
-                allChatsRooms: action.payload
+                roomID: action.payload
             }
 
         default: {

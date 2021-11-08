@@ -8,6 +8,7 @@ import Alerts from '../Alerts/Alerts.jsx';
 import { useDispatch } from 'react-redux'
 import { setUserTokens, setUserLogIn } from '../../redux/actions/index.js';
 import regRequests from '../../lib/requests-handlers.js';
+import requests from '../../lib/requests-authenticated.js'
 import { Button } from 'react-bootstrap';
 
 const SignupSchema = Yup.object().shape({
@@ -18,7 +19,7 @@ const SignupSchema = Yup.object().shape({
 
 const { login } = regRequests
 
-function Credentials({ img, title, history }) {
+function Credentials({ img, title, history, setViewController }) {
     const [showError, setShowError] = useState(false)
     const [isSpinning, setIsSpinning] = useState(false)
     const dispatch = useDispatch()
@@ -41,8 +42,9 @@ function Credentials({ img, title, history }) {
                     refreshToken: res.data.newRefreshToken,
                 }
                 dispatch(setUserTokens(tokens))
+                await requests.getMe()
                 dispatch(setUserLogIn())
-                setIsSpinning(false)
+                // setIsSpinning(false)
                 setTimeout(() => setIsSpinning(false), 999)
                 setTimeout(() => history.push('/dashboard'), 1000)
 
@@ -52,10 +54,17 @@ function Credentials({ img, title, history }) {
                 setIsSpinning(false)
                 setShowError(true)
                 setTimeout(() => setShowError(false), 3000)
-               
+
             }
         }
     })
+
+    const returnWelcome = () => {
+        setViewController({
+            welcome: true,
+            steps: false,
+        })
+    }
 
 
     return (
@@ -89,16 +98,22 @@ function Credentials({ img, title, history }) {
                             helperText={formik.errors.password}
                         />
                         <div className="mt-3 w-100">
-                            {isSpinning ? <Spinner /> : ''}
-                            {showError ? <Alerts
+                            {isSpinning && <Spinner />}
+                            {showError && <Alerts
                                 title='We got an error'
-                                message='Sorry, the problem is on server'
+                                message={`Sorry, e-mail and password doesnt match`}
                                 state="danger" />
-                                : ''}
+                            }
                         </div>
-                        <Button variant={"primary"} className="my-5 w-50 align-self-end" disabled={formik.isValid ? false : true} type="submit">
-                            Confirm
-                        </Button>
+                        <div className="my-5 d-flex justify-content-between align-items-center w-100">
+                            <div className="cursor-pointer py-3" onClick={returnWelcome}>
+                                Return
+                            </div>
+                            <Button variant={"primary"} className="my-5 w-50 align-self-end" disabled={formik.isValid ? false : true} type="submit">
+                                Confirm
+                            </Button>
+
+                        </div>
                     </form>
                 </div>
             </div>

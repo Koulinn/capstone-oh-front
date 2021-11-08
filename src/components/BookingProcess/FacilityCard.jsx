@@ -1,8 +1,12 @@
 import React from 'react'
 
-function FacilityCard({facility, gp, noHoover}) {
+function FacilityCard({ facility, gp, noHoover }) {
     return (
-        <div className={"d-flex flex-column p-3 facility " + ((facility?.name === gp?.name) ? ' bg-selected' : '') + (noHoover? ' bg-transparent ' : '')}>
+        <div
+            className={"d-flex flex-column facility "
+                + ((facility?.name === gp?.name) ? ' bg-selected' : '')
+                + (noHoover ? ' bg-transparent ' : ' p-3')
+            }>
             <div className="d-flex justify-content-between">
                 <h5>{gp.name}</h5>
                 <span>

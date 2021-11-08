@@ -81,7 +81,7 @@ const updateUserData = async(data) =>{
            
         const response = await axios.put(BASE_URL + "/user/me",data)
         store.dispatch(setUserData(response.data.user))
-        console.log(response)
+        return response
         
     } catch (error) {
         console.log(error, 'Error from upload avatar')
