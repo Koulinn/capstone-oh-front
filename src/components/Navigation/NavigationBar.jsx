@@ -75,8 +75,8 @@ function NavigationBar({ history }) {
           onClick={handleClick}
         >
 
-          <Avatar src={avatar} alt={name + ' ' + surname} className="cursor-pointer" />
-          <Typography className="d-none ml-3 d-md-flex align-items-center cursor-pointer">{`${name} ${surname}`}</Typography>
+          <Avatar data-hj-suppress src={avatar} alt={name + ' ' + surname} className="cursor-pointer" />
+          <Typography data-hj-suppress className="d-none ml-3 d-md-flex align-items-center cursor-pointer">{`${name} ${surname}`}</Typography>
 
         </div>
       }

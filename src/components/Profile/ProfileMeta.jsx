@@ -73,9 +73,9 @@ function ProfileMeta({ name, surname, email, phone_primary }) {
                 appear={true}
             >
                 <div className="flex-column">
-                    <h5>{`${name} ${surname}`}</h5>
+                    <h5 data-hj-suppress>{`${name} ${surname}`}</h5>
                     <h6 className="my-2">{email}</h6>
-                    <h6>{phone_primary}</h6>
+                    <h6 data-hj-suppress>{phone_primary}</h6>
                 </div>
             </CSSTransition>
         </div>

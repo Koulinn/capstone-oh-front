@@ -16,7 +16,7 @@ function Profile({
 }) {
     return (
         <div className="profile-wrapper col-12 col-md-6 d-flex flex-column align-items-center">
-            <div className="avatar-wrapper d-flex flex-center-center position-relative" style={{ backgroundImage: `url(${BGURL})` }}>
+            <div data-hj-suppress className="avatar-wrapper d-flex flex-center-center position-relative" style={{ backgroundImage: `url(${BGURL})` }}>
                 <ProfileAvatar
                     medical_tests_requested={medical_tests_requested}
                     name={name}
