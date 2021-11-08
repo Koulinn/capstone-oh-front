@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import requests from "../../lib/requests-authenticated";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserData } from "../../redux/actions";
+import { setUserData, setUserLogOut } from "../../redux/actions";
 import { Row } from "react-bootstrap";
 import MedicalTests from "../../components/BookingProcess/MedicalTests";
 import Facility from "../../components/BookingProcess/Facility";
@@ -51,7 +51,8 @@ function Booking({ history }) {
         if (res && res.status === 200) {
             dispatch(setUserData(res.data.user));
         } else {
-            console.log("fail getMe", res);
+            dispatch(setUserLogOut())
+            history.push('/')
         }
     };
 
@@ -108,7 +109,7 @@ function Booking({ history }) {
                 className="col-12 col-md-6 my-5"
                 style={{ order: isMaxTablet ? 1 : "" }}
             >
-                    <h1 className="text-center">Booking</h1>
+                <h1 className="text-center">Booking</h1>
                 <div className="medical-requests-wrapper d-flex flex-center-center flex-column">
                     <CSSTransition
                         in={bookingSteps.medicalTests}

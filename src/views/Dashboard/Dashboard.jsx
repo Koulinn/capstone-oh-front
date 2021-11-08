@@ -19,16 +19,11 @@ function Dashboard({ history, location }) {
     const { avatar, name, surname, email, phone_primary, medical_tests_requested } = user
 
     const asyncWrapper = async (token = undefined) => {
-        try {
-            const res = await getMe(token)
-            
-
-        } catch (error) {
+        const res = await getMe(token)
+        if (!res) {
             dispatch(setUserLogOut())
             history.push('/')
-            console.log(error)
         }
-
     }
 
     useEffect(() => {
@@ -52,7 +47,7 @@ function Dashboard({ history, location }) {
         }
     }, [])
     return (
-        isLogged && <Row className={"box-shadow my-5 overflow-hidden mx-1" + (blur ? ' blur' : '')}>
+        isLogged && <Row className={"box-shadow my-5 overflow-hidden" + (blur ? ' blur' : '')}>
             <Profile
                 name={name}
                 surname={surname}

@@ -8,6 +8,7 @@ import Alerts from '../Alerts/Alerts.jsx';
 import { useDispatch } from 'react-redux'
 import { setUserTokens, setUserLogIn } from '../../redux/actions/index.js';
 import regRequests from '../../lib/requests-handlers.js';
+import requests from '../../lib/requests-authenticated.js'
 import { Button } from 'react-bootstrap';
 
 const SignupSchema = Yup.object().shape({
@@ -41,8 +42,9 @@ function Credentials({ img, title, history, setViewController }) {
                     refreshToken: res.data.newRefreshToken,
                 }
                 dispatch(setUserTokens(tokens))
+                await requests.getMe()
                 dispatch(setUserLogIn())
-                setIsSpinning(false)
+                // setIsSpinning(false)
                 setTimeout(() => setIsSpinning(false), 999)
                 setTimeout(() => history.push('/dashboard'), 1000)
 
@@ -57,7 +59,7 @@ function Credentials({ img, title, history, setViewController }) {
         }
     })
 
-    const returnWelcome = ()=>{
+    const returnWelcome = () => {
         setViewController({
             welcome: true,
             steps: false,
@@ -96,12 +98,12 @@ function Credentials({ img, title, history, setViewController }) {
                             helperText={formik.errors.password}
                         />
                         <div className="mt-3 w-100">
-                            {isSpinning ? <Spinner /> : ''}
-                            {showError ? <Alerts
+                            {isSpinning && <Spinner />}
+                            {showError && <Alerts
                                 title='We got an error'
-                                message='Sorry, the problem is on server'
+                                message={`Sorry, e-mail and password doesnt match`}
                                 state="danger" />
-                                : ''}
+                            }
                         </div>
                         <div className="my-5 d-flex justify-content-between align-items-center w-100">
                             <div className="cursor-pointer py-3" onClick={returnWelcome}>

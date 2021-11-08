@@ -7,6 +7,7 @@ import Register from './views/Register/Register';
 import Login from './views/Login/Login';
 import Booking from './views/Booking/Booking';
 import Dashboard from './views/Dashboard/Dashboard';
+import CompleteRegistration from './views/CompleteRegistration/CompleteRegistration';
 import Chat from './views/Chat/Chat';
 import { useSelector } from 'react-redux'
 import BottomNav from './components/Navigation/BottomNav';
@@ -36,6 +37,9 @@ function App() {
           </Route>
           <Route path="/login" exact render={(routerProps) =>
             <Login {...routerProps} />}>
+          </Route>
+          <Route path="/registrationOAuth" exact render={(routerProps) =>
+            <CompleteRegistration {...routerProps} />}>
           </Route>
           <Route path="/booking" exact render={(routerProps) =>
             <Booking {...routerProps} />}>
