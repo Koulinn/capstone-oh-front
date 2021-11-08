@@ -20,6 +20,8 @@ function Dashboard({ history, location }) {
 
     const asyncWrapper = async (token = undefined) => {
         const res = await getMe(token)
+        setTimeout(()=>setBlur(false) ,700)
+        
         if (!res) {
             dispatch(setUserLogOut())
             history.push('/')
@@ -32,7 +34,7 @@ function Dashboard({ history, location }) {
         if (isLogged || isAccessToken) {
 
             asyncWrapper(isAccessToken)
-            setBlur(false)
+            
 
             if (isAccessToken) {
                 dispatch(setUserTokens({
@@ -42,7 +44,6 @@ function Dashboard({ history, location }) {
             }
         } else {
             dispatch(setUserLogOut())
-            setBlur(true)
             history.push('/')
         }
     }, [])
