@@ -57,7 +57,6 @@ function PersonalData({
 
   const getPhoneNumber =(value)=>{
     const phoneFormatted = value.substring(1, value.length)
-    console.log(phoneFormatted)
     
     setUserData({
       ...userData,

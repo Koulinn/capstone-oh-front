@@ -57,13 +57,11 @@ function Booking({ history }) {
     };
 
     useEffect(() => {
-        console.log("inside use Effect booking");
         if (isLogged) {
             asyncWrapper();
             setBlur(false);
         } else {
             setBlur(true);
-            console.log("inside ELSE use Effect booking");
             history.push("/login");
         }
     }, []);
@@ -82,7 +80,6 @@ function Booking({ history }) {
     };
 
     const handleNext = () => {
-        console.log('inside handle next')
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
     };
 
@@ -94,7 +91,6 @@ function Booking({ history }) {
     };
 
     const toggleDrawer = () => {
-        console.log('inside toggle drawer')
         setShowDrawer((prevState) => !prevState)
     }
 

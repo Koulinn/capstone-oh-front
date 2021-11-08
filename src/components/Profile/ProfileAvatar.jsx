@@ -21,7 +21,7 @@ export default function ProfileAvatar({ medical_tests_requested, name, avatar })
             
         } catch (error) {
             setIsLoading(false)
-            console.log(error)
+            
         }
     }
     return (

@@ -25,7 +25,7 @@ const medicalTestsSuggestions = async(inputValue)=>{
         const res= await axios.get(`${URL}/hospital?testName=${inputValue}`)
         return res
     } catch (error) {
-        console.log(error)
+        
         return false
     }
 }
