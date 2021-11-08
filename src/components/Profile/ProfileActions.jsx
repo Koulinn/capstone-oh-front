@@ -20,7 +20,6 @@ function ProfileActions({ history }) {
         <>
             <Button className="mt-5">Check results</Button>
             <Button variant="outline" className="border my-4" onClick={booking}>Book new test</Button>
-            <Button variant="outline" className="mt-auto" onClick={logout}>Logout</Button>
         </>
     )
 }
