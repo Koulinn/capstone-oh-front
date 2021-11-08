@@ -1,24 +1,28 @@
 import React from 'react'
 import moment from 'moment'
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
 import { useState, useEffect } from 'react'
 import ConfirmStepsBtn from './ConfirmStepsBtn';
+import CalendarPicker from '@mui/lab/CalendarPicker';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
 
-function Availability({ setAvailability, availability, setBookingSteps, bookingSteps }) {
+function Availability({ setAvailability, availability, setBookingSteps, bookingSteps, handleNext, handleBack }) {
     const [value, onChange] = useState(new Date());
     const [isDisabled, setIsDisabled] = useState(true)
 
     const ASAPHandler = (asap) => {
         setAvailability(asap)
-        setBookingSteps({
-            medicalTests: false,
-            facility: false,
-            generalAvailability: false,
-            pickDate: false,
-            checkPersonalDetails: true,
-            successScreen: false
-        })
+        setTimeout(() => {
+            handleNext()
+            setBookingSteps({
+                medicalTests: false,
+                facility: false,
+                generalAvailability: false,
+                pickDate: false,
+                checkPersonalDetails: true,
+                successScreen: false
+            })
+        }, 600)
     }
 
     const pickDateHandler = () => {
@@ -43,6 +47,7 @@ function Availability({ setAvailability, availability, setBookingSteps, bookingS
     };
 
     const confirmDate = () => {
+        handleNext()
         setBookingSteps({
             medicalTests: false,
             facility: false,
@@ -63,6 +68,7 @@ function Availability({ setAvailability, availability, setBookingSteps, bookingS
         })
     }
     const returnFacility = () => {
+        handleBack()
         setBookingSteps({
             medicalTests: false,
             facility: true,
@@ -89,18 +95,18 @@ function Availability({ setAvailability, availability, setBookingSteps, bookingS
 
             <h4 className="text-center mt-3 mb-3">What's your availability?</h4>
             {bookingSteps.generalAvailability ?
-                <div className="flex-center-center justify-content-between flex-column" style={{flexGrow:1}}>
+                <div className="flex-center-center justify-content-between flex-column row" style={{ flexGrow: 1 }}>
 
-                    <div className="d-flex justify-content-between align-items-center">
-                        <div className="ASAP-btn cursor-pointer mr-4 mt-3" onClick={() => ASAPHandler(['ASAP'])}>
-                            <h4>ASAP</h4>
+                    <div className="col-12 d-flex justify-content-center align-items-center">
+                        <div className="ASAP-btn cursor-pointer mr-4 mt-3 flex-center-center" style={{ width: "160px", fontWeight: 'bold' }} onClick={() => ASAPHandler(['ASAP'])}>
+                            <span className="m-auto" >ASAP</span>
                         </div>
-                        <div className='pickDAte-btn mt-3 ml-4 cursor-pointer text-nowrap' onClick={pickDateHandler}>
-                            <h4>Pick dates</h4>
+                        <div className='pickDAte-btn mt-3 ml-4 cursor-pointer text-nowrap flex-center-center' style={{ width: "160px", fontWeight: 'bold' }} onClick={pickDateHandler}>
+                            <span className="m-auto">Calendar</span>
                         </div>
                     </div>
 
-                    <div className="d-flex align-items-center cursor-pointer mb-5" onClick={returnFacility}>
+                    <div className="col-12 d-flex align-self-center cursor-pointer mt-5 w-100 flex-center-center" onClick={returnFacility}>
                         <span>Return</span>
                     </div>
 
@@ -116,16 +122,24 @@ function Availability({ setAvailability, availability, setBookingSteps, bookingS
                             <h6>You need to choose at least 3 dates</h6>
                             <small>{`${availability.length}/5`}</small>
                         </div>
-                        <Calendar
-                            onChange={onChange}
-                            value={value}
-                            minDate={new Date()}
-                            onClickDay={selectDay}
-                        />
+                        <LocalizationProvider dateAdapter={AdapterDateFns}>
+
+                            <CalendarPicker
+                                date={value}
+                                minDate={new Date()}
+                                onChange={(d) => {
+                                    onChange(d)
+                                    selectDay(d)
+
+                                }}
+
+                            />
+                        </LocalizationProvider>
+
                     </div>
                     <ConfirmStepsBtn
                         stepsController={confirmDate}
-                        btnText='Confirm dates'
+                        btnText='Confirm'
                         stepsReturn={returnStep}
                         btnDisabled={isDisabled}
                     />

@@ -10,6 +10,7 @@ export const userReducer = (state = initialState.user, action) => {
             }
 
         case 'SET_USER_TOKENS':
+            console.log(action.payload)
             return {
                 ...state,
                 accessToken: action.payload.accessToken,

@@ -6,6 +6,7 @@ import { BASE_URL } from '../../../lib';
 
 
 function Welcome({
+    action,
     title,
     subLabel,
     option,
@@ -50,13 +51,13 @@ function Welcome({
     return (
         <>
             <div className={
-                "col-6 flex-column flex-center-center hide "
+                "col-12 col-md-6 flex-column flex-center-center hide "
                 + (show && !viewController.steps ? ' show' : '')
                 + (viewController.steps ? ' d-none' : '')
             } style={{ flexOrder: 1 }}
             >
                 <h2 className="text-center mt-5 mb-3">{title}</h2>
-                <h5 className="mb-3">Please choose an option</h5>
+                <h5 className="mb-3 text-center">{action}</h5>
 
                 <div className="my-5">
                     <GoogleButton label={gBtnText} onClick={googleRedirect} />
@@ -71,7 +72,7 @@ function Welcome({
 
             </div>
             <div className={
-                "col-6 flex-column flex-center-center hide "
+                "d-none d-md-flex col-6 flex-column flex-center-center hide "
                 + (show && !viewController.steps ? 'show' : '') +
                 (viewController.steps ? ' d-none' : '')
             }

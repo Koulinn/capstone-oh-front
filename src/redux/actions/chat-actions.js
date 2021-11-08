@@ -1,5 +1,5 @@
-export const setNewRoom = (payload) => ({
-    type: 'SET_NEW_ROOM',
+export const setRoom = (payload) => ({
+    type: 'SET_ROOM',
     payload: payload
 })
 

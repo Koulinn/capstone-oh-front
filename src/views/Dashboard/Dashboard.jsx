@@ -19,14 +19,13 @@ function Dashboard({ history, location }) {
     const { avatar, name, surname, email, phone_primary, medical_tests_requested } = user
 
     const asyncWrapper = async (token = undefined) => {
-        try {
-            const res = await getMe(token)
-            setBlur(false)
-
-        } catch (error) {
-            console.log(error)
+        const res = await getMe(token)
+        setTimeout(()=>setBlur(false) ,700)
+        
+        if (!res) {
+            dispatch(setUserLogOut())
+            history.push('/')
         }
-
     }
 
     useEffect(() => {
@@ -45,12 +44,11 @@ function Dashboard({ history, location }) {
             }
         } else {
             dispatch(setUserLogOut())
-            setBlur(true)
             history.push('/')
         }
     }, [])
     return (
-        <Row className={"box-shadow my-5 overflow-hidden mx-1" + (blur ? ' blur' : '')}>
+        isLogged && <Row className={"box-shadow my-5 overflow-hidden" + (blur ? ' blur' : '')}>
             <Profile
                 name={name}
                 surname={surname}
@@ -61,9 +59,10 @@ function Dashboard({ history, location }) {
 
             />
 
-            <RequestStatus
-                medical_tests_requested={medical_tests_requested}
-            />
+            {medical_tests_requested.length > 0 ?
+                <RequestStatus medical_tests_requested={medical_tests_requested}
+                />
+                : ''}
         </Row>
     )
 }

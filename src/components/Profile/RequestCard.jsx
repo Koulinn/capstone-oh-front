@@ -16,7 +16,7 @@ function RequestCard({ imgsPreview, requestTags, location }) {
                                     requestTags.map((tag, index) =>
                                         <li
                                             key={index + 200}
-                                            className="p-2"
+                                            className="p-2 text-truncate"
                                         >
                                             {tag}
                                         </li>)

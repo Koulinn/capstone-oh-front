@@ -18,9 +18,9 @@ function RequestCardWrapper({id, index, imgsPreview, requestTags, location, is_u
                 >
                     <div className="accordion-title">
                         <div className="d-flex justify-content-between align-items-center">
-                            <h6>Request: {id}</h6>
+                            <h6 className="reqId-responsiveness">{id}</h6>
                             <div className="mr-3">
-                                <span className="mr-3">{is_user_confirmed ? 'Confirmed' : 'Processing'}</span>
+                                
                                 <Badge
 
                                     color={is_user_confirmed ? 'success' :'warning'}

@@ -24,7 +24,7 @@ function Profile({
                     avatar={avatar}
                 />
             </div>
-            <div className="profile-meta-wrapper mt-4">
+            <div className="profile-meta-wrapper w-100 d-flex justify-content-center overflow-hidden px-3">
                 <ProfileMeta
                     name={name}
                     surname={surname}

@@ -15,7 +15,8 @@ function ConfirmDetails(
         requestTags,
         facility,
         availability,
-        setBookingSteps
+        setBookingSteps,
+        handleBack
     }) {
     const [showError, setShowError] = useState(false)
     const [isSpinning, setIsSpinning] = useState(false)
@@ -38,16 +39,29 @@ function ConfirmDetails(
 
                 const res = await sendMedicalRequest(formWithImgRequests)
                 if (res.status === 201) {
-                    setIsSpinning(false)
-                    setShowError(false)
-                    setBookingSteps({
-                        medicalTests: false,
-                        facility: false,
-                        generalAvailability: false,
-                        pickDate: false,
-                        checkPersonalDetails: false,
-                        successScreen: true
-                    })
+                    setTimeout(() => {
+                        setIsSpinning(false)
+                        setShowError(false)
+                        setBookingSteps({
+                            medicalTests: false,
+                            facility: false,
+                            generalAvailability: false,
+                            pickDate: false,
+                            checkPersonalDetails: false,
+                            successScreen: true
+                        })
+
+                    }, 800)
+                    // setIsSpinning(false)
+                    // setShowError(false)
+                    // setBookingSteps({
+                    //     medicalTests: false,
+                    //     facility: false,
+                    //     generalAvailability: false,
+                    //     pickDate: false,
+                    //     checkPersonalDetails: false,
+                    //     successScreen: true
+                    // })
                 } else {
                     setIsSpinning(false)
                     setShowError(true)
@@ -64,16 +78,19 @@ function ConfirmDetails(
 
                 const res = await sendMedicalRequest(newForm)
                 if (res.status === 201) {
-                    setIsSpinning(false)
-                    setShowError(false)
-                    setBookingSteps({
-                        medicalTests: false,
-                        facility: false,
-                        generalAvailability: false,
-                        pickDate: false,
-                        checkPersonalDetails: false,
-                        successScreen: true
-                    })
+                    setTimeout(() => {
+                        setIsSpinning(false)
+                        setShowError(false)
+                        setBookingSteps({
+                            medicalTests: false,
+                            facility: false,
+                            generalAvailability: false,
+                            pickDate: false,
+                            checkPersonalDetails: false,
+                            successScreen: true
+                        })
+
+                    }, 800)
                 } else {
                     setIsSpinning(false)
                     setShowError(true)
@@ -87,6 +104,7 @@ function ConfirmDetails(
     }
 
     const returnStep = () => {
+        handleBack()
         setBookingSteps({
             medicalTests: false,
             facility: false,
@@ -98,7 +116,7 @@ function ConfirmDetails(
     }
     return (
         <div className="d-flex flex-column flex-center-center">
-            <h4 className="mt-5 text-center">Confirm contact details</h4>
+            <h4 className="mt-3 text-center">Confirm contact details</h4>
             <div className="d-flex flex-column w-75">
                 <p className="mt-5"><strong>Phone:</strong></p>
                 <p>{phone_primary}</p>
