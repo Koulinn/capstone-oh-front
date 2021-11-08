@@ -9,6 +9,7 @@ import Spinner from '../Spinner/Spinner'
 import Alerts from '../Alerts/Alerts.jsx';
 import { useDispatch } from 'react-redux'
 import { setUserTokens, setUserLogIn } from '../../redux/actions/index.js';
+import requests from '../../lib/requests-authenticated.js';
 
 
 
@@ -49,16 +50,19 @@ function AccessData({ userData, steps, setSteps, handleBack }) {
                     refreshToken: res.data.refreshToken,
                 }
                 dispatch(setUserTokens(tokens))
-                dispatch(setUserLogIn())
-                setTimeout(() => setIsSpinning(false), 999)
-
-                setTimeout(() => {
+                // dispatch(setUserLogIn())
+                setTimeout(async () => {
+                    await requests.getMe()
+                    
+                    setIsSpinning(false)
                     setSteps({
                         personalData: false,
                         accessData: false,
                         success: true
                     })
-                }, 1000)
+                
+                }, 999)
+                
 
             } else {
                 setIsSpinning(false)
