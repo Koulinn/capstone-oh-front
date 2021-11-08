@@ -7,6 +7,7 @@ import ChatHeader from '../../components/ChatComponents/ChatHeader';
 import ChatBottom from '../../components/ChatComponents/ChatBottom';
 import { CSSTransition } from 'react-transition-group';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import Waiting from '../../components/ChatComponents/Waiting';
 
 const ADDRESS = process.env.REACT_APP_API_URL
 export const socket = io(ADDRESS, { transports: ['websocket'] })
@@ -22,6 +23,7 @@ const hideMobile={
 
 function Chat({ showChat, setShowChat }) {
     const [roomId, setRoomId] = useState(null)
+    const [showWaiting, setShowWaiting] = useState(true)
     const user = useSelector(s => s.user)
     const [currentMessageHistory, setCurrentMessageHistory] = useState([])
     const isMobile = useMediaQuery('(max-width:640px)');
@@ -34,7 +36,8 @@ function Chat({ showChat, setShowChat }) {
 
         })
         socket.on('joinChat', (payload) => {
-            setRoomId(payload, 'settoom state function')
+            setShowWaiting(false)
+            setRoomId(payload)
             socket.emit('joinSupportAssistant', payload)
         })
 
@@ -42,10 +45,7 @@ function Chat({ showChat, setShowChat }) {
     }, [])
 
     const updateChatMessages = (payload) => {
-
-        console.log(currentMessageHistory, ' Before set current message history')
         setCurrentMessageHistory([...currentMessageHistory, payload])
-        console.log('recipientMessage', payload)
     }
 
     useEffect(() => {
@@ -56,7 +56,6 @@ function Chat({ showChat, setShowChat }) {
     }, [currentMessageHistory])
 
     const requestAssistance = (user) => {
-        console.log('inside request assistance')
         delete user.refreshToken
         setShowChat(!showChat)
 
@@ -79,7 +78,7 @@ function Chat({ showChat, setShowChat }) {
 
                 <CSSTransition
                     in={showChat}
-                    timeout={5000}
+                    timeout={100}
                     classNames="fade"
                     mountOnEnter={true}
                     unmountOnExit={true}
@@ -88,8 +87,13 @@ function Chat({ showChat, setShowChat }) {
                     <div className="chatDisplay-wrapper">
                         <div className="position-relative">
                             <ChatHeader setShowChat={setShowChat} />
-                            <ChatHistory currentMessageHistory={currentMessageHistory} />
-                            <ChatBottom />
+                            {showWaiting ? <Waiting/>:
+                            <>
+                                <ChatHistory currentMessageHistory={currentMessageHistory} />
+                                <ChatBottom />
+                            </>
+                            
+                            }
                         </div>
 
                     </div>

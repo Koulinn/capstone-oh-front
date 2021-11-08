@@ -375,6 +375,11 @@ html body {
         width: 48px;
         height: 48px;
         object-fit: cover; }
+    .chat-wrapper .chatDisplay-wrapper #freepik_stories-get-in-touch {
+      margin: auto;
+      display: block;
+      width: 256px;
+      height: 256px; }
   .chat-wrapper .chatMessages-wrapper {
     height: 360px;
     overflow-x: hidden;
