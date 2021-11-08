@@ -16,7 +16,6 @@ function CompleteRegistration({ location, history }) {
 
     const sendInput = async (e) => {
         e.preventDefault()
-        console.log(e)
         const phoneFormatted = {
             'phone_primary': e.target[1].value.substring(1, e.target[1].value.length)
         }
@@ -48,7 +47,7 @@ function CompleteRegistration({ location, history }) {
             setIsSpinning(false)
             setShowError(true)
             setTimeout(() => setShowError(false), 3000)
-            console.log(error)
+            
         }
     }
 

@@ -99,7 +99,7 @@ function ConfirmDetails(
             }
 
         } catch (error) {
-            console.log(error)
+            
         }
     }
 

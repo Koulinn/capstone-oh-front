@@ -34,7 +34,6 @@ function Credentials({ img, title, history, setViewController }) {
             const dataToSend = { ...values }
             setIsSpinning(true)
             const res = await login(dataToSend)
-            console.log(res)
             if (res.status === 200) {
                 setShowError(false)
                 const tokens = {

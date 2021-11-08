@@ -128,7 +128,6 @@ function MedicalTests({
                         <Autocomplete
                             value={value}
                             onChange={(event, newValue) => {
-                                console.log(newValue, 'inside autocomplete')
                                 if (typeof newValue === 'string') {
                                     setValue(newValue)
                                 } else if (newValue && newValue.inputValue) {

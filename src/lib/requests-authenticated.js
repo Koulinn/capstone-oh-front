@@ -18,7 +18,7 @@ const refreshAuthLogic = async (failedRequest) => {
         return Promise.resolve()
         
     } catch (error) {
-        console.log(error)
+        
     }
 }
 
@@ -37,7 +37,7 @@ const getMe = async (accessTokenParam) => {
         store.dispatch(setUserLogIn())
         return response
     } catch (error) {
-        console.log(error)
+        
         return false
     }
 }
@@ -52,7 +52,7 @@ const sendMedicalRequest = async (body)=>{
         return response
         
     } catch (error) {
-        console.log(error)
+        
         return false
     }
 
@@ -66,10 +66,8 @@ const uploadAvatar = async(file) =>{
            
         const response = await axios.put(BASE_URL + "/user/me/uploadAvatar",file)
         store.dispatch(setUserData(response.data.user))
-        console.log(response)
         
     } catch (error) {
-        console.log(error, 'Error from upload avatar')
         return false
     }
 }
@@ -84,7 +82,6 @@ const updateUserData = async(data) =>{
         return response
         
     } catch (error) {
-        console.log(error, 'Error from upload avatar')
         return false
     }
 }
