@@ -1,14 +1,17 @@
 import React from 'react'
 import { previewUrls } from '../../lib'
-import { Button } from 'react-bootstrap'
 import TextField from '@material-ui/core/TextField';
 import { IoCloudUploadOutline } from 'react-icons/io5'
+import { MdAdd } from 'react-icons/md'
 import ConfirmStepsBtn from './ConfirmStepsBtn';
 import { useEffect, useState } from 'react'
 import regRequests from '../../lib/requests-handlers';
 import { debounce } from 'lodash'
 import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
 import { withRouter } from 'react-router-dom'
+import IconButton from '@mui/material/IconButton';
+
+
 const filter = createFilterOptions();
 
 function MedicalTests({
@@ -24,7 +27,8 @@ function MedicalTests({
 }) {
     const [isDisabled, setIsDisabled] = useState(true)
     const [suggestions, setSuggestions] = useState([])
-    const [value, setValue] = React.useState(null);
+    const [value, setValue] = useState(null);
+
 
     useEffect(() => {
 
@@ -47,7 +51,8 @@ function MedicalTests({
 
     const tagsHandler = (e) => {
         e.preventDefault()
-        let tag = e.target[0].value.toLowerCase()
+        const tag = e.target[0].value.toLowerCase()
+
         // prevent duplicates
         if (requestTags.includes(tag)) {
             // add error prevention
@@ -75,10 +80,8 @@ function MedicalTests({
         try {
             const res = await regRequests.medicalTestsSuggestions(inputValue)
             if (res.status === 200 && res.data.tests.length !== 0)
-                console.log(res.data.tests)
-            setSuggestions([...res.data.tests])
+                setSuggestions([...res.data.tests])
         } catch (error) {
-            console.log(error)
         }
 
     }, 700)
@@ -117,14 +120,15 @@ function MedicalTests({
             </div>
             <hr className="w-50 my-5" />
             <div className="wrapper-request-tags w-75">
-                <form className="flex-center-center flex-column" onSubmit={tagsHandler}>
+                <form className="flex-center-center flex-column" onSubmit={(e) => tagsHandler(e)}>
                     <label htmlFor="request-tags" className="mb-0">
-                        You can also add manually medical tests
+                        Or add manually the medical tests
                     </label>
                     <div className="d-flex justify-content-between w-100 mt-3">
                         <Autocomplete
                             value={value}
                             onChange={(event, newValue) => {
+                                console.log(newValue, 'inside autocomplete')
                                 if (typeof newValue === 'string') {
                                     setValue(newValue)
                                 } else if (newValue && newValue.inputValue) {
@@ -147,7 +151,6 @@ function MedicalTests({
                                 return filtered;
                             }}
                             selectOnFocus
-                            clearOnBlur
                             handleHomeEndKeys
                             id="medical-tags"
                             options={suggestions}
@@ -174,6 +177,9 @@ function MedicalTests({
                                 />
                             )}
                         />
+                        <IconButton type="submit" style={{ transform: 'translateY(7px)' }}>
+                            <MdAdd />
+                        </IconButton>
                     </div>
                 </form>
             </div>

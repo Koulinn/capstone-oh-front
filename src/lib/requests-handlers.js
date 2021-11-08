@@ -22,7 +22,6 @@ const login = async (data)=>{
 
 const medicalTestsSuggestions = async(inputValue)=>{
     try {
-        console.log(inputValue)
         const res= await axios.get(`${URL}/hospital?testName=${inputValue}`)
         return res
     } catch (error) {
@@ -53,7 +52,6 @@ const uploadCloudinary = async (file)=>{
         }
         
     } catch (error) {
-        console.log(error)
         return false
     }
 }
