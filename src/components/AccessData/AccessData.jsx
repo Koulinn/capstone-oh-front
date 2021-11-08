@@ -119,7 +119,7 @@ function AccessData({ userData, steps, setSteps, handleBack }) {
                 </div>
                 <div className="my-5 d-flex justify-content-between align-items-center">
                     <div className="cursor-pointer" onClick={returnStep}>
-                        Previous
+                        Return
                     </div>
                     <Button variant={"primary"} className="w-50 align-self-end" disabled={formik.isValid || !isSpinning ? false : true} type="submit">
                         Create account
