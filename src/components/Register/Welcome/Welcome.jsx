@@ -13,7 +13,6 @@ function Welcome({
     redirect,
     history,
     url,
-    img,
     viewController,
     setViewController,
     gBtnText,
@@ -22,12 +21,12 @@ function Welcome({
 
 
     useEffect(() => {
-        setTimeout(() => setShow(true), 1)
+        setShow(true)
     }, [])
 
     const changeUrl = () => {
         setShow(false)
-        setTimeout(() => { history.push(url) }, 1000)
+        history.push(url)
     }
 
     const nextStep = () => {
@@ -35,13 +34,12 @@ function Welcome({
             ...viewController,
             steps: true,
         })
-        setTimeout(() => {
-            setViewController({
-                ...viewController,
-                steps: true,
-                welcome: false
-            })
-        }, 700)
+
+        setViewController({
+            ...viewController,
+            steps: true,
+            welcome: false
+        })
 
 
     }
@@ -49,12 +47,11 @@ function Welcome({
         window.location.replace(`${BASE_URL}/user/googleLogin`)
     }
     return (
-        <>
+    
             <div className={
-                "col-12 col-md-6 flex-column flex-center-center hide "
-                + (show && !viewController.steps ? ' show' : '')
-                + (viewController.steps ? ' d-none' : '')
-            } style={{ flexOrder: 1 }}
+                "col-12 col-md-6 flex-column flex-center-center"
+            } 
+            style={{ flexOrder: 1 }}
             >
                 <h2 className="text-center mt-5 mb-3">{title}</h2>
                 <h5 className="mb-3 text-center">{action}</h5>
@@ -71,15 +68,7 @@ function Welcome({
                 <h6 className="text-center mb-5">{option}<strong className="cursor-pointer" onClick={changeUrl}>{redirect}</strong></h6>
 
             </div>
-            <div className={
-                "d-none d-md-flex col-6 flex-column flex-center-center hide "
-                + (show && !viewController.steps ? 'show' : '') +
-                (viewController.steps ? ' d-none' : '')
-            }
-            >
-                {img}
-            </div>
-        </>
+
     )
 }
 

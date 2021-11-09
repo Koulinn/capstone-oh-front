@@ -53,16 +53,16 @@ function AccessData({ userData, steps, setSteps, handleBack }) {
                 // dispatch(setUserLogIn())
                 setTimeout(async () => {
                     await requests.getMe()
-                    
+
                     setIsSpinning(false)
                     setSteps({
                         personalData: false,
                         accessData: false,
                         success: true
                     })
-                
+
                 }, 999)
-                
+
 
             } else {
                 setIsSpinning(false)
@@ -72,7 +72,7 @@ function AccessData({ userData, steps, setSteps, handleBack }) {
         }
     })
 
-    const returnStep=()=>{
+    const returnStep = () => {
         handleBack()
         setSteps({
             personalData: true,
@@ -85,47 +85,50 @@ function AccessData({ userData, steps, setSteps, handleBack }) {
 
     return (
         <>
-            <form className={"d-flex flex-column hide hideInverse " + (show ? ' show' : '')} onSubmit={formik.handleSubmit}>
-                <TextField
-                    className="mt-5"
-                    fullWidth
-                    id="email"
-                    name="email"
-                    label="E-mail"
-                    value={formik.values.email}
-                    onChange={formik.handleChange}
-                    error={formik.touched.email && Boolean(formik.errors.email)}
-                    helperText={formik.errors.email}
-                />
-                <TextField
-                    className="my-4"
-                    fullWidth
-                    id="password"
-                    name="password"
-                    label="Password"
-                    type="password"
-                    value={formik.values.password}
-                    onChange={formik.handleChange}
-                    error={formik.touched.password && Boolean(formik.errors.password)}
-                    helperText={formik.errors.password}
-                />
-                <div>
-                    {isSpinning ? <Spinner /> : ''}
-                    {showError ? <Alerts
-                        title='We got an error'
-                        message='Sorry, the problem is on server'
-                        state="danger" />
-                        : ''}
-                </div>
-                <div className="my-5 d-flex justify-content-between align-items-center">
-                    <div className="cursor-pointer" onClick={returnStep}>
-                        Return
+            <div>
+                <h2 className={"mt-5  "}> Register</h2>
+                <form className={"d-flex flex-column"} onSubmit={formik.handleSubmit}>
+                    <TextField
+                        className="mt-5"
+                        fullWidth
+                        id="email"
+                        name="email"
+                        label="E-mail"
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
+                        error={formik.touched.email && Boolean(formik.errors.email)}
+                        helperText={formik.errors.email}
+                    />
+                    <TextField
+                        className="my-4"
+                        fullWidth
+                        id="password"
+                        name="password"
+                        label="Password"
+                        type="password"
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
+                        error={formik.touched.password && Boolean(formik.errors.password)}
+                        helperText={formik.errors.password}
+                    />
+                    <div>
+                        {isSpinning ? <Spinner /> : ''}
+                        {showError ? <Alerts
+                            title='We got an error'
+                            message='Sorry, the problem is on server'
+                            state="danger" />
+                            : ''}
                     </div>
-                    <Button variant={"primary"} className="w-50 align-self-end" disabled={formik.isValid || !isSpinning ? false : true} type="submit">
-                        Create account
-                    </Button>
-                </div>
-            </form>
+                    <div className="my-5 d-flex justify-content-between align-items-center">
+                        <div className="cursor-pointer" onClick={returnStep}>
+                            Return
+                        </div>
+                        <Button variant={"primary"} className="w-50 align-self-end" disabled={formik.isValid || !isSpinning ? false : true} type="submit">
+                            Create account
+                        </Button>
+                    </div>
+                </form>
+            </div>
         </>
     )
 }
