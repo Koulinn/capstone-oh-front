@@ -43,7 +43,6 @@ function Credentials({ img, title, history, setViewController }) {
                 dispatch(setUserTokens(tokens))
                 await requests.getMe()
                 dispatch(setUserLogIn())
-                // setIsSpinning(false)
                 setTimeout(() => setIsSpinning(false), 999)
                 setTimeout(() => history.push('/dashboard'), 1000)
 
@@ -68,13 +67,13 @@ function Credentials({ img, title, history, setViewController }) {
 
     return (
         <>
-            <div className="col-6 flex-column flex-center-center">
+            <div className="col-12 col-md-6 flex-column flex-center-center">
                 <h2 className="text-center mt-5 mb-3">{title}</h2>
                 <h5 className="mb-3">Login</h5>
-                <div className="w-50">
+                <div className="w-100" style={{maxWidth: "328px"}}>
                     <form className="d-flex flex-column flex-center-center" onSubmit={formik.handleSubmit}>
                         <TextField
-                            className="mt-5"
+                            className="mt-3"
                             fullWidth
                             id="email"
                             name="email"
@@ -85,7 +84,7 @@ function Credentials({ img, title, history, setViewController }) {
                             helperText={formik.errors.email}
                         />
                         <TextField
-                            className="mt-5"
+                            className="mt-3"
                             fullWidth
                             id="password"
                             name="password"
@@ -116,7 +115,7 @@ function Credentials({ img, title, history, setViewController }) {
                     </form>
                 </div>
             </div>
-            <div className="col-6 flex-column flex-center-center">
+            <div className="d-none d-md-flex col-6 flex-column flex-center-center">
                 {img}
             </div>
         </>
