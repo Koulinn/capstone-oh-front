@@ -19,10 +19,16 @@ function Dashboard({ history, location }) {
     const { avatar, name, surname, email, phone_primary, medical_tests_requested } = user
 
     const asyncWrapper = async (token = undefined) => {
-        const res = await getMe(token)
-        setTimeout(()=>setBlur(false) ,700)
-        
-        if (!res) {
+        try {
+            const res = await getMe(token)
+            setTimeout(() => setBlur(false), 700)
+
+            if (!res) {
+                dispatch(setUserLogOut())
+                history.push('/')
+            }
+
+        } catch (error) {
             dispatch(setUserLogOut())
             history.push('/')
         }
@@ -34,8 +40,6 @@ function Dashboard({ history, location }) {
         if (isLogged || isAccessToken) {
 
             asyncWrapper(isAccessToken)
-            
-
             if (isAccessToken) {
                 dispatch(setUserTokens({
                     accessToken: isAccessToken,
@@ -58,11 +62,8 @@ function Dashboard({ history, location }) {
                 avatar={avatar}
 
             />
-
-            {medical_tests_requested.length > 0 ?
-                <RequestStatus medical_tests_requested={medical_tests_requested}
-                />
-                : ''}
+            <RequestStatus medical_tests_requested={medical_tests_requested}
+            />
         </Row>
     )
 }

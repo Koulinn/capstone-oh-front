@@ -27,7 +27,7 @@ function Login({ history }) {
     return (
         <Row className="box-shadow my-5 overflow-hidden mx-1">
             {welcome ? <Welcome
-            action="Login"
+                action="Login"
                 title="How can we help you today?"
                 subLabel="Continue with e-mail"
                 option="Doesn't have an account? Go to "
