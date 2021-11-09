@@ -384,6 +384,9 @@ html body {
     height: 360px;
     overflow-x: hidden;
     overflow-y: scroll; }
+    .chat-wrapper .chatMessages-wrapper img {
+      width: 100%;
+      object-fit: cover; }
     .chat-wrapper .chatMessages-wrapper .userMessage-wrapper {
       background-color: #b7b9c35d;
       border-radius: 8px; }
@@ -452,7 +455,34 @@ html body {
   transition: all 1s; }
 
 .fade-exit-done {
+  transform: translateY(150%);
   opacity: 0; }
+
+.fade-Top-Bottom-appear {
+  transform: translateY(-150%);
+  transition: all 1.3s; }
+
+.fade-Top-Bottom-appear-done {
+  transform: translateY(0);
+  transition: all 1.3s; }
+
+.fade-Top-Bottom-enter {
+  transform: translateY(-150%);
+  opacity: 0;
+  transition: all 1.3s; }
+
+.fade-Top-Bottom-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 1.3s; }
+
+.fade-Top-Bottom-exit {
+  opacity: 0; }
+
+.fade-Top-Bottom-exit-active {
+  display: none !important;
+  opacity: 0;
+  transition: all 1.3s; }
 
 @media (max-width: 767px) {
   .MuiBox-root.css-4wnoen {

@@ -6,6 +6,13 @@ import { useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Credentials from '../../components/Credentials/Credentials';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { CSSTransition } from 'react-transition-group';
+
+const aniTimer = {
+    appear: 0,
+    enter: 1300,
+    exit: 1300,
+   }
 
 function Login({ history }) {
     const [viewController, setViewController] = useState({
@@ -25,27 +32,65 @@ function Login({ history }) {
         }
     }, [])
     return (
-        <Row className="box-shadow my-5 overflow-hidden mx-1">
-            {welcome ? <Welcome
-                action="Login"
-                title="How can we help you today?"
-                subLabel="Continue with e-mail"
-                option="Doesn't have an account? Go to "
-                redirect="Register"
-                url="/register"
-                img={<LoginIMG />}
-                setViewController={setViewController}
-                viewController={viewController}
-                gBtnText="Continue with Google"
-            />
-                : ''}
-            {steps ? <Credentials
-                title="Welcome back"
-                img={<LoginIMG />}
-                history={history}
-                setViewController={setViewController}
-            />
-                : ''}
+        <Row className="box-shadow my-5 overflow-hidden">
+            
+            <CSSTransition
+                in={welcome}
+                timeout={aniTimer}
+                classNames="fade-Top-Bottom"
+                mountOnEnter={true}
+                unmountOnExit={true}
+                appear={true}
+
+            >
+                <Welcome
+                    action="Login"
+                    title="How can we help you today?"
+                    subLabel="Continue with e-mail"
+                    option="Doesn't have an account? Go to "
+                    redirect="Register"
+                    url="/register"
+                    setViewController={setViewController}
+                    viewController={viewController}
+                    gBtnText="Continue with Google"
+                />
+
+            </CSSTransition>
+
+
+            <CSSTransition
+                in={steps}
+                timeout={aniTimer}
+                classNames="fade-Top-Bottom"
+                mountOnEnter={true}
+                unmountOnExit={true}
+                appear={true}
+
+            >
+                <Credentials
+                    title="Welcome back"
+                    history={history}
+                    setViewController={setViewController}
+                />
+            </CSSTransition>
+
+
+            <CSSTransition
+                in={welcome || steps}
+                timeout={aniTimer}
+                classNames="fade-Top-Bottom"
+                mountOnEnter={true}
+                unmountOnExit={true}
+                appear={true}
+
+            >
+                <div className={"d-none d-md-flex col-6 flex-column flex-center-center"}>
+                    <LoginIMG />
+                </div>
+
+            </CSSTransition>
+
+
         </Row>
     )
 }

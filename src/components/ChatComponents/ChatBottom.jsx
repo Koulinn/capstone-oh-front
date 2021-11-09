@@ -40,6 +40,7 @@ function ChatBottom() {
         }
         socket.emit('newMessage', payload)
         setImgPreview(null)
+        document.getElementById('chatForm').reset()
     }
 
     const removeImg = () => {
@@ -67,7 +68,7 @@ function ChatBottom() {
 
                 </div>
                 : ''}
-            <form onSubmit={sendMessage} className=" d-flex justify-content-between align-items-center">
+            <form id='chatForm' onSubmit={sendMessage} className=" d-flex justify-content-between align-items-center">
                 <TextareaAutosize
                     className="text-area-wrapper my-3 px-2"
                     maxRows={4}

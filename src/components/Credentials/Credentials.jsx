@@ -66,7 +66,6 @@ function Credentials({ img, title, history, setViewController }) {
 
 
     return (
-        <>
             <div className="col-12 col-md-6 flex-column flex-center-center">
                 <h2 className="text-center mt-5 mb-3">{title}</h2>
                 <h5 className="mb-3">Login</h5>
@@ -115,10 +114,6 @@ function Credentials({ img, title, history, setViewController }) {
                     </form>
                 </div>
             </div>
-            <div className="d-none d-md-flex col-6 flex-column flex-center-center">
-                {img}
-            </div>
-        </>
     )
 }
 
