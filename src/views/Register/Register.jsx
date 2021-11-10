@@ -45,7 +45,7 @@ function Register({ history }) {
 
     return (
 
-        <Row className="box-shadow my-5 overflow-hidden mx-md-1">
+        <Row className="box-shadow my-5 overflow-hidden">
             <CSSTransition
                 in={welcome}
                 timeout={aniTimer}
