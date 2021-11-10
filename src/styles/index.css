@@ -194,20 +194,18 @@ html body {
   .imgsPreview-wrapper .position-absolute {
     top: 8px;
     right: 8px;
-    width: 24px;
-    height: 24px;
-    background-color: #21a8e1;
+    width: 22px;
+    height: 22px;
+    background-color: rgba(0, 0, 0, 0.26);
     border-radius: 200px;
-    cursor: pointer;
-    transition: all 0.5s; }
+    cursor: pointer; }
     .imgsPreview-wrapper .position-absolute svg {
       width: 16px;
-      height: 16px; }
+      height: 16px;
+      color: white;
+      transform: translateY(0px); }
   .imgsPreview-wrapper .position-absolute:hover {
-    background-color: #007bff;
-    border: 2px solid #21a8e1; }
-    .imgsPreview-wrapper .position-absolute:hover svg {
-      color: white; }
+    background-color: rgba(0, 0, 0, 0.4); }
 
 .tag-preview-wrapper {
   transition: all 0.5s; }
