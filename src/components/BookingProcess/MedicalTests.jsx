@@ -100,7 +100,7 @@ function MedicalTests({
     }
 
     return (
-        <>
+        <div className="medical-requests-wrapper d-flex flex-center-center flex-column">
             <h4 className="text-center mt-3 mb-5">
                 Medical tests
             </h4>
@@ -126,6 +126,7 @@ function MedicalTests({
                     </label>
                     <div className="d-flex justify-content-between w-100 mt-3">
                         <Autocomplete
+                            className="mr-3"
                             value={value}
                             onChange={(event, newValue) => {
                                 if (typeof newValue === 'string') {
@@ -188,7 +189,7 @@ function MedicalTests({
                 stepsReturn={returnToProfile}
                 btnDisabled={isDisabled}
             />
-        </>
+        </div>
     )
 }
 

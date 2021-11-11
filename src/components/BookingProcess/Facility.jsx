@@ -45,7 +45,7 @@ function Facility({ setFacility, facility, setBookingSteps, handleNext, handleBa
     }, [facility])
 
     return (
-        <>
+        <div className="medical-facility-wrapper flex-center-center flex-column">
             <h4 className="text-center mt-3 mb-3">Choose a location</h4>
             <ul className="facility-wrapper w-100" style={{maxWidth:'328px'}}>
                 {GP_LIST.map((gp, index) =>
@@ -63,7 +63,7 @@ function Facility({ setFacility, facility, setBookingSteps, handleNext, handleBa
                 btnDisabled={isDisabled}
             />
 
-        </>
+        </div>
     )
 }
 

@@ -131,7 +131,7 @@ function ConfirmDetails(
                             state="danger" />
                             : ''}
                     </div>
-                    <div className="d-flex align-content-center justify-content-between mt-3 w-100">
+                    <div className="d-flex align-content-center justify-content-between mt-5 w-100">
                         <div className="cursor-pointer py-2 pr-2" onClick={returnStep}>
                             <span>Return</span>
                         </div>

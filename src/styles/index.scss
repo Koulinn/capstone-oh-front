@@ -48,6 +48,10 @@ li > span {
   border-radius: 20px;
 }
 
+button{
+  max-width: 256px;
+}
+
 //=========== SASS VARIABLES ===========
 $PRIMARY-COLOR-0: #007bff;
 $PRIMARY-COLOR-1: #0069d9;
@@ -379,7 +383,12 @@ html body {
 //=========== Success ===========
 .success-wrapper {
 }
+.intro-block{
+  svg{
+    height: 48px;
+  }
 
+}
 //=========== DASHBOARD PROFILE ===========
 
 .blur {

@@ -15,7 +15,7 @@ function Success({message, Img, url, btnText, history, extraMessage, extraMessag
             <img src={Img} alt="" width="256px" />
             {extraMessage? <h6 className="mt-5 w-75">{extraMessage}</h6> : ''}
             {extraMessage2? <h6 className="mt-3 w-75">{extraMessage2}</h6> : ''}
-            <Button className={extraMessage2? "mt-5 w-50" : "my-5 w-50" } onClick={pushHistory}>{btnText}</Button>
+            <Button className={extraMessage2? "mt-5 w-50" : "my-5 w-50" } styles={{maxWidth: '256px'}} onClick={pushHistory}>{btnText}</Button>
             
         </>
     )

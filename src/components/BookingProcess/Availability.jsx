@@ -91,10 +91,10 @@ function Availability({ setAvailability, availability, setBookingSteps, bookingS
 
 
     return (
-        <>
+        <div>
 
             <h4 className="text-center mt-3 mb-3">What's your availability?</h4>
-            {bookingSteps.generalAvailability ?
+            {bookingSteps.generalAvailability &&
                 <div className="flex-center-center justify-content-between flex-column row" style={{ flexGrow: 1 }}>
 
                     <div className="col-12 d-flex justify-content-center align-items-center">
@@ -112,9 +112,9 @@ function Availability({ setAvailability, availability, setBookingSteps, bookingS
 
 
                 </div>
-                : ''}
+            }
 
-            {bookingSteps.pickDate ?
+            {bookingSteps.pickDate &&
                 <div className="calendar-wrapper flex-center-center justify-content-between flex-column w-100 mb-5 mt-3">
                     <div className="d-flex flex-center-center flex-column justify-content-between w-100">
                         <h4>Choose days</h4>
@@ -144,8 +144,8 @@ function Availability({ setAvailability, availability, setBookingSteps, bookingS
                         btnDisabled={isDisabled}
                     />
                 </div>
-                : ''}
-        </>
+            }
+        </div>
     )
 }
 

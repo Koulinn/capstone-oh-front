@@ -22,6 +22,12 @@ const { getMe } = requests;
 const successImg =
     "https://res.cloudinary.com/koulin/image/upload/v1635614779/OneHealth/successOH_wxysls.svg";
 
+const aniTimer = {
+    appear: 0,
+    enter: 1300,
+    exit: 1300,
+}
+
 function Booking({ history }) {
     const [testsImgs, setTestsImgs] = useState(null);
     const [imgsPreview, setImgsPreview] = useState([]);
@@ -106,47 +112,43 @@ function Booking({ history }) {
                 style={{ order: isMaxTablet ? 1 : "" }}
             >
                 {!bookingSteps.successScreen && <h1 className="text-center">Booking</h1>}
-                <div className="medical-requests-wrapper d-flex flex-center-center flex-column">
-                    <CSSTransition
-                        in={bookingSteps.medicalTests}
-                        timeout={100}
-                        classNames="fade"
-                        mountOnEnter={true}
-                        unmountOnExit={true}
-                        appear={true}
-                    >
-                        <>
-                            <MedicalTests
-                                setTestsImgs={setTestsImgs}
-                                setImgsPreview={setImgsPreview}
-                                setRequestTags={setRequestTags}
-                                requestTags={requestTags}
-                                testsImgs={testsImgs}
-                                setBookingSteps={setBookingSteps}
-                                handleNext={handleNext}
-                                handleReset={handleReset}
-                            />
-                        </>
-                    </CSSTransition>
-                </div>
-                <div className="medical-facility-wrapper flex-center-center flex-column">
-                    <CSSTransition
-                        in={bookingSteps.facility}
-                        timeout={100}
-                        classNames="fade"
-                        mountOnEnter={true}
-                        unmountOnExit={true}
-                        appear={true}
-                    >
-                        <Facility
-                            setFacility={setFacility}
-                            facility={facility}
-                            setBookingSteps={setBookingSteps}
-                            handleNext={handleNext}
-                            handleBack={handleBack}
-                        />
-                    </CSSTransition>
-                </div>
+                <CSSTransition
+                    in={bookingSteps.medicalTests}
+                    timeout={aniTimer}
+                    classNames="fade-Top-Bottom"
+                    mountOnEnter={true}
+                    unmountOnExit={true}
+                    appear={true}
+                >
+
+                    <MedicalTests
+                        setTestsImgs={setTestsImgs}
+                        setImgsPreview={setImgsPreview}
+                        setRequestTags={setRequestTags}
+                        requestTags={requestTags}
+                        testsImgs={testsImgs}
+                        setBookingSteps={setBookingSteps}
+                        handleNext={handleNext}
+                        handleReset={handleReset}
+                    />
+
+                </CSSTransition>
+                <CSSTransition
+                    in={bookingSteps.facility}
+                    timeout={aniTimer}
+                    classNames="fade-Top-Bottom"
+                    mountOnEnter={true}
+                    unmountOnExit={true}
+                    appear={true}
+                >
+                    <Facility
+                        setFacility={setFacility}
+                        facility={facility}
+                        setBookingSteps={setBookingSteps}
+                        handleNext={handleNext}
+                        handleBack={handleBack}
+                    />
+                </CSSTransition>
                 <div
                     className={
                         bookingSteps.generalAvailability || bookingSteps.pickDate
@@ -156,8 +158,8 @@ function Booking({ history }) {
                 >
                     <CSSTransition
                         in={bookingSteps.generalAvailability || bookingSteps.pickDate}
-                        timeout={100}
-                        classNames="fade"
+                        timeout={aniTimer}
+                        classNames="fade-Top-Bottom"
                         mountOnEnter={true}
                         unmountOnExit={true}
                         appear={true}
@@ -176,8 +178,8 @@ function Booking({ history }) {
                 <div className="confirm-wrapper">
                     <CSSTransition
                         in={bookingSteps.checkPersonalDetails}
-                        timeout={100}
-                        classNames="fade"
+                        timeout={aniTimer}
+                        classNames="fade-Top-Bottom"
                         mountOnEnter={true}
                         unmountOnExit={true}
                         appear={true}
@@ -193,15 +195,15 @@ function Booking({ history }) {
                         />
                     </CSSTransition>
                 </div>
-                <div className="success-wrapper d-flex flex-column justify-content-center align-items-center">
-                    <CSSTransition
-                        in={bookingSteps.successScreen}
-                        timeout={100}
-                        classNames="fade"
-                        mountOnEnter={true}
-                        unmountOnExit={true}
-                        appear={true}
-                    >
+                <CSSTransition
+                    in={bookingSteps.successScreen}
+                    timeout={aniTimer}
+                    classNames="fade-Top-Bottom"
+                    mountOnEnter={true}
+                    unmountOnExit={true}
+                    appear={true}
+                >
+                    <div className="success-wrapper d-flex flex-column justify-content-center align-items-center">
                         <Success
                             message="We got your request"
                             extraMessage="In 2 working days we will get in touch to confirm your request!"
@@ -210,8 +212,8 @@ function Booking({ history }) {
                             url="/dashboard"
                             btnText="Profile"
                         />
-                    </CSSTransition>
-                </div>
+                    </div>
+                </CSSTransition>
             </div>
 
             <div

@@ -40,6 +40,9 @@ li > span {
 .btn {
   border-radius: 20px; }
 
+button {
+  max-width: 256px; }
+
 html body {
   font-family: "Mulish", sans-serif; }
   html body h1,
@@ -264,6 +267,9 @@ html body {
   background-color: #0096d93d;
   border-radius: 8px;
   margin: 8px 8px; }
+
+.intro-block svg {
+  height: 48px; }
 
 .blur {
   filter: blur(4px);

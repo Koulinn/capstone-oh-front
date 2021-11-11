@@ -19,7 +19,7 @@ function TestsPreview({ imgsPreview, removeImg, requestTags, setRequestTags }) {
                 )}
             </div>
             <div className={"tag-preview-wrapper"}>
-                {requestTags.length &&
+                {requestTags.length > 0 &&
                     <ul className="d-flex justify-content-start flex-wrap row">
                             {requestTags.map((tag, index) =>
                                 <Chip
