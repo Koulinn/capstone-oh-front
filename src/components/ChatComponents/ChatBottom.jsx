@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { socket } from '../../views/Chat/Chat'
 import regRequests from '../../lib/requests-handlers';
 import Button from '@mui/material/Button';
-import { MdRemove } from 'react-icons/md'
+import { MdClose } from 'react-icons/md'
 
 const { uploadCloudinary } = regRequests
 
@@ -62,7 +62,7 @@ function ChatBottom() {
                         />
 
                         <div className="position-absolute d-flex flex-center-center removeImg cursor-pointer" onClick={() => removeImg()}>
-                            <MdRemove />
+                            <MdClose />
                         </div>
                     </div>
 

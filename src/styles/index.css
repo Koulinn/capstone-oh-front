@@ -424,13 +424,18 @@ html body {
     .chat-wrapper .chatInput-wrapper .removeImg {
       top: 8px;
       right: 8px;
-      background-color: #21a8e1;
+      background-color: rgba(0, 0, 0, 0.26);
       border-radius: 20000px;
-      height: 24px;
-      width: 24px;
+      height: 22px;
+      width: 22px;
       transition: all 0.5s; }
+      .chat-wrapper .chatInput-wrapper .removeImg svg {
+        width: 16px;
+        height: 16px;
+        color: white;
+        transform: translateY(0px); }
     .chat-wrapper .chatInput-wrapper .removeImg:hover {
-      background-color: #007bff; }
+      background-color: rgba(0, 0, 0, 0.4); }
     .chat-wrapper .chatInput-wrapper .sendMessage-Btn-wrapper {
       width: 40px;
       height: 40px;

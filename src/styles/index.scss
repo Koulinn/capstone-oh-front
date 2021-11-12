@@ -48,7 +48,7 @@ li > span {
   border-radius: 20px;
 }
 
-button{
+button {
   max-width: 256px;
 }
 
@@ -383,11 +383,10 @@ html body {
 //=========== Success ===========
 .success-wrapper {
 }
-.intro-block{
-  svg{
+.intro-block {
+  svg {
     height: 48px;
   }
-
 }
 //=========== DASHBOARD PROFILE ===========
 
@@ -540,7 +539,7 @@ html body {
       }
     }
 
-    #freepik_stories-get-in-touch{
+    #freepik_stories-get-in-touch {
       margin: auto;
       display: block;
       width: 256px;
@@ -553,7 +552,7 @@ html body {
     overflow-x: hidden;
     overflow-y: scroll;
 
-    img{
+    img {
       width: 100%;
       object-fit: cover;
     }
@@ -609,14 +608,20 @@ html body {
     .removeImg {
       top: 8px;
       right: 8px;
-      background-color: $PRIMARY-COLOR-2;
+      background-color: rgba(0, 0, 0, 0.26);
       border-radius: 20000px;
-      height: 24px;
-      width: 24px;
+      height: 22px;
+      width: 22px;
       transition: all.5s;
+      svg {
+        width: 16px;
+        height: 16px;
+        color: white;
+        transform: translateY(0px);
+      }
     }
     .removeImg:hover {
-      background-color: $PRIMARY-COLOR-0;
+      background-color: rgba(0, 0, 0, 0.4);
     }
     .sendMessage-Btn-wrapper {
       width: 40px;
@@ -666,44 +671,41 @@ html body {
   opacity: 0;
 }
 
-.fade-Top-Bottom-appear{
+.fade-Top-Bottom-appear {
   transform: translateY(-150%);
   transition: all 1.3s;
 }
 
-.fade-Top-Bottom-appear-done{
+.fade-Top-Bottom-appear-done {
   transform: translateY(0);
   transition: all 1.3s;
 }
-.fade-Top-Bottom-enter{
+.fade-Top-Bottom-enter {
   transform: translateY(-150%);
   opacity: 0;
   transition: all 1.3s;
 }
-.fade-Top-Bottom-enter-active{
+.fade-Top-Bottom-enter-active {
   transform: translateY(0);
   opacity: 1;
   transition: all 1.3s;
 }
-.fade-Top-Bottom-enter-done{
-
+.fade-Top-Bottom-enter-done {
 }
-.fade-Top-Bottom-exit{
+.fade-Top-Bottom-exit {
   opacity: 0;
 }
-.fade-Top-Bottom-exit-active{
+.fade-Top-Bottom-exit-active {
   display: none !important;
   opacity: 0;
   transition: all 1.3s;
 }
-.fade-Top-Bottom-exit-done{
-
+.fade-Top-Bottom-exit-done {
 }
-
 
 //=========== MEDIA-QUERY UP TO TABLET ===========
 @media (max-width: 767px) {
-  .MuiBox-root.css-4wnoen{
+  .MuiBox-root.css-4wnoen {
     display: none;
   }
   .p-outside {
@@ -742,44 +744,41 @@ html body {
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .requests-wrapper{
+  .requests-wrapper {
     margin-bottom: 3rem;
   }
 }
 
 //=========== MOBILE DRAWER ===========
-.MuiMobileStepper-dot{
+.MuiMobileStepper-dot {
   margin: auto 8px !important;
 }
 
 // .MuiMobileStepper-root{
 //   margin: auto;
 // }
-.mobileStepper-wrapper{
-  button{
+.mobileStepper-wrapper {
+  button {
     position: absolute;
     top: -4px;
     right: 0px;
-
   }
 }
 
-.closeDrawer-btn{
+.closeDrawer-btn {
   position: ABSOLUTE;
-    top: 16px;
-    right: 16px;
-    width: 32px;
-    height: 32px;
-    svg{
-     
-      width: 24px;
-      height: 24px;
-    }
-
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 }
 
-.MuiCollapse-wrapperInner{
-  svg{
+.MuiCollapse-wrapperInner {
+  svg {
     transform: translateY(-1px);
   }
 }
