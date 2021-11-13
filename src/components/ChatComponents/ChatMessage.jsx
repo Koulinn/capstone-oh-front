@@ -14,7 +14,7 @@ function ChatMessage({ user, message, img }) {
                     : ''
                 }
                 <p style={{overflowWrap: 'anywhere'}}>{message.text}</p>
-                <small className="d-block" style={{textAlign:'right'}}>{format(new Date(message.createdAt), 'HH:mm')}</small>
+                <small className="d-block" style={{textAlign:'left'}}>{format(new Date(message.createdAt), 'HH:mm')}</small>
             </div>
 
         </div>

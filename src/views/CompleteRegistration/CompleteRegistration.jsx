@@ -86,7 +86,7 @@ function CompleteRegistration({ location, history }) {
                             state="danger" />
                         }
                     </div>
-                    <Button variant={"primary"} className="w-50 align-self-end mb-5" type="submit">
+                    <Button variant={"primary"} className="w-50 align-self-end my-5" type="submit">
                         Register
                     </Button>
                 </form>
