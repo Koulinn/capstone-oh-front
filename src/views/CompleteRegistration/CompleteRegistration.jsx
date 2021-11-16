@@ -78,7 +78,7 @@ function CompleteRegistration({ location, history }) {
                         label="Phone number"
                         type="phone_primary"
                     />
-                    <div className="mt-3 w-100">
+                    <div className="mt-4 w-100">
                         {isSpinning && <Spinner />}
                         {showError && <Alerts
                             title='We got an error'
