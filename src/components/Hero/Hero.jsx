@@ -24,7 +24,7 @@ function Hero({ heroImgURL, title, history }) {
                     <div className="flex-center-center mt-5 mb-md-5 mt-md-0">
                         <h1 className="">{title}</h1>
                     </div>
-                    <div className="mt-5 d-flex justify-content-center">
+                    <div className={"mt-5 " + ( isMobile ? " d-flex justify-content-center" : '')}>
                         <Button className="py-2" style={{width:isMobile? '100%' :'160px'}} onClick={toRegister}>Join now</Button>
                     </div>
                 </div>

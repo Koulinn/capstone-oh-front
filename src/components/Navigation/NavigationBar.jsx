@@ -59,7 +59,7 @@ function NavigationBar({ history }) {
             </NavLink>
 
 
-            <Button className="px-4 align-self-center" style={{minWidth: '256px'}} onClick={() => changeHistory("/register")}>
+            <Button className={"px-4 " + ( isMobile ? " align-self-center" : '')} style={{width: '160px'}} onClick={() => changeHistory("/register")}>
               Join now
             </Button>
 
