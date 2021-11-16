@@ -98,7 +98,7 @@ function Credentials({ img, title, history, setViewController }) {
                             {isSpinning && <Spinner />}
                             {showError && <Alerts
                                 title='We got an error'
-                                message={`Sorry, e-mail and password doesnt match`}
+                                message={`Sorry, e-mail and password doesn't match`}
                                 state="danger" />
                             }
                         </div>

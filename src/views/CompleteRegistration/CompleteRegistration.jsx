@@ -82,7 +82,7 @@ function CompleteRegistration({ location, history }) {
                         {isSpinning && <Spinner />}
                         {showError && <Alerts
                             title='We got an error'
-                            message='Sorry, something went wrong'
+                            message='Sorry, server will be available after the Demo day'
                             state="danger" />
                         }
                     </div>

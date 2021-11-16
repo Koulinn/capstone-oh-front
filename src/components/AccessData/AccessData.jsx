@@ -115,7 +115,7 @@ function AccessData({ userData, steps, setSteps, handleBack }) {
                         {isSpinning ? <Spinner /> : ''}
                         {showError ? <Alerts
                             title='We got an error'
-                            message='Sorry, the problem is on server'
+                            message='Sorry, server will be available after the Demo day'
                             state="danger" />
                             : ''}
                     </div>
