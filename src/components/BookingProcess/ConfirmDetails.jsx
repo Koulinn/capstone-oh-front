@@ -128,7 +128,7 @@ function ConfirmDetails(
                         {showError ? <Alerts
                             title='We got an error'
                             message='Sorry, the problem is on server'
-                            state="danger" />
+                            state="error" />
                             : ''}
                     </div>
                     <div className="d-flex align-content-center justify-content-between mt-5 w-100">

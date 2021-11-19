@@ -83,7 +83,7 @@ function CompleteRegistration({ location, history }) {
                         {showError && <Alerts
                             title='We got an error'
                             message='Sorry, server will be available after the Demo day'
-                            state="danger" />
+                            state="error" />
                         }
                     </div>
                     <Button variant={"primary"} className="w-50 align-self-end my-5" type="submit">
