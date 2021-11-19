@@ -25,8 +25,8 @@ function Credentials({ img, title, history, setViewController }) {
 
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: "sherry@mail.com",
+      password: "123456789",
     },
     validationSchema: SignupSchema,
     onSubmit: async (values) => {

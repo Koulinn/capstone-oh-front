@@ -47,7 +47,7 @@ function CompleteRegistration({ location, history }) {
             setIsSpinning(false)
             setShowError(true)
             setTimeout(() => setShowError(false), 3000)
-            
+
         }
     }
 
@@ -67,9 +67,9 @@ function CompleteRegistration({ location, history }) {
         <Row className={"box-shadow my-5 flex-center-center flex-column overflow-hidden"}>
             <Col xs="12" md="12" lg="6" style={{ maxWidth: "328px", padding: "0" }} >
                 <h2 className={"mt-5"}>Complete registration</h2>
-                <form className="d-flex flex-column" onSubmit={(e)=>sendInput(e)}>
+                <form className="d-flex flex-column" onSubmit={(e) => sendInput(e)}>
                     <MuiPhoneInput
-                    className="mt-3"
+                        className="mt-3"
                         defaultCountry='it'
                         regions={'europe'}
                         fullWidth
