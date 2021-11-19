@@ -11,7 +11,7 @@ import CompleteRegistration from './views/CompleteRegistration/CompleteRegistrat
 import Chat from './views/Chat/Chat';
 import { useSelector } from 'react-redux'
 import BottomNav from './components/Navigation/BottomNav';
-import {useState} from 'react'
+import { useState } from 'react'
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 function App() {
@@ -45,7 +45,7 @@ function App() {
             <Booking {...routerProps} />}>
           </Route>
 
-        {isMobile && isLogged && <BottomNav setShowChat={setShowChat} showChat={showChat}/>}
+          {isMobile && isLogged && <BottomNav setShowChat={setShowChat} showChat={showChat} />}
         </Router>
 
         {isLogged && <Chat setShowChat={setShowChat} showChat={showChat} />}

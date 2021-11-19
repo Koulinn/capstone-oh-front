@@ -13,14 +13,6 @@ const ADDRESS = process.env.REACT_APP_API_URL
 export const socket = io(ADDRESS, { transports: ['websocket'] })
 
 
-const hideMobile={
-    minHeight: '0px !important',
-    maxWidth: '0px !important',
-    width: '0px !important',
-    height: '0px !important',
-    fontSize: '4rem'
-}
-
 function Chat({ showChat, setShowChat }) {
     const [roomId, setRoomId] = useState(null)
     const [showWaiting, setShowWaiting] = useState(true)
@@ -65,11 +57,11 @@ function Chat({ showChat, setShowChat }) {
 
     return (
         <div>
-            <div 
-            className={"chat-wrapper d-flex align-items-center justify-content-center " }>
+            <div
+                className={"chat-wrapper d-flex align-items-center justify-content-center "}>
                 {!isMobile && <div
                     className="d-flex w-100 align-items-center justify-content-center cursor-pointer"
-                    
+
                     onClick={() => requestAssistance(user)}
                 >
                     <MdOutlineChatBubbleOutline className="my-auto mr-3" />
@@ -87,12 +79,12 @@ function Chat({ showChat, setShowChat }) {
                     <div className="chatDisplay-wrapper">
                         <div className="position-relative">
                             <ChatHeader setShowChat={setShowChat} />
-                            {showWaiting ? <Waiting/>:
-                            <>
-                                <ChatHistory currentMessageHistory={currentMessageHistory} />
-                                <ChatBottom />
-                            </>
-                            
+                            {showWaiting ? <Waiting /> :
+                                <>
+                                    <ChatHistory currentMessageHistory={currentMessageHistory} />
+                                    <ChatBottom />
+                                </>
+
                             }
                         </div>
 
