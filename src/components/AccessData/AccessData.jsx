@@ -1,6 +1,6 @@
 import React from "react";
 import { useFormik } from "formik";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "react-bootstrap";
 import TextField from "@material-ui/core/TextField";
 import * as Yup from "yup";
@@ -8,7 +8,7 @@ import regRequests from "../../lib/requests-handlers.js";
 import Spinner from "../Spinner/Spinner";
 import Alerts from "../Alerts/Alerts.jsx";
 import { useDispatch } from "react-redux";
-import { setUserTokens, setUserLogIn } from "../../redux/actions/index.js";
+import { setUserTokens } from "../../redux/actions/index.js";
 import requests from "../../lib/requests-authenticated.js";
 
 const { registerWithEmail } = regRequests;
@@ -24,7 +24,6 @@ const SignupSchema = Yup.object().shape({
 function AccessData({ userData, steps, setSteps, handleBack }) {
     const [showError, setShowError] = useState(false);
     const [isSpinning, setIsSpinning] = useState(false);
-    const [show, setShow] = useState(false);
     const dispatch = useDispatch();
 
     const formik = useFormik({
@@ -71,8 +70,6 @@ function AccessData({ userData, steps, setSteps, handleBack }) {
             success: false,
         });
     };
-
-    useEffect(() => setTimeout(() => setShow(true), 700), []);
 
     return (
         <>
