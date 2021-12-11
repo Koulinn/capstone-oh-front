@@ -11,7 +11,7 @@ import Waiting from "../../components/ChatComponents/Waiting";
 import lib from "../../lib";
 
 const {
-    chatTimer: { chatTimer },
+    animationConfig: { chatTimer },
 } = lib;
 
 const ADDRESS = process.env.REACT_APP_API_URL;
