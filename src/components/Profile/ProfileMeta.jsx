@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import FormMeta from "./FormMeta";
 import { MdOutlineClose, MdOutlineModeEditOutline } from "react-icons/md";
 import { CSSTransition } from "react-transition-group";
+import lib from "../../lib";
 
-const aniTimer = 0;
+const {
+    animationConfig: { fadeTimer },
+} = lib;
 
 function ProfileMeta({ name, surname, email, phone_primary }) {
-    const [isLoading, setIsLoading] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
 
     return (
         <div className={"w-100"}>
             <CSSTransition
                 in={!isEdit}
-                timeout={aniTimer}
+                timeout={fadeTimer}
                 classNames="fade"
                 mountOnEnter={true}
                 unmountOnExit={true}
@@ -30,7 +32,7 @@ function ProfileMeta({ name, surname, email, phone_primary }) {
             </CSSTransition>
             <CSSTransition
                 in={isEdit}
-                timeout={aniTimer}
+                timeout={fadeTimer}
                 classNames="fade"
                 mountOnEnter={true}
                 unmountOnExit={true}
@@ -48,7 +50,7 @@ function ProfileMeta({ name, surname, email, phone_primary }) {
 
             <CSSTransition
                 in={isEdit}
-                timeout={aniTimer}
+                timeout={fadeTimer}
                 classNames="fade"
                 mountOnEnter={true}
                 unmountOnExit={true}
@@ -60,13 +62,12 @@ function ProfileMeta({ name, surname, email, phone_primary }) {
                     email={email}
                     phone_primary={phone_primary}
                     inputsFields={["name", "surname", "email", "phone_primary"]}
-                    setIsLoading={setIsLoading}
                     setIsEdit={setIsEdit}
                 />
             </CSSTransition>
             <CSSTransition
                 in={!isEdit}
-                timeout={aniTimer}
+                timeout={fadeTimer}
                 classNames="fade"
                 mountOnEnter={true}
                 unmountOnExit={true}

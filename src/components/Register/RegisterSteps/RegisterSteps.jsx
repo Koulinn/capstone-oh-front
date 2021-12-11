@@ -1,26 +1,21 @@
 import React from "react";
 import PersonalData from "../../PersonalData/PersonalData";
 import AccessData from "../../AccessData/AccessData";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Success from "../../Success/Success";
 import StepperVert from "../../StepperVert/StepperVert";
 import stepsRegister from "./stepperDescription.js";
 import { CSSTransition } from "react-transition-group";
+import lib from "../../../lib";
+
+const {
+    animationConfig: { fadeTopBottomTimer },
+} = lib;
 
 const successImg =
     "https://res.cloudinary.com/koulin/image/upload/v1635614779/OneHealth/successOH_wxysls.svg";
-const aniTimer = {
-    appear: 0,
-    enter: 1300,
-    exit: 1300,
-};
 
-function RegisterSteps({
-    userData,
-    setUserData,
-    viewController,
-    setViewController,
-}) {
+function RegisterSteps({ userData, setUserData, setViewController }) {
     const [steps, setSteps] = useState({
         personalData: true,
         accessData: false,
@@ -50,7 +45,7 @@ function RegisterSteps({
                     <div className={"w-100"} style={{ maxWidth: "328px" }}>
                         <CSSTransition
                             in={!steps.success && steps.personalData}
-                            timeout={{ aniTimer }}
+                            timeout={{ fadeTopBottomTimer }}
                             classNames="fade-Top-Bottom"
                             mountOnEnter={true}
                             unmountOnExit={true}
@@ -69,7 +64,7 @@ function RegisterSteps({
                         </CSSTransition>
                         <CSSTransition
                             in={!steps.success && steps.accessData}
-                            timeout={aniTimer}
+                            timeout={fadeTopBottomTimer}
                             classNames="fade-Top-Bottom"
                             mountOnEnter={true}
                             unmountOnExit={true}
@@ -88,7 +83,7 @@ function RegisterSteps({
                 </div>
                 <CSSTransition
                     in={!steps.success}
-                    timeout={aniTimer}
+                    timeout={fadeTopBottomTimer}
                     classNames="fade-Top-Bottom"
                     mountOnEnter={true}
                     unmountOnExit={true}
@@ -110,7 +105,7 @@ function RegisterSteps({
 
             <CSSTransition
                 in={steps.success}
-                timeout={aniTimer}
+                timeout={fadeTopBottomTimer}
                 classNames="fade-Top-Bottom"
                 mountOnEnter={true}
                 unmountOnExit={true}
