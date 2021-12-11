@@ -1,65 +1,65 @@
 .intro-block {
-  text-align: center;
-  padding-top: 16px;
+    text-align: center;
+    padding-top: 16px;
 }
 
 .intro-block .monitor {
-  padding: 0;
-  border-radius: 5px;
-  background-color: transparent;
-  margin: 0 auto;
+    padding: 0;
+    border-radius: 5px;
+    background-color: transparent;
+    margin: 0 auto;
 }
 
 .intro-block svg {
-  position: relative;
-  transition: all 0.5s ease-in-out;
+    position: relative;
+    transition: all 0.5s ease-in-out;
 }
 
 .intro-block svg .ekg {
-  fill: none;
-  stroke: #000ed7;
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-linejoin: miter;
-  opacity: 0;
-  stroke-dashoffset: 1000;
-  stroke-dasharray: 1000;
-  animation: ekg 1.5s linear forwards infinite;
+    fill: none;
+    stroke: #000ed7;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: miter;
+    opacity: 0;
+    stroke-dashoffset: 1000;
+    stroke-dasharray: 1000;
+    animation: ekg 1.5s linear forwards infinite;
 }
 
 .intro-block h1,
 .intro-block h3,
 .intro-block p {
-  background-color: #0b0e13;
-  width: 450px;
-  margin: 0 auto;
-  border-left: 2px solid #0f3a4d;
-  border-right: 2px solid #0f3a4d;
-  text-shadow: 1px 1px 1px #0f3a4d, 1px -1px 1px #0f3a4d, -1px 1px 1px #0f3a4d,
-    -1px -1px 1px #0f3a4d;
+    background-color: #0b0e13;
+    width: 450px;
+    margin: 0 auto;
+    border-left: 2px solid #0f3a4d;
+    border-right: 2px solid #0f3a4d;
+    text-shadow: 1px 1px 1px #0f3a4d, 1px -1px 1px #0f3a4d, -1px 1px 1px #0f3a4d,
+        -1px -1px 1px #0f3a4d;
 }
 
 .intro-block p {
-  border-radius: 0 0 20px 20px;
-  border-bottom: 2px solid #0f3a4d;
-  padding-bottom: 20px;
+    border-radius: 0 0 20px 20px;
+    border-bottom: 2px solid #0f3a4d;
+    padding-bottom: 20px;
 }
 
 @keyframes ekg {
-  0% {
-    opacity: 0;
-  }
-  25% {
-    opacity: 1;
-  }
-  50% {
-    stroke-dashoffset: 2000;
-  }
-  99% {
-    opacity: 0;
-    stroke-dashoffset: 3000;
-  }
-  100% {
-    stroke-dashoffset: 1000;
-  }
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    50% {
+        stroke-dashoffset: 2000;
+    }
+    99% {
+        opacity: 0;
+        stroke-dashoffset: 3000;
+    }
+    100% {
+        stroke-dashoffset: 1000;
+    }
 }

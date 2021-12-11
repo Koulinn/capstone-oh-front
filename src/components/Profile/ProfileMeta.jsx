@@ -1,18 +1,16 @@
-import React, { useState } from 'react'
-import FormMeta from './FormMeta';
-import { MdOutlineClose, MdOutlineModeEditOutline } from 'react-icons/md'
-import { CSSTransition } from 'react-transition-group';
+import React, { useState } from "react";
+import FormMeta from "./FormMeta";
+import { MdOutlineClose, MdOutlineModeEditOutline } from "react-icons/md";
+import { CSSTransition } from "react-transition-group";
 
-const aniTimer = 0
+const aniTimer = 0;
 
 function ProfileMeta({ name, surname, email, phone_primary }) {
-    const [isLoading, setIsLoading] = useState(false)
-    const [isEdit, setIsEdit] = useState(false)
-
+    const [isLoading, setIsLoading] = useState(false);
+    const [isEdit, setIsEdit] = useState(false);
 
     return (
         <div className={"w-100"}>
-
             <CSSTransition
                 in={!isEdit}
                 timeout={aniTimer}
@@ -20,13 +18,14 @@ function ProfileMeta({ name, surname, email, phone_primary }) {
                 mountOnEnter={true}
                 unmountOnExit={true}
                 appear={true}
-
             >
-                <div className={"edit-wrapper d-flex justify-content-end py-3 cursor-pointer"}
+                <div
+                    className={
+                        "edit-wrapper d-flex justify-content-end py-3 cursor-pointer"
+                    }
                     onClick={() => setIsEdit(!isEdit)}
                 >
                     <MdOutlineModeEditOutline />
-
                 </div>
             </CSSTransition>
             <CSSTransition
@@ -37,12 +36,13 @@ function ProfileMeta({ name, surname, email, phone_primary }) {
                 unmountOnExit={true}
                 appear={true}
             >
-                <div className={"edit-wrapper d-flex justify-content-end py-3 cursor-pointer"}
+                <div
+                    className={
+                        "edit-wrapper d-flex justify-content-end py-3 cursor-pointer"
+                    }
                     onClick={() => setIsEdit(!isEdit)}
                 >
-
                     <MdOutlineClose />
-
                 </div>
             </CSSTransition>
 
@@ -59,7 +59,7 @@ function ProfileMeta({ name, surname, email, phone_primary }) {
                     surname={surname}
                     email={email}
                     phone_primary={phone_primary}
-                    inputsFields={['name', 'surname', 'email', 'phone_primary']}
+                    inputsFields={["name", "surname", "email", "phone_primary"]}
                     setIsLoading={setIsLoading}
                     setIsEdit={setIsEdit}
                 />
@@ -79,7 +79,7 @@ function ProfileMeta({ name, surname, email, phone_primary }) {
                 </div>
             </CSSTransition>
         </div>
-    )
+    );
 }
 
-export default ProfileMeta
+export default ProfileMeta;

@@ -1,77 +1,95 @@
-import React from 'react'
-import { Col, Row } from 'react-bootstrap'
-import { useEffect, useState } from 'react'
+import React from "react";
+import { Col, Row } from "react-bootstrap";
+import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import requests from '../../lib/requests-authenticated';
-import { setUserTokens } from '../../redux/actions/index.js';
-import { useDispatch } from 'react-redux'
-import Spinner from '../../components/Spinner/Spinner'
-import Alerts from '../../components/Alerts/Alerts.jsx';
-import MuiPhoneInput from 'material-ui-phone-number';
+import requests from "../../lib/requests-authenticated";
+import { setUserTokens } from "../../redux/actions/index.js";
+import { useDispatch } from "react-redux";
+import Spinner from "../../components/Spinner/Spinner";
+import Alerts from "../../components/Alerts/Alerts.jsx";
+import MuiPhoneInput from "material-ui-phone-number";
 
 function CompleteRegistration({ location, history }) {
-    const dispatch = useDispatch()
-    const [showError, setShowError] = useState(false)
-    const [isSpinning, setIsSpinning] = useState(false)
+    const dispatch = useDispatch();
+    const [showError, setShowError] = useState(false);
+    const [isSpinning, setIsSpinning] = useState(false);
 
     const sendInput = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const phoneFormatted = {
-            'phone_primary': e.target[1].value.substring(1, e.target[1].value.length)
-        }
+            phone_primary: e.target[1].value.substring(
+                1,
+                e.target[1].value.length
+            ),
+        };
 
-        setIsSpinning(true)
-        const res = await sendPhoneNumber(phoneFormatted)
+        setIsSpinning(true);
+        const res = await sendPhoneNumber(phoneFormatted);
         if (res.status === 200) {
-
-            setShowError(false)
+            setShowError(false);
             setTimeout(async () => {
-                await requests.getMe()
+                await requests.getMe();
 
-                setIsSpinning(false)
-                history.push('/dashboard')
-            }, 1500)
-
+                setIsSpinning(false);
+                history.push("/dashboard");
+            }, 1500);
         } else {
-            setIsSpinning(false)
-            setShowError(true)
-            setTimeout(() => setShowError(false), 3000)
+            setIsSpinning(false);
+            setShowError(true);
+            setTimeout(() => setShowError(false), 3000);
         }
     };
 
     const sendPhoneNumber = async (phoneNumber) => {
         try {
-            const res = await requests.updateUserData(phoneNumber)
-            return res
+            const res = await requests.updateUserData(phoneNumber);
+            return res;
         } catch (error) {
-            setIsSpinning(false)
-            setShowError(true)
-            setTimeout(() => setShowError(false), 3000)
-
+            setIsSpinning(false);
+            setShowError(true);
+            setTimeout(() => setShowError(false), 3000);
         }
-    }
+    };
 
     const getTokens = () => {
-        const isAccessToken = new URLSearchParams(location.search).get("accessToken")
-        const isRefreshToken = new URLSearchParams(location.search).get("refreshToken")
-        dispatch(setUserTokens({
-            accessToken: isAccessToken,
-            refreshToken: isRefreshToken
-        }))
-    }
+        const isAccessToken = new URLSearchParams(location.search).get(
+            "accessToken"
+        );
+        const isRefreshToken = new URLSearchParams(location.search).get(
+            "refreshToken"
+        );
+        dispatch(
+            setUserTokens({
+                accessToken: isAccessToken,
+                refreshToken: isRefreshToken,
+            })
+        );
+    };
 
     useEffect(() => {
-        getTokens()
-    }, [])
+        getTokens();
+    }, []);
     return (
-        <Row className={"box-shadow my-5 flex-center-center flex-column overflow-hidden"}>
-            <Col xs="12" md="12" lg="6" style={{ maxWidth: "328px", padding: "0" }} >
+        <Row
+            className={
+                "box-shadow my-5 flex-center-center flex-column overflow-hidden"
+            }
+        >
+            <Col
+                xs="12"
+                md="12"
+                lg="6"
+                style={{ maxWidth: "328px", padding: "0" }}
+            >
                 <h2 className={"mt-5"}>Complete registration</h2>
-                <form className="d-flex flex-column" onSubmit={(e) => sendInput(e)}>
+                <form
+                    className="d-flex flex-column"
+                    onSubmit={(e) => sendInput(e)}
+                >
                     <MuiPhoneInput
                         className="mt-3"
-                        defaultCountry='it'
-                        regions={'europe'}
+                        defaultCountry="it"
+                        regions={"europe"}
                         fullWidth
                         id="phone_primary"
                         name="phone_primary"
@@ -80,19 +98,25 @@ function CompleteRegistration({ location, history }) {
                     />
                     <div className="mt-4 w-100">
                         {isSpinning && <Spinner />}
-                        {showError && <Alerts
-                            title='We got an error'
-                            message='Sorry, server will be available after the Demo day'
-                            state="error" />
-                        }
+                        {showError && (
+                            <Alerts
+                                title="We got an error"
+                                message="Sorry, server will be available after the Demo day"
+                                state="error"
+                            />
+                        )}
                     </div>
-                    <Button variant={"primary"} className="w-50 align-self-end my-5" type="submit">
+                    <Button
+                        variant={"primary"}
+                        className="w-50 align-self-end my-5"
+                        type="submit"
+                    >
                         Register
                     </Button>
                 </form>
             </Col>
         </Row>
-    )
+    );
 }
 
-export default CompleteRegistration
+export default CompleteRegistration;

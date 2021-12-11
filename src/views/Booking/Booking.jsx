@@ -26,7 +26,7 @@ const aniTimer = {
     appear: 0,
     enter: 1300,
     exit: 1300,
-}
+};
 
 function Booking({ history }) {
     const [testsImgs, setTestsImgs] = useState(null);
@@ -57,8 +57,8 @@ function Booking({ history }) {
         if (res && res.status === 200) {
             dispatch(setUserData(res.data.user));
         } else {
-            dispatch(setUserLogOut())
-            history.push('/')
+            dispatch(setUserLogOut());
+            history.push("/");
         }
     };
 
@@ -72,7 +72,7 @@ function Booking({ history }) {
         }
     }, []);
 
-    useEffect(() => { }, [imgsPreview, facility, imgsPreview, bookingSteps]);
+    useEffect(() => {}, [imgsPreview, facility, imgsPreview, bookingSteps]);
 
     const removeImg = (imgIndex) => {
         const remainingImgs = imgsPreview.filter(
@@ -97,8 +97,8 @@ function Booking({ history }) {
     };
 
     const toggleDrawer = () => {
-        setShowDrawer((prevState) => !prevState)
-    }
+        setShowDrawer((prevState) => !prevState);
+    };
 
     return (
         <Row
@@ -111,7 +111,9 @@ function Booking({ history }) {
                 className="col-12 col-md-6 my-5"
                 style={{ order: isMaxTablet ? 1 : "" }}
             >
-                {!bookingSteps.successScreen && <h1 className="text-center">Booking</h1>}
+                {!bookingSteps.successScreen && (
+                    <h1 className="text-center">Booking</h1>
+                )}
                 <CSSTransition
                     in={bookingSteps.medicalTests}
                     timeout={aniTimer}
@@ -120,7 +122,6 @@ function Booking({ history }) {
                     unmountOnExit={true}
                     appear={true}
                 >
-
                     <MedicalTests
                         setTestsImgs={setTestsImgs}
                         setImgsPreview={setImgsPreview}
@@ -131,7 +132,6 @@ function Booking({ history }) {
                         handleNext={handleNext}
                         handleReset={handleReset}
                     />
-
                 </CSSTransition>
                 <CSSTransition
                     in={bookingSteps.facility}
@@ -151,13 +151,17 @@ function Booking({ history }) {
                 </CSSTransition>
                 <div
                     className={
-                        bookingSteps.generalAvailability || bookingSteps.pickDate
+                        bookingSteps.generalAvailability ||
+                        bookingSteps.pickDate
                             ? "user-availability-wrapper flex-column  h-100"
                             : ""
                     }
                 >
                     <CSSTransition
-                        in={bookingSteps.generalAvailability || bookingSteps.pickDate}
+                        in={
+                            bookingSteps.generalAvailability ||
+                            bookingSteps.pickDate
+                        }
                         timeout={aniTimer}
                         classNames="fade-Top-Bottom"
                         mountOnEnter={true}
@@ -217,11 +221,12 @@ function Booking({ history }) {
             </div>
 
             <div
-                className={"request-info-wrapper col-12 col-md-6 mt-5 mb-md-5" +
-                    (bookingSteps.successScreen ? ' d-none' : '')
-                }>
-
-                {!bookingSteps.successScreen &&
+                className={
+                    "request-info-wrapper col-12 col-md-6 mt-5 mb-md-5" +
+                    (bookingSteps.successScreen ? " d-none" : "")
+                }
+            >
+                {!bookingSteps.successScreen && (
                     <StepperVert
                         className="stepper-responsiveness"
                         activeStep={activeStep}
@@ -230,7 +235,8 @@ function Booking({ history }) {
                         sx={isMaxTablet ? { margin: 0, maxWidth: "none" } : ""}
                         steps={BSteps}
                         testsPreview={
-                            imgsPreview.length !== 0 || requestTags.length !== 0 ? (
+                            imgsPreview.length !== 0 ||
+                            requestTags.length !== 0 ? (
                                 <TestsPreview
                                     imgsPreview={imgsPreview}
                                     removeImg={removeImg}
@@ -240,7 +246,9 @@ function Booking({ history }) {
                             ) : null
                         }
                         facilityPreview={
-                            facility ? <FacilityLocationPreview facility={facility} /> : null
+                            facility ? (
+                                <FacilityLocationPreview facility={facility} />
+                            ) : null
                         }
                         availabilityPreview={
                             <AvailabilityPreview
@@ -248,7 +256,8 @@ function Booking({ history }) {
                                 setAvailability={setAvailability}
                             />
                         }
-                    />}
+                    />
+                )}
 
                 <MobilePreview
                     handleNext={handleNext}

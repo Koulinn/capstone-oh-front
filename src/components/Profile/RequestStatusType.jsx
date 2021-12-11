@@ -1,10 +1,10 @@
-import React from 'react'
-import RequestCardWrapper from './RequestCardWrapper'
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import { MdExpandMore } from 'react-icons/md'
-import AccordionDetails from '@mui/material/AccordionDetails';
-import { green } from '@material-ui/core/colors';
+import React from "react";
+import RequestCardWrapper from "./RequestCardWrapper";
+import Accordion from "@mui/material/Accordion";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import { MdExpandMore } from "react-icons/md";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import { green } from "@material-ui/core/colors";
 
 function RequestStatusType({ medical_tests_requested, title }) {
     return (
@@ -19,10 +19,15 @@ function RequestStatusType({ medical_tests_requested, title }) {
                     <div
                         className="d-flex flex-center-center"
                         style={{
-                            borderRadius: '2000px',
-                            backgroundColor: (title === 'Confirmed Requests' ? '#1976d2' : '#ED6C02'),
-                            width: '24px', height: '24px'
-                        }}>
+                            borderRadius: "2000px",
+                            backgroundColor:
+                                title === "Confirmed Requests"
+                                    ? "#1976d2"
+                                    : "#ED6C02",
+                            width: "24px",
+                            height: "24px",
+                        }}
+                    >
                         <small className="text-center p-1 text-white">
                             {medical_tests_requested.length}
                         </small>
@@ -32,12 +37,11 @@ function RequestStatusType({ medical_tests_requested, title }) {
             <div className="pending-requests-wrapper">
                 <AccordionDetails>
                     <div className="pending-requests-cards-wrapper">
-
                         {medical_tests_requested?.map((req, index) => {
-                            const tags = req.user_tests_requested.userTestsTags
-                            const imgs = req.user_tests_requested.userFilesURL
-                            const location = req.facility.name
-                            const is_user_confirmed = req.is_user_confirmed
+                            const tags = req.user_tests_requested.userTestsTags;
+                            const imgs = req.user_tests_requested.userFilesURL;
+                            const location = req.facility.name;
+                            const is_user_confirmed = req.is_user_confirmed;
                             return (
                                 <RequestCardWrapper
                                     key={req._id}
@@ -47,15 +51,14 @@ function RequestStatusType({ medical_tests_requested, title }) {
                                     location={location}
                                     index={index}
                                     is_user_confirmed={is_user_confirmed}
-
                                 />
-                            )
+                            );
                         })}
                     </div>
                 </AccordionDetails>
             </div>
         </Accordion>
-    )
+    );
 }
 
-export default RequestStatusType
+export default RequestStatusType;

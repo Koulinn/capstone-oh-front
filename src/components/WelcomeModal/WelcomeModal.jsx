@@ -16,7 +16,7 @@ const style = {
     overflow: "hidden",
     boxShadow: 24,
     p: 4,
-    outline: 'none'
+    outline: "none",
 };
 
 export default function WelcomeModal({ open, handleClose }) {
@@ -48,7 +48,8 @@ export default function WelcomeModal({ open, handleClose }) {
                             sx={{ mt: 2 }}
                             variant="h6"
                         >
-                            To check all functionalities you need to register with a real e-mail
+                            To check all functionalities you need to register
+                            with a real e-mail
                         </Typography>
                         <Typography
                             id="transition-modal-description"

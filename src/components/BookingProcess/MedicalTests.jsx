@@ -1,16 +1,15 @@
-import React from 'react'
-import { previewUrls } from '../../lib'
-import TextField from '@material-ui/core/TextField';
-import { IoCloudUploadOutline } from 'react-icons/io5'
-import { MdAdd } from 'react-icons/md'
-import ConfirmStepsBtn from './ConfirmStepsBtn';
-import { useEffect, useState } from 'react'
-import regRequests from '../../lib/requests-handlers';
-import { debounce } from 'lodash'
-import Autocomplete, { createFilterOptions } from '@mui/material/Autocomplete';
-import { withRouter } from 'react-router-dom'
-import IconButton from '@mui/material/IconButton';
-
+import React from "react";
+import { previewUrls } from "../../lib";
+import TextField from "@material-ui/core/TextField";
+import { IoCloudUploadOutline } from "react-icons/io5";
+import { MdAdd } from "react-icons/md";
+import ConfirmStepsBtn from "./ConfirmStepsBtn";
+import { useEffect, useState } from "react";
+import regRequests from "../../lib/requests-handlers";
+import { debounce } from "lodash";
+import Autocomplete, { createFilterOptions } from "@mui/material/Autocomplete";
+import { withRouter } from "react-router-dom";
+import IconButton from "@mui/material/IconButton";
 
 const filter = createFilterOptions();
 
@@ -23,89 +22,83 @@ function MedicalTests({
     testsImgs,
     handleNext,
     handleReset,
-    history
+    history,
 }) {
-    const [isDisabled, setIsDisabled] = useState(true)
-    const [suggestions, setSuggestions] = useState([])
+    const [isDisabled, setIsDisabled] = useState(true);
+    const [suggestions, setSuggestions] = useState([]);
     const [value, setValue] = useState(null);
 
-
     useEffect(() => {
-
-        if ((requestTags.length > 0) || (testsImgs != null && testsImgs.length > 0)) {
-            setIsDisabled(false)
+        if (
+            requestTags.length > 0 ||
+            (testsImgs != null && testsImgs.length > 0)
+        ) {
+            setIsDisabled(false);
         } else {
-            setIsDisabled(true)
+            setIsDisabled(true);
         }
-
-    }, [requestTags, testsImgs])
+    }, [requestTags, testsImgs]);
 
     const filesHandler = (e) => {
-        const files = e.target.files
-        const toFilesArray = Array.from(files)
-        const requestPreview = previewUrls(toFilesArray)
-        setTestsImgs(toFilesArray)
-        setImgsPreview(requestPreview)
-
-    }
+        const files = e.target.files;
+        const toFilesArray = Array.from(files);
+        const requestPreview = previewUrls(toFilesArray);
+        setTestsImgs(toFilesArray);
+        setImgsPreview(requestPreview);
+    };
 
     const tagsHandler = (e) => {
-        e.preventDefault()
-        const tag = e.target[0].value.toLowerCase()
+        e.preventDefault();
+        const tag = e.target[0].value.toLowerCase();
 
         // prevent duplicates
         if (requestTags.includes(tag)) {
             // add error prevention
         } else if (tag.length > 3) {
-            setRequestTags([...requestTags, tag])
-            e.target[0].value = ''
+            setRequestTags([...requestTags, tag]);
+            e.target[0].value = "";
         } else {
             //add error
         }
-    }
+    };
 
     const confirmTests = () => {
-        handleNext()
+        handleNext();
         setBookingSteps({
             medicalTests: false,
             facility: true,
             generalAvailability: false,
             pickDate: false,
             checkPersonalDetails: false,
-            successScreen: false
-        })
-    }
+            successScreen: false,
+        });
+    };
 
     const getSuggestions = debounce(async (inputValue) => {
         try {
-            const res = await regRequests.medicalTestsSuggestions(inputValue)
+            const res = await regRequests.medicalTestsSuggestions(inputValue);
             if (res.status === 200 && res.data.tests.length !== 0)
-                setSuggestions([...res.data.tests])
-        } catch (error) {
-        }
-
-    }, 700)
+                setSuggestions([...res.data.tests]);
+        } catch (error) {}
+    }, 700);
 
     const returnToProfile = () => {
-        handleReset()
+        handleReset();
         setBookingSteps({
             medicalTests: true,
             facility: false,
             generalAvailability: false,
             pickDate: false,
             checkPersonalDetails: false,
-            successScreen: false
-        })
-        history.push('/dashboard')
-    }
+            successScreen: false,
+        });
+        history.push("/dashboard");
+    };
 
     return (
         <div className="medical-requests-wrapper d-flex flex-center-center flex-column">
-            <h4 className="text-center mt-3 mb-5">
-                Medical tests
-            </h4>
+            <h4 className="text-center mt-3 mb-5">Medical tests</h4>
             <div className="wrapper-request-imgs">
-
                 <label htmlFor="img_requests">
                     <IoCloudUploadOutline />
                     Upload files
@@ -120,7 +113,10 @@ function MedicalTests({
             </div>
             <hr className="w-50 my-5" />
             <div className="wrapper-request-tags w-75">
-                <form className="flex-center-center flex-column" onSubmit={(e) => tagsHandler(e)}>
+                <form
+                    className="flex-center-center flex-column"
+                    onSubmit={(e) => tagsHandler(e)}
+                >
                     <label htmlFor="request-tags" className="mb-0">
                         Or add manually the medical tests
                     </label>
@@ -129,11 +125,11 @@ function MedicalTests({
                             className="mr-3"
                             value={value}
                             onChange={(event, newValue) => {
-                                if (typeof newValue === 'string') {
-                                    setValue(newValue)
+                                if (typeof newValue === "string") {
+                                    setValue(newValue);
                                 } else if (newValue && newValue.inputValue) {
                                     // Create a new value from the user input
-                                    setValue(newValue.inputValue)
+                                    setValue(newValue.inputValue);
                                 } else {
                                     setValue(newValue);
                                 }
@@ -143,8 +139,10 @@ function MedicalTests({
 
                                 const { inputValue } = params;
                                 // Suggest the creation of a new value
-                                const isExisting = options.some((option) => inputValue === option);
-                                if (inputValue !== '' && !isExisting) {
+                                const isExisting = options.some(
+                                    (option) => inputValue === option
+                                );
+                                if (inputValue !== "" && !isExisting) {
                                     filtered.push(inputValue);
                                 }
 
@@ -156,7 +154,7 @@ function MedicalTests({
                             options={suggestions}
                             getOptionLabel={(option) => {
                                 // Value selected with enter, right from the input
-                                if (typeof option === 'string') {
+                                if (typeof option === "string") {
                                     return option;
                                 }
                                 // Add "xxx" option created dynamically
@@ -166,18 +164,31 @@ function MedicalTests({
                                 // Regular option
                                 return option;
                             }}
-                            renderOption={(props, option) => <li {...props}>{option}</li>}
+                            renderOption={(props, option) => (
+                                <li {...props}>{option}</li>
+                            )}
                             sx={{ width: 300 }}
                             freeSolo
                             renderInput={(params) => (
-                                <TextField {...params}
-                                    onChange={(e) => getSuggestions(e.target.value)}
-                                    onBlur={() => setTimeout(() => setSuggestions([]), 2000)}
+                                <TextField
+                                    {...params}
+                                    onChange={(e) =>
+                                        getSuggestions(e.target.value)
+                                    }
+                                    onBlur={() =>
+                                        setTimeout(
+                                            () => setSuggestions([]),
+                                            2000
+                                        )
+                                    }
                                     label="Add medical tests"
                                 />
                             )}
                         />
-                        <IconButton type="submit" style={{ transform: 'translateY(7px)' }}>
+                        <IconButton
+                            type="submit"
+                            style={{ transform: "translateY(7px)" }}
+                        >
                             <MdAdd />
                         </IconButton>
                     </div>
@@ -185,13 +196,12 @@ function MedicalTests({
             </div>
             <ConfirmStepsBtn
                 stepsController={confirmTests}
-                btnText='Confirm'
+                btnText="Confirm"
                 stepsReturn={returnToProfile}
                 btnDisabled={isDisabled}
             />
         </div>
-    )
+    );
 }
 
-
-export default withRouter(MedicalTests)
+export default withRouter(MedicalTests);

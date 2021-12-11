@@ -1,17 +1,15 @@
-import { initialState } from "../store"
+import { initialState } from "../store";
 
 export const chatReducer = (state = initialState.chat, action) => {
-
     switch (action.type) {
-        case 'SET_ROOM':
+        case "SET_ROOM":
             return {
                 ...state,
-                roomID: action.payload
-            }
+                roomID: action.payload,
+            };
 
         default: {
-            return state
+            return state;
         }
-
     }
-}
+};

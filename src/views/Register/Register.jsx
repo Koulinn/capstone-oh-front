@@ -1,50 +1,44 @@
-import React from 'react'
-import { Row } from 'react-bootstrap'
-import Welcome from '../../components/Register/Welcome/Welcome'
-import { ReactComponent as RegisterIMG } from '../../assets/Doctor prescribing drug to happy family.svg';
-import { useState, useEffect } from 'react'
-import RegisterSteps from '../../components/Register/RegisterSteps/RegisterSteps';
-import { useSelector } from 'react-redux'
-import { CSSTransition } from 'react-transition-group';
-
-
+import React from "react";
+import { Row } from "react-bootstrap";
+import Welcome from "../../components/Register/Welcome/Welcome";
+import { ReactComponent as RegisterIMG } from "../../assets/Doctor prescribing drug to happy family.svg";
+import { useState, useEffect } from "react";
+import RegisterSteps from "../../components/Register/RegisterSteps/RegisterSteps";
+import { useSelector } from "react-redux";
+import { CSSTransition } from "react-transition-group";
 
 const aniTimer = {
     appear: 0,
     enter: 1300,
     exit: 1300,
-}
-
+};
 
 function Register({ history }) {
     const [viewController, setViewController] = useState({
         welcome: true,
         steps: false,
-    })
+    });
 
-    const { welcome, steps } = viewController
+    const { welcome, steps } = viewController;
 
     const [userData, setUserData] = useState({
-        name: '',
-        surname: '',
-        email: '',
-        password: '',
-        phone_primary: ''
-    })
+        name: "",
+        surname: "",
+        email: "",
+        password: "",
+        phone_primary: "",
+    });
 
-    const isLogged = useSelector(s => s.user.isLogged)
+    const isLogged = useSelector((s) => s.user.isLogged);
 
     useEffect(() => {
         if (isLogged) {
-            history.push('/dashboard')
+            history.push("/dashboard");
         } else {
         }
-    }, [])
-
-
+    }, []);
 
     return (
-
         <Row className="box-shadow my-5 overflow-hidden">
             <CSSTransition
                 in={welcome}
@@ -53,7 +47,6 @@ function Register({ history }) {
                 mountOnEnter={true}
                 unmountOnExit={true}
                 appear={true}
-
             >
                 <Welcome
                     action="Register"
@@ -66,7 +59,6 @@ function Register({ history }) {
                     viewController={viewController}
                     gBtnText="Continue with Google"
                 />
-
             </CSSTransition>
             <CSSTransition
                 in={welcome}
@@ -75,14 +67,15 @@ function Register({ history }) {
                 mountOnEnter={true}
                 unmountOnExit={true}
                 appear={true}
-
             >
-                <div className={"d-none d-md-flex col-6 flex-column flex-center-center"}>
+                <div
+                    className={
+                        "d-none d-md-flex col-6 flex-column flex-center-center"
+                    }
+                >
                     <RegisterIMG />
                 </div>
-
             </CSSTransition>
-
 
             <CSSTransition
                 in={steps}
@@ -91,7 +84,6 @@ function Register({ history }) {
                 mountOnEnter={true}
                 unmountOnExit={true}
                 appear={true}
-
             >
                 <RegisterSteps
                     viewController={viewController}
@@ -100,11 +92,8 @@ function Register({ history }) {
                     setUserData={setUserData}
                 />
             </CSSTransition>
-
         </Row>
-
-
-    )
+    );
 }
 
-export default Register
+export default Register;
