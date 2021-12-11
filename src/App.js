@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 import BottomNav from "./components/Navigation/BottomNav";
 import { useState } from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Layout from "./components/Layout/Layout";
 
 function App() {
     const { isLogged } = useSelector((s) => s.user);
@@ -19,56 +20,49 @@ function App() {
     const isMobile = useMediaQuery("(max-width:640px)");
 
     return (
-        <Container className="overflow-hidden" fluid>
-            <Container className="position-relative p-outside">
-                <Router>
-                    <NavigationBar />
-                    <Route
-                        path="/"
-                        exact
-                        render={(routerProps) => <Home {...routerProps} />}
-                    ></Route>
-                    <Route
-                        path="/dashboard"
-                        exact
-                        render={(routerProps) => <Dashboard {...routerProps} />}
-                    ></Route>
-                    <Route
-                        path="/register"
-                        exact
-                        render={(routerProps) => <Register {...routerProps} />}
-                    ></Route>
-                    <Route
-                        path="/login"
-                        exact
-                        render={(routerProps) => <Login {...routerProps} />}
-                    ></Route>
-                    <Route
-                        path="/registrationOAuth"
-                        exact
-                        render={(routerProps) => (
-                            <CompleteRegistration {...routerProps} />
-                        )}
-                    ></Route>
-                    <Route
-                        path="/booking"
-                        exact
-                        render={(routerProps) => <Booking {...routerProps} />}
-                    ></Route>
-
-                    {isMobile && isLogged && (
-                        <BottomNav
-                            setShowChat={setShowChat}
-                            showChat={showChat}
-                        />
+        <Layout>
+            <Router>
+                <NavigationBar />
+                <Route
+                    path="/"
+                    exact
+                    render={(routerProps) => <Home {...routerProps} />}
+                ></Route>
+                <Route
+                    path="/dashboard"
+                    exact
+                    render={(routerProps) => <Dashboard {...routerProps} />}
+                ></Route>
+                <Route
+                    path="/register"
+                    exact
+                    render={(routerProps) => <Register {...routerProps} />}
+                ></Route>
+                <Route
+                    path="/login"
+                    exact
+                    render={(routerProps) => <Login {...routerProps} />}
+                ></Route>
+                <Route
+                    path="/registrationOAuth"
+                    exact
+                    render={(routerProps) => (
+                        <CompleteRegistration {...routerProps} />
                     )}
-                </Router>
+                ></Route>
+                <Route
+                    path="/booking"
+                    exact
+                    render={(routerProps) => <Booking {...routerProps} />}
+                ></Route>
 
-                {isLogged && (
-                    <Chat setShowChat={setShowChat} showChat={showChat} />
+                {isMobile && isLogged && (
+                    <BottomNav setShowChat={setShowChat} showChat={showChat} />
                 )}
-            </Container>
-        </Container>
+            </Router>
+
+            {isLogged && <Chat setShowChat={setShowChat} showChat={showChat} />}
+        </Layout>
     );
 }
 
