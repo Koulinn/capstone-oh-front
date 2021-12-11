@@ -5,21 +5,18 @@ import { ReactComponent as LoginIMG } from "../../assets/loginImg.svg";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Credentials from "../../components/Credentials/Credentials";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import { CSSTransition } from "react-transition-group";
+import lib from "../../lib";
 
-const aniTimer = {
-    appear: 0,
-    enter: 1300,
-    exit: 1300,
-};
+const {
+    animationConfig: { fadeTopBottomTimer },
+} = lib;
 
 function Login({ history }) {
     const [viewController, setViewController] = useState({
         welcome: true,
         steps: false,
     });
-    const isSmall = useMediaQuery("(max-width:574px)");
 
     const { welcome, steps } = viewController;
     const isLogged = useSelector((s) => s.user.isLogged);
@@ -29,12 +26,13 @@ function Login({ history }) {
             history.push("/dashboard");
         } else {
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
         <Row className="box-shadow my-5 overflow-hidden">
             <CSSTransition
                 in={welcome}
-                timeout={aniTimer}
+                timeout={fadeTopBottomTimer}
                 classNames="fade-Top-Bottom"
                 mountOnEnter={true}
                 unmountOnExit={true}
@@ -55,7 +53,7 @@ function Login({ history }) {
 
             <CSSTransition
                 in={steps}
-                timeout={aniTimer}
+                timeout={fadeTopBottomTimer}
                 classNames="fade-Top-Bottom"
                 mountOnEnter={true}
                 unmountOnExit={true}
@@ -70,7 +68,7 @@ function Login({ history }) {
 
             <CSSTransition
                 in={welcome || steps}
-                timeout={aniTimer}
+                timeout={fadeTopBottomTimer}
                 classNames="fade-Top-Bottom"
                 mountOnEnter={true}
                 unmountOnExit={true}
