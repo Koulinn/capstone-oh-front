@@ -8,12 +8,16 @@ import ChatBottom from "../../components/ChatComponents/ChatBottom";
 import { CSSTransition } from "react-transition-group";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Waiting from "../../components/ChatComponents/Waiting";
+import lib from "../../lib";
+
+const {
+    chatTimer: { chatTimer },
+} = lib;
 
 const ADDRESS = process.env.REACT_APP_API_URL;
 export const socket = io(ADDRESS, { transports: ["websocket"] });
 
 function Chat({ showChat, setShowChat }) {
-    const [roomId, setRoomId] = useState(null);
     const [showWaiting, setShowWaiting] = useState(true);
     const user = useSelector((s) => s.user);
     const [currentMessageHistory, setCurrentMessageHistory] = useState([]);
@@ -24,7 +28,6 @@ function Chat({ showChat, setShowChat }) {
         socket.on("waitingUsers", (payload) => {});
         socket.on("joinChat", (payload) => {
             setShowWaiting(false);
-            setRoomId(payload);
             socket.emit("joinSupportAssistant", payload);
         });
     }, []);
@@ -66,7 +69,7 @@ function Chat({ showChat, setShowChat }) {
 
                 <CSSTransition
                     in={showChat}
-                    timeout={100}
+                    timeout={chatTimer}
                     classNames="fade"
                     mountOnEnter={true}
                     unmountOnExit={true}
