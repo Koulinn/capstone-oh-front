@@ -1,3 +1,5 @@
+import animationConfig from "./animationConfig";
+
 export const BASE_URL = process.env.REACT_APP_API_URL;
 
 export const appendImgs = (form, images) => {
@@ -13,3 +15,9 @@ export const removeTag = (tag, array, setArray) => {
     const newTags = array.filter((t) => t !== tag);
     setArray(newTags);
 };
+
+const lib = {
+    animationConfig: animationConfig,
+};
+
+export default lib;
