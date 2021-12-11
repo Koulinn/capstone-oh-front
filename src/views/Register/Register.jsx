@@ -6,12 +6,11 @@ import { useState, useEffect } from "react";
 import RegisterSteps from "../../components/Register/RegisterSteps/RegisterSteps";
 import { useSelector } from "react-redux";
 import { CSSTransition } from "react-transition-group";
+import lib from "../../lib";
 
-const aniTimer = {
-    appear: 0,
-    enter: 1300,
-    exit: 1300,
-};
+const {
+    animationConfig: { fadeTopBottomTimer },
+} = lib;
 
 function Register({ history }) {
     const [viewController, setViewController] = useState({
@@ -42,7 +41,7 @@ function Register({ history }) {
         <Row className="box-shadow my-5 overflow-hidden">
             <CSSTransition
                 in={welcome}
-                timeout={aniTimer}
+                timeout={fadeTopBottomTimer}
                 classNames="fade-Top-Bottom"
                 mountOnEnter={true}
                 unmountOnExit={true}
@@ -62,7 +61,7 @@ function Register({ history }) {
             </CSSTransition>
             <CSSTransition
                 in={welcome}
-                timeout={aniTimer}
+                timeout={fadeTopBottomTimer}
                 classNames="fade-Top-Bottom"
                 mountOnEnter={true}
                 unmountOnExit={true}
@@ -79,7 +78,7 @@ function Register({ history }) {
 
             <CSSTransition
                 in={steps}
-                timeout={aniTimer}
+                timeout={fadeTopBottomTimer}
                 classNames="fade-Top-Bottom"
                 mountOnEnter={true}
                 unmountOnExit={true}
