@@ -41,6 +41,7 @@ function Chat({ showChat, setShowChat }) {
         return () => {
             socket.off("recipientMessage", updateChatMessages);
         };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentMessageHistory]);
 
     const requestAssistance = (user) => {

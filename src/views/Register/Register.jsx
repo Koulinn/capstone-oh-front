@@ -35,6 +35,7 @@ function Register({ history }) {
             history.push("/dashboard");
         } else {
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
