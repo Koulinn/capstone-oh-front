@@ -10,7 +10,6 @@ function FormMeta({
     surname,
     email,
     phone_primary,
-    setIsLoading,
     setIsEdit,
 }) {
     const [inputs, setInputs] = useState([]);
@@ -42,15 +41,12 @@ function FormMeta({
 
     const sendForm = async (e) => {
         try {
-            setIsLoading(true);
             e.preventDefault();
+            // eslint-disable-next-line no-unused-vars
             const res = await updateUserData(formValue);
 
-            setIsLoading(false);
             setIsEdit(false);
-        } catch (error) {
-            setIsLoading(false);
-        }
+        } catch (error) {}
     };
 
     useEffect(() => formBuilder(), []);
