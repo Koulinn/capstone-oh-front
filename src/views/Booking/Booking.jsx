@@ -17,16 +17,15 @@ import BSteps from "./bookingSteps.js";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { CSSTransition } from "react-transition-group";
 import MobilePreview from "../../components/BookingProcess/MobilePreview/MobilePreview";
+import lib from "../../lib";
+
+const {
+    animationConfig: { fadeTopBottomTimer },
+} = lib;
 
 const { getMe } = requests;
 const successImg =
     "https://res.cloudinary.com/koulin/image/upload/v1635614779/OneHealth/successOH_wxysls.svg";
-
-const aniTimer = {
-    appear: 0,
-    enter: 1300,
-    exit: 1300,
-};
 
 function Booking({ history }) {
     const [testsImgs, setTestsImgs] = useState(null);
@@ -70,9 +69,31 @@ function Booking({ history }) {
             setBlur(true);
             history.push("/login");
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    useEffect(() => {}, [imgsPreview, facility, imgsPreview, bookingSteps]);
+    const setMedicalTestsPreview = () => {
+        if (imgsPreview.length !== 0 || requestTags.length !== 0) {
+            return (
+                <TestsPreview
+                    imgsPreview={imgsPreview}
+                    removeImg={removeImg}
+                    requestTags={requestTags}
+                    setRequestTags={setRequestTags}
+                />
+            );
+        } else {
+            return null;
+        }
+    };
+
+    const setFacilityPreview = () => {
+        if (facility) {
+            return <FacilityLocationPreview facility={facility} />;
+        } else {
+            return null;
+        }
+    };
 
     const removeImg = (imgIndex) => {
         const remainingImgs = imgsPreview.filter(
@@ -116,7 +137,7 @@ function Booking({ history }) {
                 )}
                 <CSSTransition
                     in={bookingSteps.medicalTests}
-                    timeout={aniTimer}
+                    timeout={fadeTopBottomTimer}
                     classNames="fade-Top-Bottom"
                     mountOnEnter={true}
                     unmountOnExit={true}
@@ -135,7 +156,7 @@ function Booking({ history }) {
                 </CSSTransition>
                 <CSSTransition
                     in={bookingSteps.facility}
-                    timeout={aniTimer}
+                    timeout={fadeTopBottomTimer}
                     classNames="fade-Top-Bottom"
                     mountOnEnter={true}
                     unmountOnExit={true}
@@ -151,10 +172,9 @@ function Booking({ history }) {
                 </CSSTransition>
                 <div
                     className={
-                        bookingSteps.generalAvailability ||
-                        bookingSteps.pickDate
-                            ? "user-availability-wrapper flex-column  h-100"
-                            : ""
+                        (bookingSteps.generalAvailability ||
+                            bookingSteps.pickDate) &&
+                        "user-availability-wrapper flex-column  h-100"
                     }
                 >
                     <CSSTransition
@@ -162,7 +182,7 @@ function Booking({ history }) {
                             bookingSteps.generalAvailability ||
                             bookingSteps.pickDate
                         }
-                        timeout={aniTimer}
+                        timeout={fadeTopBottomTimer}
                         classNames="fade-Top-Bottom"
                         mountOnEnter={true}
                         unmountOnExit={true}
@@ -182,7 +202,7 @@ function Booking({ history }) {
                 <div className="confirm-wrapper">
                     <CSSTransition
                         in={bookingSteps.checkPersonalDetails}
-                        timeout={aniTimer}
+                        timeout={fadeTopBottomTimer}
                         classNames="fade-Top-Bottom"
                         mountOnEnter={true}
                         unmountOnExit={true}
@@ -201,7 +221,7 @@ function Booking({ history }) {
                 </div>
                 <CSSTransition
                     in={bookingSteps.successScreen}
-                    timeout={aniTimer}
+                    timeout={fadeTopBottomTimer}
                     classNames="fade-Top-Bottom"
                     mountOnEnter={true}
                     unmountOnExit={true}
@@ -234,22 +254,8 @@ function Booking({ history }) {
                         isAlternativeLabel={isMaxTablet ? true : false}
                         sx={isMaxTablet ? { margin: 0, maxWidth: "none" } : ""}
                         steps={BSteps}
-                        testsPreview={
-                            imgsPreview.length !== 0 ||
-                            requestTags.length !== 0 ? (
-                                <TestsPreview
-                                    imgsPreview={imgsPreview}
-                                    removeImg={removeImg}
-                                    requestTags={requestTags}
-                                    setRequestTags={setRequestTags}
-                                />
-                            ) : null
-                        }
-                        facilityPreview={
-                            facility ? (
-                                <FacilityLocationPreview facility={facility} />
-                            ) : null
-                        }
+                        testsPreview={setMedicalTestsPreview()}
+                        facilityPreview={setFacilityPreview()}
                         availabilityPreview={
                             <AvailabilityPreview
                                 availability={availability}
