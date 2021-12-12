@@ -73,15 +73,15 @@ html body {
         bottom: 0px;
         left: 0px;
         height: 4px;
-        width: 64px;
+        width: 32px;
         border-radius: 20px;
-        transform: translateX(64px);
+        transform: translateY(4px);
         opacity: 0;
         transition: all 0.7s;
     }
 
     %menuEffectActive {
-        transform: translateX(0px);
+        transform: translateY(4px);
         opacity: 1;
         background-color: $PRIMARY-COLOR-2;
         width: 32px;
@@ -104,30 +104,39 @@ html body {
     }
 
     #topNavigation {
-        a {
-            text-decoration: none;
-            font-size: 1.25rem;
-            position: relative;
-        }
-        a::before {
-            @extend %menuEffectInitial;
-        }
-        a:hover::before {
-            @extend %menuEffectActive;
-            @extend %menuEffectHoverGrey;
-            background-color: #e2f0f8;
-        }
+        #basic-navbar-nav {
+            a {
+                text-decoration: none;
+                font-size: 1.25rem;
+                position: relative;
+            }
+            span {
+                position: relative;
+            }
+            span::before {
+                @extend %menuEffectInitial;
+            }
+            span:hover::before {
+                @extend %menuEffectActive;
+                @extend %menuEffectHoverGrey;
+                background-color: #e2f0f8;
+            }
 
-        a.active {
-            font-weight: 500;
-        }
-        a.active::before {
-            @extend %menuEffectActive;
-        }
-        a.active:hover::before {
-            @extend %menuEffectActive;
-            width: 32px;
-            height: 4px;
+            a.active {
+                font-weight: 500;
+            }
+            a.active {
+                span::before {
+                    @extend %menuEffectActive;
+                }
+            }
+            a.active:hover {
+                span::before {
+                    @extend %menuEffectActive;
+                    width: 32px;
+                    height: 4px;
+                }
+            }
         }
 
         .logo {

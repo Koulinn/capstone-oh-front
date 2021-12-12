@@ -58,7 +58,7 @@ function NavigationBar({ history }) {
                                     (isMobile && " mb-3")
                                 }
                             >
-                                Login
+                                <span>Login</span>
                             </NavLink>
 
                             <Button
