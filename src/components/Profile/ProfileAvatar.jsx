@@ -31,7 +31,7 @@ export default function ProfileAvatar({
             overlap="circular"
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             variant="dot"
-            invisible={medical_tests_requested?.length > 0 ? false : true}
+            invisible={true}
         >
             <label htmlFor="avatar" className="cursor-pointer">
                 {isLoading ? (
