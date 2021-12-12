@@ -746,6 +746,9 @@ html body {
         width: 0px;
         height: 0 px;
         min-width: auto;
+        .chatDisplay-wrapper {
+            right: 0px;
+        }
     }
 
     .reqId-responsiveness {
