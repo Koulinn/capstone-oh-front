@@ -32,10 +32,12 @@ function Dashboard({ history, location }) {
             if (!res) {
                 dispatch(setUserLogOut());
                 history.push("/");
+                return;
             }
         } catch (error) {
             dispatch(setUserLogOut());
             history.push("/");
+            return;
         }
     };
 
