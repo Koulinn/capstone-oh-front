@@ -20,6 +20,7 @@ function App() {
 
                 {routes.map((views) => (
                     <Route
+                        key={views.path}
                         path={views.path}
                         exact
                         render={(routerProps) => (
