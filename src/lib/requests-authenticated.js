@@ -5,6 +5,7 @@ import { BASE_URL } from "./index.js";
 import {
     setUserData,
     setUserLogIn,
+    setUserLogOut,
     setUserTokens,
 } from "../redux/actions/index.js";
 
@@ -39,6 +40,7 @@ const getMe = async (accessTokenParam) => {
         store.dispatch(setUserLogIn());
         return response;
     } catch (error) {
+        store.dispatch(setUserLogOut());
         return false;
     }
 };
