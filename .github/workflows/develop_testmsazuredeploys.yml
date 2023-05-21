@@ -3,15 +3,17 @@
 
 name: Build and deploy Node.js app to Azure Web App - testmsazuredeploys
 
+variables:
+- name: CI
+  value: false
+- name: REACT_APP_REDUX_STORAGE_SECRET_KEY
+  value: "123" 
+
 on:
   push:
     branches:
       - develop
   workflow_dispatch:
-
-variables:
-  CI: false
-  REACT_APP_REDUX_STORAGE_SECRET_KEY: "123" 
 
 jobs:
   build:
