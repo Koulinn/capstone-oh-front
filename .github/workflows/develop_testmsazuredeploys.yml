@@ -1,11 +1,10 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
+variables:
+  CI: false
+  REACT_APP_REDUX_STORAGE_SECRET_KEY: '123' 
 
 name: Build and deploy Node.js app to Azure Web App - testmsazuredeploys
-
-variables:
- CI: false
- REACT_APP_REDUX_STORAGE_SECRET_KEY: '123' 
 
 on:
   push:
@@ -14,10 +13,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  variables:
-    CI: false
-    REACT_APP_REDUX_STORAGE_SECRET_KEY: '123' 
-    
+
   build:
     runs-on: windows-latest
 
