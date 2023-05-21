@@ -44,7 +44,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts --passWithNoTests build",
-    "test": "react-scripts test",
+    "test": "react-scripts --passWithNoTests test",
     "eject": "react-scripts eject",
     "sass": "node-sass src/styles/index.scss -o src/styles",
     "watch": "npm run sass && node-sass src/styles/index.scss -wo src/styles"
