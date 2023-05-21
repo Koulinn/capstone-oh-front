@@ -9,6 +9,10 @@ on:
       - develop
   workflow_dispatch:
 
+variables:
+  CI: false
+  REACT_APP_REDUX_STORAGE_SECRET_KEY: "123" 
+
 jobs:
   build:
     runs-on: windows-latest
